@@ -14,4 +14,6 @@ void main(){
  }else{
   printf("%d = %d", a, b);
  }
+ 
+ getch();
 }
