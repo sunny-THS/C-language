@@ -7,7 +7,7 @@ void main(){
  scanf("%d%d", &a, &b);
  if(a!=b){
   if(a>b){
-    prinf("%d > %d", a, b);
+    printf("%d > %d", a, b);
   }else{
     printf("%d < %d", a, b);
   }
