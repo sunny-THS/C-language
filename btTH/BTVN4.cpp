@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include<conio.h>
-#inlcude<math.h>
+#include<math.h>
 
 void main(){
   int cd, cr, dt, cv;
