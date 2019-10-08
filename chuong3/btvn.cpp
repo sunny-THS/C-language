@@ -1,4 +1,5 @@
-#include<stdio.h>
+
+break;#include<stdio.h>
 #include<conio.h>
 #include<math.h>
 
@@ -21,6 +22,7 @@ void main() {
       }else{
         printf("Do la so nguyen am");
       }
+      break;
     }
     case 2: {
       int a, b;
@@ -32,6 +34,7 @@ void main() {
       }else{
         printf("%d < %d", a, b);
       }
+      break;
     }
     case 3: {
       int a;
@@ -43,6 +46,7 @@ void main() {
       }else{
         printf("Do la so le");
       }
+      break;
     }
     case 4: {
       int a, b;
@@ -58,6 +62,7 @@ void main() {
       }else{
         printf("%d = %d", a, b);
       }
+      break;
     }
     case 5: {
       int a, b;
@@ -70,6 +75,7 @@ void main() {
       else{
         printf("a khong phai la boi cua b");
       }
+      break;
     }
     case 6: {
       int donGia, soLuong, thanhTien;
@@ -82,6 +88,7 @@ void main() {
       }
       tongTien= thanhTien - giamGia;
       printf("Tong tien: %.2f", tongTien);
+      break;
     }
     case 7: {
       int a, b;
@@ -91,6 +98,7 @@ void main() {
       scanf("%d%d", &a, &b);
       x= -(float)b/a;
       printf("Nghiem cua pt bac nhat la: %.2f", x);
+      break;
     }
     case 8: {
       int a, b, c;
@@ -111,6 +119,7 @@ void main() {
         x1= -(float)b/(2*a);
         printf("Pt co 1 nghiem duy nhat: %.2f", x1);
       }
+      break;
     }
     case 9: {
       int thang;
@@ -132,6 +141,7 @@ void main() {
         case 2: printf("Co 28 hoac 29 ngay"); break;
         default: printf("Invalid"); break;
       }
+      break;
     }
     case 10: {
       int nam;
@@ -143,6 +153,7 @@ void main() {
       }else{
         printf("Do khong phai la nam nhuan");
       }
+      break;
     }
     case 11: {
       const float PI = 3.14;
@@ -180,6 +191,7 @@ void main() {
         }
         default: printf("Invalid"); break;
       }
+      break;
     }
     case 12: {
       int a, b, n;
@@ -196,12 +208,14 @@ void main() {
         case 3: printf("%d * %d = %d", a, b, a*b); break;
         case 4: printf("%d / %d = %.2f", a, b, (float)a/b); break;
       }
+      break;
     }
     case 13: {
       printf("In tu 1 den 100\n\n");
       for(int i=1;i<=100;i++){
         printf("%d ",i);
       }
+      break;
     }
     case 14: {
       int tong = 0;
@@ -209,6 +223,7 @@ void main() {
         tong+=i;
       }
       printf("1 + 2 + 3 + ... + 20 = %d", tong);
+      break;
     }
     case 15: {
       int kq = 1;
@@ -219,6 +234,7 @@ void main() {
         kq*=i;
       }
       printf("1*2*3*...*%d = %d", n, kq);
+      break;
     }
     case 16: {
       int tong=0;
@@ -226,6 +242,7 @@ void main() {
         tong+=i;
       }
       printf("2+4+6+8+...+20= %d", tong);
+      break;
     }
     case 17: {
       int n, sum=0;
@@ -235,6 +252,7 @@ void main() {
         sum+=i*(i+1);
       }
       printf("1*2 + 2*3 + 3*4+...+%d*(%d+1)= %d", n, n, sum);
+      break;
     }
     case 18: {
       int n,sum=0;
@@ -244,6 +262,7 @@ void main() {
         sum+=(float)1/(n*(n+1)*(n+2));
       }
       printf("Tong: %d", sum);
+      break;
     }
     case 19: {
       int n,sum=0;
@@ -253,6 +272,7 @@ void main() {
         sum+=i*i;
       }
       printf("1^2 + 2^2 + 3^2+...+%d^2 %d", n, sum);
+      break;
     }
     case 20: {
       int n,sum=0;
@@ -264,6 +284,7 @@ void main() {
         }
       }
       printf("1 + 1+2 + 1+2+3+...+ 1+2+..n %d", sum);
+      break;
     }
     case 21: {
       printf("In bang cuu chuong\n\n");
@@ -274,6 +295,7 @@ void main() {
         }
         printf("\n");
       }
+      break;
     }
     case 22: {
       int n;
@@ -283,6 +305,7 @@ void main() {
       for(int i=1;i<=10;i++){
         printf("\n%d*%d=%d", n, i, i*n);
       }
+      break;
     }
     case 23: {
       int cd, cr;
@@ -295,6 +318,7 @@ void main() {
         }
         printf("\n");
       }
+      break;
     }
     case 24: {
       int n;
@@ -305,6 +329,7 @@ void main() {
       for(int i=1;i<n;i+=2){
         printf("%d ",i);
       }
+      break;
     }
     case 25: {
       int sum=0,n;
@@ -315,7 +340,7 @@ void main() {
       }
       printf("Tong so chan nho hon n: %d", sum);
     }
-
+    break;
   }
 
   getch();
