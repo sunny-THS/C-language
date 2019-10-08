@@ -5,14 +5,19 @@
 void main() {
   int chon;
   int soBai = 35;
-  printf("\tDanh sach bai tap chuong 3\n");
   //in bai tap
 
   //lua cho bai tap
   do {
-    for (int i = 0; i < soBai; i++) {
-      printf("%2d. Bai %d\n", i, i);
+	printf("==========================================================================================================");
+    printf("\n\t\t\t\t\tDanh sach bai tap chuong 3\n\n");
+    for (int i = 1; i <= soBai; i++) {
+      printf("%2d. Bai %d\t", i, i);
+      if (i%7==0) {
+        printf("\n");
+      }
     }
+	printf("Chon bai: ");
     scanf("%d", &chon);
     //xu ly chon bai
     switch (chon) {
@@ -26,6 +31,7 @@ void main() {
         }else{
           printf("Do la so nguyen am");
         }
+        printf("\n");
         break;
       }
       case 2: {
@@ -38,6 +44,7 @@ void main() {
         }else{
           printf("%d < %d", a, b);
         }
+        printf("\n");
         break;
       }
       case 3: {
@@ -50,6 +57,7 @@ void main() {
         }else{
           printf("Do la so le");
         }
+        printf("\n");
         break;
       }
       case 4: {
@@ -66,6 +74,7 @@ void main() {
         }else{
           printf("%d = %d", a, b);
         }
+        printf("\n");
         break;
       }
       case 5: {
@@ -79,6 +88,7 @@ void main() {
         else{
           printf("a khong phai la boi cua b");
         }
+        printf("\n");
         break;
       }
       case 6: {
@@ -92,6 +102,7 @@ void main() {
         }
         tongTien= thanhTien - giamGia;
         printf("Tong tien: %.2f", tongTien);
+        printf("\n");
         break;
       }
       case 7: {
@@ -102,6 +113,7 @@ void main() {
         scanf("%d%d", &a, &b);
         x= -(float)b/a;
         printf("Nghiem cua pt bac nhat la: %.2f", x);
+        printf("\n");
         break;
       }
       case 8: {
@@ -123,6 +135,7 @@ void main() {
           x1= -(float)b/(2*a);
           printf("Pt co 1 nghiem duy nhat: %.2f", x1);
         }
+        printf("\n");
         break;
       }
       case 9: {
@@ -145,6 +158,7 @@ void main() {
           case 2: printf("Co 28 hoac 29 ngay"); break;
           default: printf("Invalid"); break;
         }
+        printf("\n");
         break;
       }
       case 10: {
@@ -157,6 +171,7 @@ void main() {
         }else{
           printf("Do khong phai la nam nhuan");
         }
+        printf("\n");
         break;
       }
       case 11: {
@@ -195,6 +210,7 @@ void main() {
           }
           default: printf("Invalid"); break;
         }
+        printf("\n");
         break;
       }
       case 12: {
@@ -212,6 +228,7 @@ void main() {
           case 3: printf("%d * %d = %d", a, b, a*b); break;
           case 4: printf("%d / %d = %.2f", a, b, (float)a/b); break;
         }
+        printf("\n");
         break;
       }
       case 13: {
@@ -219,6 +236,7 @@ void main() {
         for(int i=1;i<=100;i++){
           printf("%d ",i);
         }
+        printf("\n");
         break;
       }
       case 14: {
@@ -227,6 +245,7 @@ void main() {
           tong+=i;
         }
         printf("1 + 2 + 3 + ... + 20 = %d", tong);
+        printf("\n");
         break;
       }
       case 15: {
@@ -238,6 +257,7 @@ void main() {
           kq*=i;
         }
         printf("1*2*3*...*%d = %d", n, kq);
+        printf("\n");
         break;
       }
       case 16: {
@@ -246,6 +266,7 @@ void main() {
           tong+=i;
         }
         printf("2+4+6+8+...+20= %d", tong);
+        printf("\n");
         break;
       }
       case 17: {
@@ -256,6 +277,7 @@ void main() {
           sum+=i*(i+1);
         }
         printf("1*2 + 2*3 + 3*4+...+%d*(%d+1)= %d", n, n, sum);
+        printf("\n");
         break;
       }
       case 18: {
@@ -266,6 +288,7 @@ void main() {
           sum+=(float)1/(n*(n+1)*(n+2));
         }
         printf("Tong: %d", sum);
+        printf("\n");
         break;
       }
       case 19: {
@@ -276,6 +299,7 @@ void main() {
           sum+=i*i;
         }
         printf("1^2 + 2^2 + 3^2+...+%d^2 %d", n, sum);
+        printf("\n");
         break;
       }
       case 20: {
@@ -288,6 +312,7 @@ void main() {
           }
         }
         printf("1 + 1+2 + 1+2+3+...+ 1+2+..n %d", sum);
+        printf("\n");
         break;
       }
       case 21: {
@@ -299,6 +324,7 @@ void main() {
           }
           printf("\n");
         }
+        printf("\n");
         break;
       }
       case 22: {
@@ -309,6 +335,7 @@ void main() {
         for(int i=1;i<=10;i++){
           printf("\n%d*%d=%d", n, i, i*n);
         }
+        printf("\n");
         break;
       }
       case 23: {
@@ -322,6 +349,7 @@ void main() {
           }
           printf("\n");
         }
+        printf("\n");
         break;
       }
       case 24: {
@@ -333,6 +361,7 @@ void main() {
         for(int i=1;i<n;i+=2){
           printf("%d ",i);
         }
+        printf("\n");
         break;
       }
       case 25: {
@@ -344,6 +373,7 @@ void main() {
         }
         printf("Tong so chan nho hon n: %d", sum);
       }
+      printf("\n");
       break;
     }
   } while(chon!=0);
