@@ -45,7 +45,7 @@ void main() {
     }
     case 4: {
       int a, b;
-      printf("So sanh 2 so a va b \n\n", );
+      printf("So sanh 2 so a va b \n\n");
       printf("Nhap 2 so: ");
       scanf("%d%d", &a, &b);
       if(a!=b){
@@ -60,7 +60,7 @@ void main() {
     }
     case 5: {
       int a, b;
-      printf("Xac dinh boi so\n", );
+      printf("Xac dinh boi so\n\n");
       printf("Nhap a, b: ");
       scanf("%d%d", &a, &b);
       if(a%b==0){
@@ -85,7 +85,7 @@ void main() {
     case 7: {
       int a, b;
       float x;
-      printf("Giai phuong trinh bac nhat\n\n", );
+      printf("Giai phuong trinh bac nhat\n\n");
       printf("Nhap a, b: ");
       scanf("%d%d", &a, &b);
       x= -(float)b/a;
@@ -134,7 +134,7 @@ void main() {
     }
     case 10: {
       int nam
-      printf("Kiem tra nam nhuan hay khong\n\n", );
+      printf("Kiem tra nam nhuan hay khong\n\n");
       printf("Nhap 1 nam: ");
       scanf("%d", &nam);
       if(nam%400==0 || nam%4==0 && nam%100!=0){
@@ -265,20 +265,54 @@ void main() {
       printf("1 + 1+2 + 1+2+3+...+ 1+2+..n %d", sum);
     }
     case 21: {
-
+      printf("In bang cuu chuong\n\n");
+      for(int i=1;i<=9;i++){
+        printf("Bang cuu chuong %d\n", i);
+        for(int j=1;j<=10;j++){
+          printf("%d*%d=%d\n", i, j, i*j);
+        }
+        printf("\n");
+      }
     }
     case 22: {
-
+      int n;
+      printf("Nhap n: ");
+      scanf("%d", &n);
+      printf("Bang cuu chuong so %d", n);
+      for(int i=1;i<=10;i++){
+        printf("\n%d*%d=%d", n, i, i*n);
+      }
     }
     case 23: {
-
+      int cd, cr;
+      printf("Ve hinh chu nhat\n\n");
+      printf("Nhap chieu dai va chieu rong: ");
+      scanf("%d%d", &cd, &cr);
+      for(int i=0;i<cr;i++){
+        for(int j=0;j<cd;j++){
+          printf("* ");
+        }
+        printf("\n");
+      }
     }
-
     case 24: {
-
+      int n;
+      printf("Tim so le no hon n\n\n");
+      printf("Nhap n: ");
+      scanf("%d", &n);
+      printf("So le nho hon n: ");
+      for(int i=1;i<n;i+=2){
+        printf("%d ",i);
+      }
     }
     case 25: {
-
+      int sum=0,n;
+      printf("Nhap n: ");
+      scanf("%d", &n);
+      for(int i=0;i<n;i+=2){
+        sum+=i;
+      }
+      printf("Tong so chan nho hon n: %d", sum);
     }
 
   }
