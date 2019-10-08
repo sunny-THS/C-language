@@ -8,7 +8,6 @@ void main() {
 
   do {
     //in bai tap
-	printf("==========================================================================================================");
     printf("\n\t\t\t\t\tDanh sach bai tap chuong 3\n\n");
     for (int i = 1; i <= soBai; i++) {
       printf("%2d. Bai %d\t", i, i);
@@ -19,7 +18,7 @@ void main() {
     //lua cho bai tap
     printf("Chon bai: ");
     scanf("%d", &chon);
-    
+
     //xu ly chon bai
     switch (chon) {
       case 1: {
@@ -379,9 +378,8 @@ void main() {
       case 0: printf("Bam nut bat ki de thoat"); break;
       default: printf("Khong co du lieu\n"); break;
     }
-
+	printf("==========================================================================================================");
   } while(chon!=0);
-
 
   getch();
 }
