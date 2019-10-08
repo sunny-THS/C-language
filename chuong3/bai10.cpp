@@ -2,7 +2,7 @@
 #include<conio.h>
 
 void main(){
-  int nam
+  int nam;
   printf("Nhap 1 nam: ");
   scanf("%d", &nam);
   if(nam%400==0 || nam%4==0 && nam%100!=0){
