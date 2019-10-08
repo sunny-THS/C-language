@@ -197,31 +197,72 @@ void main() {
       }
     }
     case 13: {
-      printf("In tu 1 den 100\n");
+      printf("In tu 1 den 100\n\n");
       for(int i=1;i<=100;i++){
         printf("%d ",i);
       }
     }
     case 14: {
-
+      int tong = 0;
+      for(int i=1;i<=20;i++){
+        tong+=i;
+      }
+      printf("1 + 2 + 3 + ... + 20 = %d", tong);
     }
     case 15: {
-
+      int kq = 1;
+      int n;
+      printf("Nhap so n(n>0): ");
+      scanf("%d", &n);
+      for(int i=1;i<=n;i++){
+        kq*=i;
+      }
+      printf("1*2*3*...*%d = %d", n, kq);
     }
     case 16: {
-
+      int tong=0;
+      for(int i=2;i<=20;i+=2){
+        tong+=i;
+      }
+      printf("2+4+6+8+...+20= %d", tong);
     }
     case 17: {
-
+      int n, sum=0;
+      printf("Nhap n: ");
+      scanf("%d", &n);
+      for(int i=1;i<=n;i++){
+        sum+=i*(i+1);
+      }
+      printf("1*2 + 2*3 + 3*4+...+%d*(%d+1)= %d", n, n, sum);
     }
     case 18: {
-
+      int n,sum=0;
+      printf("Nhap n: ");
+      scanf("%d", &n);
+      for(int i=1;i<=n;i++){
+        sum+=(float)1/(n*(n+1)*(n+2));
+      }
+      printf("Tong: %d", sum);
     }
     case 19: {
-
+      int n,sum=0;
+      printf("Nhap n: ");
+      scanf("%d", &n);
+      for(int i=1;i<=n;i++){
+        sum+=i*i;
+      }
+      printf("1^2 + 2^2 + 3^2+...+%d^2 %d", n, sum);
     }
     case 20: {
-
+      int n,sum=0;
+      printf("Nhap n: ");
+      scanf("%d", &n);
+      for(int i=1;i<=n;i++){
+        for(int j=1;j<=i,j++){
+          sum+=j;
+        }
+      }
+      printf("1 + 1+2 + 1+2+3+...+ 1+2+..n %d", sum);
     }
     case 21: {
 
