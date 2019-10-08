@@ -1,9 +1,10 @@
 #include<stdio.h>
 #include<conio.h>
+#include<math.h>
 
 void main() {
   int chon;
-  imt soBai = 35;
+  int soBai = 35;
   printf("\tDanh sach bai tap chuong 3\n");
   for (int i = 0; i < soBai; i++) {
     printf("%2d. Bai %d\n", i, i);
@@ -133,7 +134,7 @@ void main() {
       }
     }
     case 10: {
-      int nam
+      int nam;
       printf("Kiem tra nam nhuan hay khong\n\n");
       printf("Nhap 1 nam: ");
       scanf("%d", &nam);
@@ -258,7 +259,7 @@ void main() {
       printf("Nhap n: ");
       scanf("%d", &n);
       for(int i=1;i<=n;i++){
-        for(int j=1;j<=i,j++){
+        for(int j=1;j<=i;j++){
           sum+=j;
         }
       }
