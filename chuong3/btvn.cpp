@@ -35,16 +35,16 @@ void main() {
         break;
       }
       case 2: {
-        int a, b;
+        int a, b, max;
         printf("Tim Max-Min\n\n" );
         printf("Nhap 2 so: ");
         scanf("%d%d", &a, &b);
         if(a>b){
-          printf("%d > %d", a, b);
+          max = a;
         }else{
-          printf("%d < %d", a, b);
+          max = b;
         }
-        printf("\n");
+        printf("So lon nhat: %d\n", max);
         break;
       }
       case 3: {
@@ -111,8 +111,12 @@ void main() {
         printf("Giai phuong trinh bac nhat\n\n");
         printf("Nhap a, b: ");
         scanf("%d%d", &a, &b);
-        x= -(float)b/a;
-        printf("Nghiem cua pt bac nhat la: %.2f", x);
+        if(a!=0){
+          x = -(float)b/a;
+          printf("Nghiem cua pt bac nhat la: %.2f", x);
+        }else{
+          printf("Phuong trinh vo nghiem");
+        }
         printf("\n");
         break;
       }
@@ -322,7 +326,7 @@ void main() {
           for(int j=1;j<=10;j++){
             printf("%d*%d=%d\n", i, j, i*j);
           }
-          printf("\n");
+          printf("\t\t");
         }
         printf("\n");
         break;
