@@ -358,7 +358,7 @@ void main() {
       }
       case 24: {
         int n;
-        printf("Tim so le no hon n\n\n");
+        printf("Tim so le nho hon n\n\n");
         printf("Nhap n: ");
         scanf("%d", &n);
         printf("So le nho hon n: ");
@@ -379,6 +379,28 @@ void main() {
         printf("\n");
         break;
       }
+      case 26: {
+        int n;
+        printf("Nhap n: ");
+        scanf("%d", &n);
+        printf("Boi so cua 5 nho hon n:");
+        for(int i=0; i<n; i++){
+          if(i%5==0){
+            printf("%2d",i);
+          }
+        }
+        printf("\n");
+        break;
+      }
+      case 27: {}
+      case 28: {}
+      case 29: {}
+      case 30: {}
+      case 31: {}
+      case 32: {}
+      case 33: {}
+      case 34: {}
+      case 35: {}
       case 0: printf("Bam nut bat ki de thoat"); break;
       default: printf("Khong co du lieu\n"); break;
     }
