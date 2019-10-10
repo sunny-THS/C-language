@@ -238,7 +238,7 @@ void main() {
       case 13: {
         printf("In tu 1 den 100\n\n");
         for(int i=1;i<=100;i++){
-          printf("%d ",i);
+          printf("%2d",i);
         }
         printf("\n");
         break;
