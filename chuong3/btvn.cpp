@@ -394,7 +394,7 @@ void main() {
       }
       case 27: {
         int a, b, c, d, uc,bc;
-        printf("Nhap 2 so nguyen: \n");
+        printf("Nhap 2 so nguyen: ");
         scanf("%d%d", &a, &b);
         if (a==b) {
           uc = a;
@@ -461,12 +461,126 @@ void main() {
         printf("Tien phai tra: %ld\n", tongTien);
         break;
       }
-      case 29: {}
-      case 30: {}
-      case 31: {}
-      case 32: {}
-      case 33: {}
-      case 34: {}
+      case 29: {
+        int mucDien, tienDien;
+        printf("Nhap muc dien su dung(tinh bang KW): ");
+        scanf("%d", &mucDien);
+        if (mucDien>=1 && mucDien<=100) {
+          tienDien = mucDien* 5;
+        }
+        if (mucDien>=101 && mucDien<=150) {
+          tienDien = mucDien* 7;
+        }
+        if (mucDien>=151 && mucDien<=200) {
+          tienDien = mucDien* 10;
+        }
+        if (mucDien>=201 && mucDien<=300) {
+          tienDien = mucDien* 15;
+        }
+        if (mucDien>300) {
+          tienDien = mucDien* 20;
+        }
+        printf("Tien phai tra: %d\n", tienDien);
+        break;
+      }
+      case 30: {
+        int n;
+        printf("Nhap n: ");
+        scanf("%d", &n);
+        if (n>5) {
+          n+=2;
+        }else{
+          n=0;
+        }
+        printf("n= %d\n", n);
+        break;
+      }
+      case 31: {
+        int m, n, dem=0;
+        printf("Nhap n, m: ");
+        scanf("%d%d", &n, &m);
+        if (m>n) {
+          for (int i = n; i <= m; i++) {
+            if (i%2==0 && i!=0) {
+              dem++;
+            }
+          }
+          printf("So luong so chan trong [%d, %d]: %d\n", n, m, dem);
+        }else{
+          for (int i = m; i <= n; i++) {
+            if (i%2==0 && i!=0) {
+              dem++;
+            }
+          }
+          printf("So luong so chan trong [%d, %d]: %d\n", m, n, dem);
+        }
+        break;
+      }
+      case 32: {
+        int n, tong=0, i=0;
+        printf("Nhap n: ");
+        scanf("%d", &n);
+        while (i<n) {
+          tong+=i++;
+        }
+        printf("Tong cac so tu nhien nho hon n: %d\n", tong);
+        break;
+      }
+      case 33: {
+        int dv, c, t;
+        printf("Cac so co 3 chu so doi mot khac nhau:\n");
+        for (int i = 100; i < 1000; i++) {
+          t= i/100;
+          c= i/10 - t*10;
+          dv= i%10;
+          if (t!=c && t!=dv && c!=dv) {
+            printf("%2d ", i);
+          }
+        }
+        printf("\n");
+        break;
+      }
+      case 34: {
+        int dem=0, max, n, num, tong=0, a[10], kiemTra;
+        printf("Nhap N: ");
+        scanf("%d", &n);
+        max= n%10;
+        while (n!=0) {
+          num = n%10;
+          a[dem++] = num;
+
+          if (max<num) {
+            max = num;
+          }
+          tong+=num;
+          n/=10;
+        }
+        printf("\n");
+        int j=1;
+        for (int i = 0; i < dem-1; i++) {
+          for (; j < dem; j++) {
+            if (a[i]!=a[j]) {
+              kiemTra = 1; //true
+              j++;
+            }else{
+              kiemTra = 0; //false
+              break;
+            }
+          }
+          if (kiemTra==0) {
+            break;
+          }
+          printf("%d\n", kiemTra);
+        }
+        printf("%d\n", kiemTra);
+
+        printf("So hang dau tien cua N: %d\n", a[dem-1]);
+        printf("Tong cac chu so cua N: %d\n", tong);
+        printf("Chu so lon nhat trong k chu so do: %d\n", max);
+        printf("So chu so cua N: %d\n", dem);
+
+
+      }
       case 35: {}
       case 0: printf("Bam nut bat ki de thoat\n"); break;
       default: printf("Khong co du lieu\n"); break;
