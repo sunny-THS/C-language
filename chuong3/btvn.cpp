@@ -7,16 +7,17 @@ void main() {
   int soBai = 35;
 
   do {
-    //in bai tap
+    //in list bai tap
     printf("\n\t\t\t\t\tDanh sach bai tap chuong 3\n\n");
     for (int i = 1; i <= soBai; i++) {
       printf("%2d. Bai %d\t", i, i);
-      if (i%7==0) {
+      if (i%3==0) {
         printf("\n");
       }
     }
+    printf("0. Thoat chuong trinh");
     //lua cho bai tap
-    printf("Chon bai: ");
+    printf("\nChon bai: ");
     scanf("%d", &chon);
 
     //xu ly chon bai
@@ -323,10 +324,7 @@ void main() {
         printf("In bang cuu chuong\n\n");
         for(int j=1;j<=10;j++){
           for(int i=1;i<=9;i++){
-            printf("%d*%d=%d\t\t", i, j, i*j);
-            if (i==6) {
-              printf("\n");
-            }
+            printf("%d*%d=%d\t", i, j, i*j);
           }
           printf("\n");
         }
@@ -386,16 +384,83 @@ void main() {
         printf("Nhap n: ");
         scanf("%d", &n);
         printf("Boi so cua 5 nho hon n:");
-        for(int i=0; i<n; i++){
+        for(int i=1; i<n; i++){
           if(i%5==0){
-            printf("%2d",i);
+            printf("%d ",i);
           }
         }
         printf("\n");
         break;
       }
-      case 27: {}
-      case 28: {}
+      case 27: {
+        int a, b, c, d, uc,bc;
+        printf("Nhap 2 so nguyen: \n");
+        scanf("%d%d", &a, &b);
+        if (a==b) {
+          uc = a;
+        }else{
+          c=a; //thay the cho a va b
+          d=b;
+          while (c!=d) {
+            if (c>d) {
+              c-=d;
+            }else{
+              d-=c;
+            }
+          }
+          uc = c;
+        }
+        bc = (float)(a*b)/uc;
+        printf("UCLN(%d,%d)=%2d\nBCNN(%d,%d)=%2d\n", a,b,uc,a,b,bc);
+        break;
+      }
+      case 28: {
+        const int gioMoCua = 10;
+        const int gioDongCua = 24;
+        const int mocGiao = 17;	 // moc phan biet 2 menh  gia tien phai tra
+        const int giaTrc17h = 20000;
+        const long giaSau17h = 45000;
+        int gioVao, phutVao, gioRa, phutRa, gioTrc, phutTrc, gioSau, phutSau, tongH, tongM;
+        long tongTien;
+
+        printf("Tinh tien karaoke\n");
+        do {
+	        printf("=============================\n");
+          printf("Gio vao(gom ca gio va phut cach nhau boi dau cach): \n");
+          scanf("%d%d", &gioVao, &phutVao);
+          printf("Gio ra(gom ca gio va phut cach nhau boi dau cach): \n");
+          scanf("%d%d", &gioRa, &phutRa);
+        } while(gioVao>24 || gioVao<1 || phutVao>59 || phutVao<1 || gioRa<1 || gioRa>24 || phutRa<0 || phutRa>59); //dieu kien nhap
+		//Xu li tinh tien
+        if (gioVao<gioMoCua || gioVao>gioDongCua) {
+          printf("Quan da dong cua\n");
+          break;
+        }else{
+          if ((gioVao>=gioMoCua && gioRa<=mocGiao) || (gioVao>=mocGiao && gioRa<=gioDongCua)) {
+            if (phutRa<phutVao) {
+              phutRa+=60;
+              gioRa-=1;
+            }
+            tongH = gioRa-gioVao;
+            tongM = phutRa-phutVao;
+            if (gioVao>=gioMoCua && gioRa<=mocGiao) {
+              tongTien = (tongH + (float)tongM/60)*giaTrc17h;
+            }else{
+              tongTien = (tongH + (float)tongM/60)*giaSau17h;
+            }
+          }else{
+            //Xu ly thoi gian truoc 17h
+            gioTrc = (mocGiao-1) - gioVao;
+            phutTrc = 60- phutVao;
+            //Xu ly thoi gian sau 17h
+            gioSau = gioRa - mocGiao;
+            phutSau = phutRa;
+            tongTien = (gioTrc+(float)phutTrc/60)*giaTrc17h + (gioSau+(float)phutSau/60)*giaSau17h;
+          }
+        }
+        printf("Tien phai tra: %ld\n", tongTien);
+        break;
+      }
       case 29: {}
       case 30: {}
       case 31: {}
@@ -403,7 +468,7 @@ void main() {
       case 33: {}
       case 34: {}
       case 35: {}
-      case 0: printf("Bam nut bat ki de thoat"); break;
+      case 0: printf("Bam nut bat ki de thoat\n"); break;
       default: printf("Khong co du lieu\n"); break;
     }
 	printf("==========================================================================================================");
