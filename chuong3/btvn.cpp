@@ -35,16 +35,16 @@ void main() {
         break;
       }
       case 2: {
-        int a, b;
+        int a, b, max;
         printf("Tim Max-Min\n\n" );
         printf("Nhap 2 so: ");
         scanf("%d%d", &a, &b);
         if(a>b){
-          printf("%d > %d", a, b);
+          max = a;
         }else{
-          printf("%d < %d", a, b);
+          max = b;
         }
-        printf("\n");
+        printf("So lon nhat: %d\n", max);
         break;
       }
       case 3: {
@@ -111,8 +111,12 @@ void main() {
         printf("Giai phuong trinh bac nhat\n\n");
         printf("Nhap a, b: ");
         scanf("%d%d", &a, &b);
-        x= -(float)b/a;
-        printf("Nghiem cua pt bac nhat la: %.2f", x);
+        if(a!=0){
+          x = -(float)b/a;
+          printf("Nghiem cua pt bac nhat la: %.2f", x);
+        }else{
+          printf("Phuong trinh vo nghiem");
+        }
         printf("\n");
         break;
       }
@@ -322,7 +326,7 @@ void main() {
           for(int j=1;j<=10;j++){
             printf("%d*%d=%d\n", i, j, i*j);
           }
-          printf("\n");
+          printf("\t\t");
         }
         printf("\n");
         break;
@@ -354,7 +358,7 @@ void main() {
       }
       case 24: {
         int n;
-        printf("Tim so le no hon n\n\n");
+        printf("Tim so le nho hon n\n\n");
         printf("Nhap n: ");
         scanf("%d", &n);
         printf("So le nho hon n: ");
@@ -375,6 +379,28 @@ void main() {
         printf("\n");
         break;
       }
+      case 26: {
+        int n;
+        printf("Nhap n: ");
+        scanf("%d", &n);
+        printf("Boi so cua 5 nho hon n:");
+        for(int i=0; i<n; i++){
+          if(i%5==0){
+            printf("%2d",i);
+          }
+        }
+        printf("\n");
+        break;
+      }
+      case 27: {}
+      case 28: {}
+      case 29: {}
+      case 30: {}
+      case 31: {}
+      case 32: {}
+      case 33: {}
+      case 34: {}
+      case 35: {}
       case 0: printf("Bam nut bat ki de thoat"); break;
       default: printf("Khong co du lieu\n"); break;
     }
