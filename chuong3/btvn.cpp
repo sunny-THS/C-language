@@ -93,13 +93,14 @@ void main() {
         break;
       }
       case 6: {
+        const float S = 0.03;
         int donGia, soLuong, thanhTien;
         float giamGia=0, tongTien;
         printf("Nhap don gia va so luong: ");
         scanf("%d%d", &donGia, &soLuong);
         thanhTien= donGia * soLuong;
         if(thanhTien>100){
-          giamGia= thanhTien * 0.03;
+          giamGia= thanhTien * S;
         }
         tongTien= thanhTien - giamGia;
         printf("Tong tien: %.2f", tongTien);
@@ -416,11 +417,11 @@ void main() {
         break;
       }
       case 28: {
-        const int gioMoCua = 10;
-        const int gioDongCua = 24;
-        const int mocGiao = 17;	 // moc phan biet 2 menh  gia tien phai tra
-        const int giaTrc17h = 20000;
-        const long giaSau17h = 45000;
+        const int GMC = 10;
+        const int GDC = 24;
+        const int MG = 17;	 // moc phan biet 2 menh  gia tien phai tra
+        const int GT = 20000; //gia truoc 17h
+        const long GS = 45000; // gia sau 17h
         int gioVao, phutVao, gioRa, phutRa, gioTrc, phutTrc, gioSau, phutSau, tongH, tongM;
         long tongTien;
 
@@ -433,30 +434,30 @@ void main() {
           scanf("%d%d", &gioRa, &phutRa);
         } while(gioVao>24 || gioVao<1 || phutVao>59 || phutVao<1 || gioRa<1 || gioRa>24 || phutRa<0 || phutRa>59); //dieu kien nhap
 		//Xu li tinh tien
-        if (gioVao<gioMoCua || gioVao>gioDongCua) {
+        if (gioVao<GMC || gioVao>GDC) {
           printf("Quan da dong cua\n");
           break;
         }else{
-          if ((gioVao>=gioMoCua && gioRa<=mocGiao) || (gioVao>=mocGiao && gioRa<=gioDongCua)) {
+          if ((gioVao>=GMC && gioRa<=MG) || (gioVao>=MG && gioRa<=GDC)) {
             if (phutRa<phutVao) {
               phutRa+=60;
               gioRa-=1;
             }
             tongH = gioRa-gioVao;
             tongM = phutRa-phutVao;
-            if (gioVao>=gioMoCua && gioRa<=mocGiao) {
-              tongTien = (tongH + (float)tongM/60)*giaTrc17h;
+            if (gioVao>=GMC && gioRa<=MG) {
+              tongTien = (tongH + (float)tongM/60)*GT;
             }else{
-              tongTien = (tongH + (float)tongM/60)*giaSau17h;
+              tongTien = (tongH + (float)tongM/60)*GS;
             }
           }else{
             //Xu ly thoi gian truoc 17h
-            gioTrc = (mocGiao-1) - gioVao;
+            gioTrc = (MG-1) - gioVao;
             phutTrc = 60- phutVao;
             //Xu ly thoi gian sau 17h
-            gioSau = gioRa - mocGiao;
+            gioSau = gioRa - MG;
             phutSau = phutRa;
-            tongTien = (gioTrc+(float)phutTrc/60)*giaTrc17h + (gioSau+(float)phutSau/60)*giaSau17h;
+            tongTien = (gioTrc+(float)phutTrc/60)*GT + (gioSau+(float)phutSau/60)*GS;
           }
         }
         printf("Tien phai tra: %ld\n", tongTien);
