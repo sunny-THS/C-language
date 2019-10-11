@@ -544,24 +544,23 @@ void main() {
         int dem=0, max, n, num, tong=0, a[10], kiemTra;
         printf("Nhap N: ");
         scanf("%d", &n);
-        max= n%10;
+        max= n%10; //dinh max la so hang dv
         while (n!=0) {
           num = n%10;
-          a[dem++] = num;
+          a[dem++] = num;// gan tung gia tri cho mang
 
           if (max<num) {
             max = num;
-          }
-          tong+=num;
+          }//tim max
+          tong+=num;//tinh tong
           n/=10;
         }
         printf("\n");
-        int j=1;
+        //kiem tra so phai la so khac nhau doi mot
         for (int i = 0; i < dem-1; i++) {
-          for (; j < dem; j++) {
+          for (int j=i+1; j < dem; j++) {
             if (a[i]!=a[j]) {
               kiemTra = 1; //true
-              j++;
             }else{
               kiemTra = 0; //false
               break;
@@ -570,18 +569,42 @@ void main() {
           if (kiemTra==0) {
             break;
           }
-          printf("%d\n", kiemTra);
         }
-        printf("%d\n", kiemTra);
+        if (kiemTra==1) {
+          printf("N la so cac chu so khac nhau doi mot\n");
+        }else{
+          printf("N khong phai la so cac chu so khac nhau doi mot\n");
+        }
 
         printf("So hang dau tien cua N: %d\n", a[dem-1]);
         printf("Tong cac chu so cua N: %d\n", tong);
         printf("Chu so lon nhat trong k chu so do: %d\n", max);
         printf("So chu so cua N: %d\n", dem);
-
-
+        break;
       }
-      case 35: {}
+      case 35: {
+        int a, b, c;
+        printf("Nhap vao ba canh cua tam giac: ");
+        scanf("%d%d%d", &a, &b, &c);
+        if (a<b+c && b<a+c && c<a+b) {
+          if (a==b || b==c || a==c) {
+            if (a*a==b*b+c*c || b*b==a*a+c*c || c*c==b*b+a*a) {
+              printf("Day la tam giac vuong can\n");
+            }else{
+              printf("Day la tam giac can\n");
+            }
+          }else if (a*a==b*b+c*c || b*b==a*a+c*c || c*c==b*b+a*a) {
+            printf("Day la tam giac vuong\n");
+          }else if (a*a>b*b+c*c || b*b>a*a+c*c || c*c>a*a+b*b) {
+            printf("Day la tam giac tu\n");
+          }else if (a==b==c) {
+            printf("Day la tam giac deu\n");
+          }else {
+            printf("Day la tam giac thuong\n");
+          }
+        }
+        break;
+      }
       case 0: printf("Bam nut bat ki de thoat\n"); break;
       default: printf("Khong co du lieu\n"); break;
     }
