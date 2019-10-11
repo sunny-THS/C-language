@@ -606,7 +606,7 @@ void main() {
           }else {
             printf("Day la tam giac thuong\n");
           }
-        }
+        }else printf("Khong phai 3 canh tam giac");
         break;
       }
       case 0: printf("Bam nut bat ki de thoat\n"); break;
