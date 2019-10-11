@@ -227,7 +227,8 @@ void main() {
         printf("\n1. Phep cong");
         printf("\n2. Phep tru");
         printf("\n3. Phep nhan");
-        printf("\n4. Phep chia");
+        printf("\n4. Phep chia\n");
+        printf("Chon: ");
         scanf("%d", &n);
         switch(n){
           case 1: printf("%d + %d = %d", a, b, a+b); break;
@@ -241,7 +242,7 @@ void main() {
       case 13: {
         printf("In tu 1 den 100\n\n");
         for(int i=1;i<=100;i++){
-          printf("%2d",i);
+          printf("%d ",i);
         }
         printf("\n");
         break;
@@ -288,13 +289,14 @@ void main() {
         break;
       }
       case 18: {
-        int n,sum=0;
+        int n;
+        float sum=0;
         printf("Nhap n: ");
         scanf("%d", &n);
         for(int i=1;i<=n;i++){
           sum+=(float)1/(n*(n+1)*(n+2));
         }
-        printf("Tong: %d", sum);
+        printf("Tong: %f", sum);
         printf("\n");
         break;
       }
@@ -305,7 +307,7 @@ void main() {
         for(int i=1;i<=n;i++){
           sum+=i*i;
         }
-        printf("1^2 + 2^2 + 3^2+...+%d^2 %d", n, sum);
+        printf("1^2 + 2^2 + 3^2+...+%d^2= %d", n, sum);
         printf("\n");
         break;
       }
@@ -318,7 +320,7 @@ void main() {
             sum+=j;
           }
         }
-        printf("1 + 1+2 + 1+2+3+...+ 1+2+..n %d", sum);
+        printf("1 + 1+2 + 1+2+3+...+ (1+2+..n)= %d", sum);
         printf("\n");
         break;
       }
@@ -432,13 +434,21 @@ void main() {
           scanf("%d%d", &gioVao, &phutVao);
           printf("Gio ra(gom ca gio va phut cach nhau boi dau cach): \n");
           scanf("%d%d", &gioRa, &phutRa);
-        } while(gioVao>24 || gioVao<1 || phutVao>59 || phutVao<1 || gioRa<1 || gioRa>24 || phutRa<0 || phutRa>59); //dieu kien nhap
+        } while(gioVao>24 || gioVao<1 || phutVao>59 || phutVao<0 || gioRa<1 || gioRa>24 || phutRa<0 || phutRa>59); //dieu kien nhap
 		//Xu li tinh tien
         if (gioVao<GMC || gioVao>GDC) {
           printf("Quan da dong cua\n");
           break;
         }else{
-          if ((gioVao>=GMC && gioRa<=MG) || (gioVao>=MG && gioRa<=GDC)) {
+          if (gioVao<MG && phutVao>=0 && gioRa>=MG && phutRa > 0){
+            //Xu ly thoi gian truoc 17h
+            gioTrc = (MG-1) - gioVao;
+            phutTrc = 60- phutVao;
+            //Xu ly thoi gian sau 17h
+            gioSau = gioRa - MG;
+            phutSau = phutRa;
+            tongTien = (gioTrc+(float)phutTrc/60)*GT + (gioSau+(float)phutSau/60)*GS;
+          }else{
             if (phutRa<phutVao) {
               phutRa+=60;
               gioRa-=1;
@@ -450,14 +460,6 @@ void main() {
             }else{
               tongTien = (tongH + (float)tongM/60)*GS;
             }
-          }else{
-            //Xu ly thoi gian truoc 17h
-            gioTrc = (MG-1) - gioVao;
-            phutTrc = 60- phutVao;
-            //Xu ly thoi gian sau 17h
-            gioSau = gioRa - MG;
-            phutSau = phutRa;
-            tongTien = (gioTrc+(float)phutTrc/60)*GT + (gioSau+(float)phutSau/60)*GS;
           }
         }
         printf("Tien phai tra: %ld\n", tongTien);
