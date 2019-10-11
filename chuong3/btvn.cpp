@@ -183,6 +183,7 @@ void main() {
         const float PI = 3.14;
         int a, cd, cr, canh, bk;
         float dt, cv;
+        printf("============================\n");
         printf("1. Hinh chu nhat\n");
         printf("2. Hinh vuong\n");
         printf("3. Hinh tron\n");
@@ -480,7 +481,7 @@ void main() {
         if (mucDien>300) {
           tienDien = mucDien* 20;
         }
-        printf("Tien phai tra: %d\n", tienDien);
+        printf("Tien phai tra: %d$\n", tienDien);
         break;
       }
       case 30: {
