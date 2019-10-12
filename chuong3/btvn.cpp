@@ -466,25 +466,24 @@ void main() {
         break;
       }
       case 29: {
-        int mucDien, tienDien;
-        printf("Nhap muc dien su dung(tinh bang KW): ");
-        scanf("%d", &mucDien);
-        if (mucDien>=1 && mucDien<=100) {
-          tienDien = mucDien* 5;
-        }
-        if (mucDien>=101 && mucDien<=150) {
-          tienDien = mucDien* 7;
-        }
-        if (mucDien>=151 && mucDien<=200) {
-          tienDien = mucDien* 10;
-        }
-        if (mucDien>=201 && mucDien<=300) {
-          tienDien = mucDien* 15;
-        }
-        if (mucDien>300) {
-          tienDien = mucDien* 20;
-        }
-        printf("Tien phai tra: %d$\n", tienDien);
+        int tienDienThangTrc, tienDienThangSau, mucDienSD, tien;
+      	printf("Nhap tien dien thang truoc: ");
+      	scanf("%d", &tienDienThangTrc);
+      	printf("Nhap tien dien thang sau: ");
+      	scanf("%d", &tienDienThangSau);
+      	mucDienSD = tienDienThangSau - tienDienThangTrc;
+      	if (mucDienSD>=300){
+      		tien = 100*5 + 50*7 + 50*10 + 100/15 + (mucDienSD-300)*20;
+      	}else if(mucDienSD>=201&&mucDienSD<=300){
+      		tien = 100*5 + 50*7 + 50*10 + (mucDienSD-200)*15;
+      	}else if(mucDienSD>=151&&mucDienSD<=200){
+      		tien = 100*5 + 50*7 + (mucDienSD-150)*10;
+      	}else if(mucDienSD>=101&&mucDienSD<=150){
+      		tien = 100*5 + (mucDienSD-100)*7;
+      	}else if(mucDienSD>=1&&mucDienSD<=100){
+      		tien = mucDienSD *5;
+      	}
+      	printf("tien: %d\n",tien);
         break;
       }
       case 30: {
