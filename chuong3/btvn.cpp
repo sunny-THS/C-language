@@ -472,7 +472,7 @@ void main() {
       	printf("Nhap tien dien thang sau: ");
       	scanf("%d", &tienDienThangSau);
       	mucDienSD = tienDienThangSau - tienDienThangTrc;
-      	if (mucDienSD>=300){
+        if (mucDienSD>300){
       		tien = 100*5 + 50*7 + 50*10 + 100/15 + (mucDienSD-300)*20;
       	}else if(mucDienSD>=201&&mucDienSD<=300){
       		tien = 100*5 + 50*7 + 50*10 + (mucDienSD-200)*15;
