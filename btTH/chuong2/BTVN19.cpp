@@ -25,7 +25,7 @@ void main(){
 
     }
   }else{
-	   printf("He thap luc phan khong dung ki tu nay");
+    printf("He thap luc phan khong dung ki tu nay");
   }
 
   getch();
