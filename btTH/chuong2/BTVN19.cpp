@@ -22,7 +22,6 @@ void main(){
         case 70: a=15;break;
       }
       printf("Gia tri thap phan tuong ung: %d\n", a);
-
     }
   }else{
     printf("He thap luc phan khong dung ki tu nay");
