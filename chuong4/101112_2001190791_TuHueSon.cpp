@@ -23,7 +23,8 @@ void doiG(int);// doi giay sang h:m:s
 void tinhPhanSo(int,int,int,int,int,int); // tinh tong va tich 3 phan so (bai12)
 int ucln(int,int); // tim uoc chung lon nhat
 void tim_SNTCN_n(int, int); //tim m so nguyen to cung nhau voi n
-int xacDinhSoKNDM(long);// xac dinh so giong nhau doi mot
+int xacDinhSoGNDM(long, int);// xac dinh so giong nhau doi mot
+int bai_16(int);
 //main
 void main() {
   int chon;
@@ -152,7 +153,7 @@ void luaChonBT(int chon) {
         int chuc = tachSo(a);
         int tram = tachSo(a);
         //printf("%d %d %d\n", tram, chuc, dv); //xem so tach
-        if (tram == 0 && dv == 5) {
+        if (tram == 0 && chuc!=0 && dv == 5) {
           docSoHangChuc(chuc);
           docSo5_DV(dv);
         }else if (tram!=0 && chuc!=0 && dv == 5) {
@@ -231,40 +232,62 @@ void luaChonBT(int chon) {
     case 14: {
       printf("Cac so co 3 chu so khac nhau doi mot:\n");
       for (int i = 100; i < 1000; i++) {
-        //int a = tachSo(i);
-        //int b = tachSo(i);
-        //int c = tachSo(i);
-        //if (a!=b&&a!=c&&b!=c) {
-        //  printf("%d ", i);
-        //}
-        if (xacDinhSoKNDM(i)) {
+        if (xacDinhSoGNDM(i, 0)) {
           printf("%d ", i);
         }
       }
       break;
     }
     case 15: {
-
+      const long B = 10000;
+      long a=0;
+      for(long i = B; i<B*10; i++){
+        if (xacDinhSoGNDM(i, 1)) {
+          printf("%ld ", i);
+          a++;
+        }
+      }
+      printf("\n\n\t%ld so co dung 2 chu so bang nhau\n", a);
       break;
     }
     case 16: {
-      int tong=0;
-      for(int i=2;i<=20;i+=2){
-        tong+=i;
+      for(int i=10;i<1000;i++){
+        if (bai_16(i)) {
+          printf("%d ", i);
+        }
       }
-      printf("2+4+6+8+...+20= %d", tong);
-      printf("\n");
       break;
     }
     case 17: {
-      int n, sum=0;
-      printf("Nhap n: ");
-      scanf("%d", &n);
-      for(int i=1;i<=n;i++){
-        sum+=i*(i+1);
+      int a, tong=0, max, demC=0, demL=0;
+      long n;
+      printf("Nhap N: ");
+      scanf("%ld", &n);
+      int dem= demSo(n);
+      max=n%10;
+      while(n!=0){
+        a = n%10;
+        if(a%2==0){
+          demC++;
+        }else{
+          demL++;
+        }
+        tong+=a;
+        if(max<a){
+          max = a;
+        }
+        n/=10;
       }
-      printf("1*2 + 2*3 + 3*4+...+%d*(%d+1)= %d", n, n, sum);
-      printf("\n");
+      printf("\nChu so hang dau tien: %d", a);
+      printf("\nTong cac chu so: %d", tong);
+      printf("\nChu so lon nhat: %d", max);
+      printf("\nSo chu so cua N: %d", dem);
+      if(xacDinhSoGNDM(n, 0)){
+        printf("\nN la so co cac chu so khac nhau doi mot");
+      }else{
+        printf("\nN khong phai so co cac chu so khac nhau doi mot");
+      }
+      printf("\nCo %d so chan\nCo %d so le", demC, demL);
       break;
     }
     case 0: printf("Bam nut bat ki de thoat\n"); break;
@@ -475,8 +498,7 @@ void tinhPhanSo(int a,int b,int c,int d,int e,int f) {
   toiGian = ucln(tichT, tichM);
   tichT/=toiGian;
   tichM/=toiGian;
-  // xu li mau
-
+  // xu li mau va in ra man hinh
   printf("\nTong 3 phan so: %d/%d (%.2f)\n", tongT, tongM, (float)tongT/tongM);
   printf("Tich 3 phan so: %d/%d (%.2f)\n", tichT, tichM, (float)tichT/tichM);
 }
@@ -484,7 +506,7 @@ void tinhPhanSo(int a,int b,int c,int d,int e,int f) {
 int ucln(int a, int b) {
   /*Input: 2 so nguyen
     Output: ucln cua 2 so nguyen
-    description:
+    description:tim uoc chung lon nhat cua 2 so nguyen
   */
   if (a==0 || b==0) {
     return a+b;
@@ -516,19 +538,25 @@ void tim_SNTCN_n(int num, int d) {
 
 }
 
-int xacDinhSoKNDM(long num) {
-  /*Input: 1 so nguyen
+int xacDinhSoGNDM(long num, int n) {
+  /*Input: 1 so nguyen, so giong nhau
     Output: true or false (1 or 0)
-    description: xac dinh so khac nhau doi mot
+    description: xac dinh so giong nhau doi mot. 
+    Note: n=0 => khac nhau doi mot
+          n=1 => 2 chu so giong nhau
+          n=2 => 2 cap so giong vd 1122
+          n=3 => 3 chu so giong nhau
+          n=6 => 4 chu so giong nhau
+          n=10 => 5 chu so giong nhau
+          .......(tuy vao do dai so duoc nhap)
   */
   int dem=0, a[10];
   int g=0; // so giong nhau
   while (num!=0) {
-    a[dem] = num%10; // gán các so o tung hang vao mang
-    dem++;
+    a[dem++] = num%10; // gan cac so o tung hang (dv, chuc, tram...) vao mang
     num/=10;
   }
-  // xet su giong nhau giua cac so
+  // xet su giong nhau giua cac so trong n
   for (int i = 0; i < dem-1; i++) {
     for (int j=i+1; j < dem; j++) {
       if (a[i]!=a[j]) {
@@ -539,7 +567,26 @@ int xacDinhSoKNDM(long num) {
     }
   }
 
-  if (g==1) {
+  if(g==n){
+    return 1;
+  }
+  return 0;
+}
+
+int bai_16(int num){
+  int a,b,c, tong, tich;
+  a = tachSo(num);
+  b = tachSo(num);
+  c = tachSo(num);
+  if(c==0){
+    tong = a+b;
+    tich = a*b;
+  }else{
+    tong = a+b+c;
+    tich = a*b*c;
+  }
+  
+  if(tong==tich){
     return 1;
   }
   return 0;
