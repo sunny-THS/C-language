@@ -25,6 +25,7 @@ int ucln(int,int); // tim uoc chung lon nhat
 void tim_SNTCN_n(int, int); //tim m so nguyen to cung nhau voi n
 int xacDinhSoGNDM(long, int);// xac dinh so giong nhau doi mot
 int bai_16(int);
+
 //main
 void main() {
   int chon;
@@ -149,38 +150,38 @@ void luaChonBT(int chon) {
       do {
         printf("Nhap N: ");
         scanf("%d", &a);
-        int dv = tachSo(a);
-        int chuc = tachSo(a);
-        int tram = tachSo(a);
-        //printf("%d %d %d\n", tram, chuc, dv); //xem so tach
-        if (tram == 0 && chuc!=0 && dv == 5) {
-          docSoHangChuc(chuc);
-          docSo5_DV(dv);
-        }else if (tram!=0 && chuc!=0 && dv == 5) {
-          docSonHangTram(tram);
-          docSoHangChuc(chuc);
-          docSo5_DV(dv);
-        }else if (dv == 0 && chuc == 0) {
-          docSonHangTram(tram);
-        }else{
-          switch (demSo(a)) {
-            case 1:{
-              docSoDV(dv); break;
-            }
-            case 2: {
-              docSoHangChuc(chuc);
-              docSoDV(dv);
-              break;
-            }
-            case 3: {
-              docSonHangTram(tram);
-              docSoHangChuc(chuc);
-              docSoDV(dv);
-              break;
-            }
+      } while(a<=0 || a>=1000);
+      int dv = tachSo(a);
+      int chuc = tachSo(a);
+      int tram = tachSo(a);
+      //printf("%d %d %d\n", tram, chuc, dv); //xem so tach
+      if (tram == 0 && chuc!=0 && dv == 5) {
+        docSoHangChuc(chuc);
+        docSo5_DV(dv);
+      }else if (tram!=0 && chuc!=0 && dv == 5) {
+        docSonHangTram(tram);
+        docSoHangChuc(chuc);
+        docSo5_DV(dv);
+      }else if (dv == 0 && chuc == 0) {
+        docSonHangTram(tram);
+      }else{
+        switch (demSo(a)) {
+          case 1:{
+            docSoDV(dv); break;
+          }
+          case 2: {
+            docSoHangChuc(chuc);
+            docSoDV(dv);
+            break;
+          }
+          case 3: {
+            docSonHangTram(tram);
+            docSoHangChuc(chuc);
+            docSoDV(dv);
+            break;
           }
         }
-      } while(a<0 && a>1000);
+      }
       break;
     }
     case 9: {
@@ -195,8 +196,8 @@ void luaChonBT(int chon) {
       do {
         printf("Nhap N so ngay: ");
         scanf("%d", &ngay);
-        bai_10(ngay);
       } while(ngay<=0);
+      bai_10(ngay);
       break;
     }
     case 11: {
@@ -264,6 +265,7 @@ void luaChonBT(int chon) {
       printf("Nhap N: ");
       scanf("%ld", &n);
       int dem= demSo(n);
+      int bienTam=n;
       max=n%10;
       while(n!=0){
         a = n%10;
@@ -282,7 +284,7 @@ void luaChonBT(int chon) {
       printf("\nTong cac chu so: %d", tong);
       printf("\nChu so lon nhat: %d", max);
       printf("\nSo chu so cua N: %d", dem);
-      if(xacDinhSoGNDM(n, 0)){
+      if(xacDinhSoGNDM(bienTam, 0)){
         printf("\nN la so co cac chu so khac nhau doi mot");
       }else{
         printf("\nN khong phai so co cac chu so khac nhau doi mot");
@@ -377,7 +379,7 @@ int demSo(int num) {
 
 int tachSo(int a) {
   /*Input: 1 so nguyen
-    Output: tach hang dv, chuc, tram,...
+    Output: tach hang dv, chuc, tram
     description:
   */
   static int b = 1;
@@ -541,7 +543,7 @@ void tim_SNTCN_n(int num, int d) {
 int xacDinhSoGNDM(long num, int n) {
   /*Input: 1 so nguyen, so giong nhau
     Output: true or false (1 or 0)
-    description: xac dinh so giong nhau doi mot. 
+    description: xac dinh so giong nhau doi mot.
     Note: n=0 => khac nhau doi mot
           n=1 => 2 chu so giong nhau
           n=2 => 2 cap so giong vd 1122
@@ -559,9 +561,7 @@ int xacDinhSoGNDM(long num, int n) {
   // xet su giong nhau giua cac so trong n
   for (int i = 0; i < dem-1; i++) {
     for (int j=i+1; j < dem; j++) {
-      if (a[i]!=a[j]) {
-        continue;
-      }else{
+      if (a[i]==a[j]) {
         g++;
       }
     }
@@ -585,7 +585,7 @@ int bai_16(int num){
     tong = a+b+c;
     tich = a*b*c;
   }
-  
+
   if(tong==tich){
     return 1;
   }
