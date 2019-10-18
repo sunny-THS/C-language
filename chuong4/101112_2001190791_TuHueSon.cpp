@@ -539,7 +539,7 @@ int xacDinhSoKNDM(long num) {
     }
   }
 
-  if (g==2) {
+  if (g==1) {
     return 1;
   }
   return 0;
