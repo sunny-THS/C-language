@@ -9,6 +9,6 @@ void main(){
     tong+=t*i;
     t*=-1;
   }
-  printf("%d", tong);
+  printf("Ket qua: %d", tong);
   getch();
 }
