@@ -15,4 +15,6 @@ void main(){
    x*=(-a);
   }
   printf("Ket qua -x+x^2+...+(-1)^(n)*x^(n): %d", kq);
+
+  getch();
 }

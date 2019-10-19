@@ -6,8 +6,8 @@ void main(){
   float kq=0;
   printf("Nhap n: ");
   scanf("%d", &n);
-  for(int i=1; i<=n; i++){
-    kq+=(float)i/(i+1);
+  for(int i=0; i<=n; i++){
+    kq+=(float)(2*i+1)/(2*i+2);
   }
   printf("Ket qua: %.2f", kq);
   getch();
