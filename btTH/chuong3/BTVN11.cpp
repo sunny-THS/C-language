@@ -8,11 +8,11 @@ void main(){
   scanf("%d", &x);
   printf("Nhap n: ");
   scanf("%d", &n);
+  int a=x;
   
   for(int i=1; i<=n; i++){
-   kq+=x;
-   x*=(-x);
+   kq+=(-x);
+   x*=(-a);
   }
-  printf("Ket qua x+x^2+...+x^(n): %d", kq);
-  getch();
+  printf("Ket qua -x+x^2+...+(-1)^(n)*x^(n): %d", kq);
 }
