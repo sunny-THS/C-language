@@ -25,11 +25,12 @@ int ucln(int,int); // tim uoc chung lon nhat
 void tim_SNTCN_n(int, int); //tim m so nguyen to cung nhau voi n
 int xacDinhSoGNDM(long, int);// xac dinh so giong nhau doi mot
 int bai_16(int);
-
+int xacDinhThang(int);
+int kiemNamNhuan(int);
 //main
 void main() {
   int chon;
-  int soBai = 17;
+  int soBai = 22;
   do {
     //in list bai tap
     printf("\n\t\t\t\t\tDanh sach bai tap chuong 4\n\n");
@@ -292,6 +293,86 @@ void luaChonBT(int chon) {
       printf("\nCo %d so chan\nCo %d so le", demC, demL);
       break;
     }
+    case 18: {
+      int d,m,y, dN, dL, mN, mL, yN, yL;
+      printf("\nNhap vao lan luot ngay/thang/nam: ");
+      scanf("%d/%d/%d", &d, &m, &y);
+      if (d<=31 && m<=12 && d>0 && m>0 && y>0) {
+        dN = d+1;
+        dL = d-1;
+        mN = m;
+        mL = m;
+        yN = y;
+        yL = y;
+        if (xacDinhThang(m)==2) { // thang 2
+          if (kiemNamNhuan(y) && d <=29) {
+            if (dN>29) {
+              dN = 1;
+              mN++;
+            }
+          }else if (!kiemNamNhuan(y) && d<= 28) {
+            if (dN>28) {
+              dN = 1;
+              mN++;
+            }
+          }else {
+            printf("\nKhong hop le\n");
+            break;
+          }
+          if (dL<=0) {
+            dL = 31;
+            mL--;
+          }
+        }else if (xacDinhThang(m)) { // thang 31 ngay
+          if (m == 12 && dN > 31) {
+            dN = 1;
+            mN = 1;
+            yN++;
+          }else if (dN>31) {
+            dN = 1;
+            mN++;
+          }
+          if (m == 1 && dL <= 0) {
+            dL = 31;
+            mL = 12;
+            yL--;
+          }else if (dL <= 0 && m == 8) {
+            dL = 31;
+            mL--;
+          }else if (dL <= 0 && m == 3) {
+            if (kiemNamNhuan(y)) {
+              dL = 29;
+              mL--;
+            }else {
+              dL = 28;
+              mL--;
+            }
+          }else if (dL<=0) {
+            dL = 30;
+            mL--;
+          }
+        }else{ // thang 30 ngay
+          if (dN>30) {
+            dN = 1;
+            mN++;
+          }
+          if (dL<=0) {
+            dL = 31;
+            mL--;
+          }
+        }
+        printf("\rHop le\n");
+      }else{
+        printf("\nKhong hop le\n");
+	      break;
+      }
+      printf("Ngay tiep theo: %d/%d/%d\nNgay truoc do: %d/%d/%d", dN, mN, yN, dL, mL, yL);
+      break;
+    }
+    case 19: {
+      
+      break;
+    }
     case 0: printf("Bam nut bat ki de thoat\n"); break;
     default: printf("Khong co du lieu\n"); break;
   }
@@ -512,15 +593,13 @@ int ucln(int a, int b) {
   */
   if (a==0 || b==0) {
     return a+b;
+  }else if (a==b) {
+    return a;
+  }else if (a<b) {
+    return ucln(a, b-a);
+  }else{
+    return ucln(a-b, b);
   }
-  while (a!=b) {
-    if (a>b) {
-      a-=b;
-    }else {
-      b-=a;
-    }
-  }
-  return a;
 }
 
 void tim_SNTCN_n(int num, int d) {
@@ -587,6 +666,30 @@ int bai_16(int num){
   }
 
   if(tong==tich){
+    return 1;
+  }
+  return 0;
+}
+
+int xacDinhThang(int month){
+  switch (month) {
+    case 1:
+    case 3:
+    case 5:
+    case 7:
+    case 8:
+    case 10:
+    case 12: return 1;
+    case 4:
+    case 6:
+    case 9:
+    case 11: return 0;
+    case 2: return 2;
+  }
+}
+
+int kiemNamNhuan(int y){
+  if (y%400==0 || y%4==0 && y%100!=0) {
     return 1;
   }
   return 0;
