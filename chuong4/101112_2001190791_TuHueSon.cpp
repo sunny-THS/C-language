@@ -27,6 +27,7 @@ int xacDinhSoGNDM(long, int);// xac dinh so giong nhau doi mot
 int bai_16(int);
 int xacDinhThang(int);
 int kiemNamNhuan(int);
+int timSoDoi(long);
 //main
 void main() {
   int chon;
@@ -431,11 +432,51 @@ void luaChonBT(int chon) {
       if (s<60 && m<60 && h<24 && s>=0 && m>=0 && h>=0) {
         sT = s-1;
         sS = s+1;
-        if (/* condition */) {
-          /* code */
+        mT = m;
+        mS = m;
+        hT = h;
+        hS = h;
+
+        // 0:00:58
+        // 0:00:59
+        // 0:01:00
+
+        if (sT<0) {
+          mT--;
+          sT = 59;
+          if (mT<0) {
+            if (hT>0) {
+              hT--;
+              mT = 59;
+            }
+          }
+        }
+        if (sS>59) {
+          sS = 0;
+          mS++;
+          if (mS>59) {
+            hS++;
+            mS = 0;
+          }
         }
         printf("\nHop le\n");
+      }else{
+        printf("\nKhong hop le\n");
+        break;
       }
+      printf("Gio truoc do 1 giay: %dh:%dm:%ds\nGio sau no 1 giay: %dh:%dm:%ds\n", hT, mT, sT, hS, mS, sS);
+      break;
+    }
+    case 22: {
+      long n;
+      printf("Nhap so n: ");
+      scanf("%ld", &n);
+      if (n==timSoDoi(n)) {
+        printf("Day la so doi xung\n");
+      }else {
+        printf("Day la so khong doi xung\n");
+      }
+      break;
     }
     case 0: printf("Bam nut bat ki de thoat\n"); break;
     default: printf("Khong co du lieu\n"); break;
@@ -757,4 +798,13 @@ int kiemNamNhuan(int y){
     return 1;
   }
   return 0;
+}
+
+int timSoDoi(long num){
+  int n =0;
+  while (num!=0) {
+    n = (n+num%10)*10;
+    num /= 10;
+  }
+  return n/10;
 }
