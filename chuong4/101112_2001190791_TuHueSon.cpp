@@ -370,8 +370,72 @@ void luaChonBT(int chon) {
       break;
     }
     case 19: {
-      
+      const int AF = 12;
+      const int C_TR = 6000;
+      const int C_S = 7500;
+      const int HV = 6;
+      const int HR = 18;
+      int s, e, tongH, tienT, tienS;
+      long tienLuong;
+      printf("Nhap gio vao ca: ");
+      scanf("%d", &s);
+      printf("Nhap gio ra ca: ");
+      scanf("%d", &e);
+      if (s>=HV && e<=HR && s<=e) {
+        if (s>=HV && e<=AF) {
+          tongH = e - s;
+          tienLuong = tongH * C_TR;
+        }else if (s>=AF && e<=HR) {
+          tongH = e - s;
+          tienLuong = tongH * C_S;
+        }else {
+          tongH = AF - s;
+          tienT = tongH * C_TR;
+          tongH = e - AF;
+          tienS = tongH * C_S;
+          tienLuong = tienS + tienT;
+        }
+      }else {
+        printf("\nKhong co trong khung gio lam viec\n");
+	      break;
+      }
+      printf("Tien luong trong ngay: %ld\n", tienLuong);
       break;
+    }
+    case 20: {
+      long n;
+      int soCach=0;
+      const int T_O = 5000, T_TW = 10000, T_TH = 20000;
+      do {
+        printf("Nhap N: ");
+        scanf("%ld", &n);
+      } while(n<100000);
+      for (int i = 0; i <= n/T_O; i++) {
+        for (int j = 0; j <= n/T_TW; j++) {
+          for (int z = 0; z <= n/T_TH; z++) {
+            if (i*T_O + j*T_TW + z*T_TH == n) {
+              printf("%d to %d\t%d to %d\t%d to %d\n=======================================================\n", i, T_O, j, T_TW, z, T_TH);
+              soCach++;
+            }
+          }
+        }
+      }
+      printf("So cach tra N tien tu ba loai tien tren: %d\n", soCach);
+      break;
+    }
+    case 21: {
+      int h, m, s, d;
+      int sT, sS, hT, hS, mT, mS;
+      printf("Nhap gio phut giay theo mau H:M:S: ");
+      scanf("%d:%d:%d", &h, &m, &s);
+      if (s<60 && m<60 && h<24 && s>=0 && m>=0 && h>=0) {
+        sT = s-1;
+        sS = s+1;
+        if (/* condition */) {
+          /* code */
+        }
+        printf("\nHop le\n");
+      }
     }
     case 0: printf("Bam nut bat ki de thoat\n"); break;
     default: printf("Khong co du lieu\n"); break;
