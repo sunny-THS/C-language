@@ -196,7 +196,7 @@ void nhapMang_17(int a[], int &n) {
       bl=0;
       printf("a[%d]= ", i);
       scanf("%d", &a[i]);
-      if (i>1) {
+      if (i>0) {
         for (int j = i-1; j >= 0; j--) {
           sub=a[i]-a[j];
           if (abs(sub)>4) {
@@ -211,7 +211,7 @@ void nhapMang_17(int a[], int &n) {
   }
 }
 void nhapMang_18(int a[], int &n){
-  int d, bl, max, g;
+  int d, bl, max, g, temp, temp1=0;
   printf("nhap so phan tu: ");
   scanf("%d", &n);
   for (int i = 0; i < n; i++) {
@@ -227,17 +227,24 @@ void nhapMang_18(int a[], int &n){
           bl=1;
         }
       }else{
-        if (i>0) {
-          for (int q = i-1; q >= 0; q--) {
-            if (a[i]<=a[q]) {
-              g=1;
-            }
+        if (temp1>0) {
+          if (a[i]>=a[temp]) {
+            g=1;
           }
         }
+        temp1++;
+        temp = i;
       }
       timSoKhacNhau(i,a,d);
-    } while(d!=0 || bl || !g);
+    } while(d!=0 || bl || g);
   }
+}
+int tinhTong(int a[], int &n){
+  int s=0;
+  for (int i = 0; i < n; i++) {
+    s+=a[i];
+  }
+  return s;
 }
 
 void main() {
@@ -320,10 +327,21 @@ void main() {
         xuatMang(arr, n);
         break;
       }
-      case 13: {}
-      case 14: {}
-      case 15: {}
-      case 16: {}
+      case 13: {
+        int arr[MAX_SIZE], n;
+        nhapMang(arr, n);
+        printf("Tong cac phan tu cua mang: %d\n", tinhTong(arr,n));
+        break;
+      }
+      case 14: {
+        // nhu cau tren
+      }
+      case 15: {
+        //tinh gia tri trung binh cua cac phan tu
+      }
+      case 16: {
+        //tim vi tri dau tien cua x trong mang a co n phan tu
+      }
     }
     printf("\n+=====+=======================+\n");
   } while(chon!=0);
