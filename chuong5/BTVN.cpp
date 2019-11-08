@@ -1,6 +1,8 @@
 #include<stdio.h>
 #include<conio.h>
+#include<math.h>
 #define MAX_SIZE  100
+int timSNT(int);
 void nhapMang(int a[], int &n){
   printf("Nhap so phan tu trong mang: ");
   scanf("%d", &n);
@@ -161,7 +163,7 @@ void nhapMangKQ_2_Lan(int a[], int &n) {
     } while(d==2);
   }
 }
-void nhapSDTD(int a[], int &n){\
+void nhapSDTD(int a[], int &n){
   int temp, temp1;
   printf("nhap so phan tu: ");
   scanf("%d", &n);
@@ -181,6 +183,53 @@ void nhapSDTD(int a[], int &n){\
         temp=a[i];
       }
     } while(temp<=temp1||a[i-1]>=a[i]);
+  }
+}
+void nhapMang_17(int a[], int &n) {
+  int d=0, sub, temp, bl=0;
+  printf("so phan tu cua mang: ");
+  scanf("%d", &n);
+  // 8 4 6 7 5 10 -9
+  for (int i = 0; i < n; i++) {
+    do {
+      bl=0;
+      printf("a[%d]= ", i);
+      scanf("%d", &a[i]);
+      if (i>1) {
+        for (int j = i-1; j >= 0; j--) {
+          sub=a[i]-a[j];
+          if (abs(sub)>4) {
+            bl++;
+          }
+        }
+      }
+      if (a[i]==0) {
+        d++;
+      }
+    } while(a[i]<=0||d>3||bl!=0);
+  }
+}
+void nhapMang_18(int a[], int &n){
+  int d;
+  printf("nhap so phan tu: ");
+  scanf("%d", &n);
+  for (int i = 1; i < n; i++) {
+    //2 2 2 2 2 2 3
+    do {
+      d=0;
+      printf("a[%d]= ", i);
+      scanf("%d", &a[i]);
+      if (i>1) {
+        for (int q = i-1; q >= 0; q--) {
+          if (a[i]==a[q]) {
+            d++;
+          }
+        }
+      }
+      if (!timSNT(a[i])) {
+        /* code */
+      }
+    } while(d!=0);
   }
 }
 
@@ -252,8 +301,18 @@ void main() {
         xuatMang(arr, n);
         break;
       }
-      case 11: {}
-      case 12: {}
+      case 11: {
+        int arr[MAX_SIZE], n;
+        nhapMang_17(arr, n);
+        xuatMang(arr, n);
+        break;
+      }
+      case 12: {
+        int arr[MAX_SIZE], n;
+        nhapMang_18(arr, n);
+        xuatMang(arr, n);
+        break;
+      }
       case 13: {}
       case 14: {}
       case 15: {}
@@ -262,4 +321,16 @@ void main() {
     printf("\n+=====+=======================+\n");
   } while(chon!=0);
   getch();
+}
+
+int timSNT(int a){
+  if (a<2) {
+    return 0;
+  }
+  for (int i = 2; i <= sqrt((float)a); i++) {
+    if (a%i==0) {
+      return 0;
+    }
+  }
+  return 1;
 }
