@@ -3,6 +3,7 @@
 #include<math.h>
 #define MAX_SIZE  100
 int timSNT(int);
+void timSoKhacNhau(int i, int a[], int &b);
 void nhapMang(int a[], int &n){
   printf("Nhap so phan tu trong mang: ");
   scanf("%d", &n);
@@ -210,26 +211,32 @@ void nhapMang_17(int a[], int &n) {
   }
 }
 void nhapMang_18(int a[], int &n){
-  int d;
+  int d, bl, max, g;
   printf("nhap so phan tu: ");
   scanf("%d", &n);
-  for (int i = 1; i < n; i++) {
+  for (int i = 0; i < n; i++) {
     //2 2 2 2 2 2 3
     do {
       d=0;
+      bl=0;
+      g=0;
       printf("a[%d]= ", i);
       scanf("%d", &a[i]);
-      if (i>1) {
-        for (int q = i-1; q >= 0; q--) {
-          if (a[i]==a[q]) {
-            d++;
+      if (timSNT(a[i])) {
+        if (a[i]>200) {
+          bl=1;
+        }
+      }else{
+        if (i>0) {
+          for (int q = i-1; q >= 0; q--) {
+            if (a[i]<=a[q]) {
+              g=1;
+            }
           }
         }
       }
-      if (!timSNT(a[i])) {
-        /* code */
-      }
-    } while(d!=0);
+      timSoKhacNhau(i,a,d);
+    } while(d!=0 || bl || !g);
   }
 }
 
@@ -333,4 +340,13 @@ int timSNT(int a){
     }
   }
   return 1;
+}
+void timSoKhacNhau(int i, int a[], int &b){
+  if (i>1) {
+    for (int q = i-1; q >= 0; q--) {
+      if (a[i]==a[q]) {
+        b++;
+      }
+    }
+  }
 }
