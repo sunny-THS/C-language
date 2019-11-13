@@ -3,6 +3,21 @@
 #include<stdlib.h>
 #include<math.h>
 #define MAX_SIZE 1000
+int kiemTraSD_min(int a[], int n);
+int kiemTraCo_zero(int a[], int n);
+int timSoDoiBP_min(int a[], int n);
+int timaBP_min(int a[], int n);
+int timSNT_MAX(int a[], int n);
+int demSoLanX_XH(int a[], int n, int x);
+int demSNT(int a[], int n);
+int timSNT(int);
+int demSoKhongAm(int a[], int n);
+int tinhTongVT_chan(int a[], int n);
+int tinhTongVT_le(int a[], int n);
+int float_random(int,int);
+int random(int, int);
+void chenX_VT_i(int a[], int &n, int x, int m);
+void xoaPT_i(int a[], int &n, int m);
 void nhapMang(int a[], int &n){
   int chon;
   printf("Nhap gia tri cua mang: ");
@@ -21,13 +36,24 @@ void nhapMang(int a[], int &n){
     }
   }else {
     for (int i = 0; i < n; i++) {
-      a[i] = -100 + rand()%(100-(-100)+1);
+      a[i] = random(-100, 100);
     }
   }
 }
+void xuatMang(int a[], int n){
+  for (int i = 0; i < n; i++) {
+    printf("%d ", a[i]);
+  }
+}
+void nhap_xuat_arr(int a[], int &n){
+  nhapMang(a, n);
+  printf("Mang vua nhap: ");
+  xuatMang(a, n);
+}
+
 void main(){
-  int chon, soBai=37, stt=0, arr[MAX_SIZE], n;
-  nhapMang(arr, n);
+  int chon, soBai=37, stt=0;
+  printf("\n\tList bai tap\n");
   do {
     for (int i = 1; i <= soBai; i++) {
       if (i>=23&&i<=37) {
@@ -41,17 +67,77 @@ void main(){
     scanf("%d", &chon);
     switch (chon) {
       case 1: {
-        printf("Chon vi tri muon xoa: ");
-        scanf("%d", &c);
+        int c, arr[MAX_SIZE], n;
+        nhap_xuat_arr(arr, n);
+        do {
+          printf("\nChon vi tri muon xoa: ");
+          scanf("%d", &c);
+          if (c<0 || c>n) {
+            printf("Moi ban nhap lai\n");
+          }
+        } while(c<0 || c>n);
+        xoaPT_i(arr, n, c);
+        printf("Mang sau khi xoa: ");
+        xuatMang(arr, n);
 	      break;
       }
-      case 2: {}
-      case 3: {}
-      case 4: {}
-      case 5: {}
-      case 6: {}
-      case 7: {}
-      case 8: {}
+      case 2: {
+        int arr[MAX_SIZE], n, x, c;
+        nhap_xuat_arr(arr, n);
+        printf("\nNhap x: ");
+        scanf("%d", &x);
+        printf("Nhap vi tri muon them: ");
+        scanf("%d", &c);
+        chenX_VT_i(arr, n, x, c);
+        printf("Mang sau khi xoa: ");
+        xuatMang(arr, n);
+	      break;
+      }
+      case 3: {
+        int arr[MAX_SIZE], n;
+        nhap_xuat_arr(arr, n);
+        printf("\nTong cac vi tri chan: %d\n", tinhTongVT_chan(arr, n));
+        printf("Tong cac vi tri le: %d\n", tinhTongVT_le(arr,n));
+        break;
+      }
+      case 4: {
+        int arr[MAX_SIZE], n;
+        nhap_xuat_arr(arr, n);
+        printf("\nCo %d so khong am\n", demSoKhongAm(arr, n));
+        break;
+      }
+      case 5: {
+        int arr[MAX_SIZE], n;
+        nhap_xuat_arr(arr, n);
+        printf("\nCo %d so nguyen to\n", demSNT(arr, n));
+        break;
+      }
+      case 6: {
+        int arr[MAX_SIZE], n, a;
+        nhap_xuat_arr(arr, n);
+        printf("Nhap x: ");
+        scanf("%d", &a);
+        printf("So lan phan tu x xuat hien: \n", demSoLanX_XH(arr, n, a));
+        break;
+      }
+      case 7: {
+        int arr[MAX_SIZE], n;
+        nhap_xuat_arr(arr, n);
+        printf("\nSo nguyen to lon nhat: %d", timSNT_MAX(arr, n));
+        break;
+      }
+      case 8: {
+        int arr[MAX_SIZE], n;
+        nhap_xuat_arr(arr, n);
+        if (kiemTraCo_zero(arr, n)) {
+          printf("\nSo co binh phuong nho nhat: %d", 0);
+        }else if (!kiemTraCo_zero(arr, n)&&kiemTraSD_min(arr, n)) {
+          printf("\nSo co binh phuong nho nhat: %d va %d", abs(timaBP_min(arr, n)), timSoDoiBP_min(arr, n));
+        }else {
+          printf("\nSo co binh phuong nho nhat: %d", timaBP_min(arr, n));
+        }
+        break;
+      }
       case 9: {}
       case 10: {}
       case 11: {}
@@ -63,4 +149,174 @@ void main(){
     printf("\n+=====+=======================+\n");
     stt=0;
   } while(chon!=0);
+}
+
+void xoaPT_i(int a[], int &n, int m) {
+  for (int i = m-1; i < n-1; i++) {
+    a[i]=a[i+1];
+  }
+  n--;
+}
+void chenX_VT_i(int a[], int &n, int x, int k) {
+  if (k<0 || k > n || n > MAX_SIZE) {
+    return;
+  }
+  for (int i = n; i > k ; i--) {
+    a[i] = a[i-1];
+  }
+  a[k] =x;
+  n++;
+}
+int random(int min, int max){
+  return min + rand()%(max +1 - min);
+}
+int float_random(int min, int max){
+  float scale = rand()/(float)RAND_MAX;
+  return min + scale*(max-min);
+}
+int tinhTongVT_chan(int a[], int n){
+  int s=0;
+  for (int i = 0; i < n; i+=2) {
+    s+=a[i];
+  }
+  return s;
+}
+int tinhTongVT_le(int a[], int n){
+  int s=0;
+  for (int i = 1; i < n; i+=2) {
+    s+=a[i];
+  }
+  return s;
+}
+int demSoKhongAm(int a[], int n){
+  int dem=0;
+  for (int i = 0; i < n; i++) {
+    if (a[i]>=0) {
+      dem++;
+    }
+  }
+  return dem;
+}
+int timSNT(int num){
+  if (num<2) {
+    return 0;
+  }
+  for (int i = 2; i < sqrt((float)num); i++) {
+    if (num%i==0) {
+      return 0;
+    }
+  }
+  return 1;
+}
+int demSNT(int a[], int n){
+  int d=0;
+  for (int i = 0; i < n; i++) {
+    if (timSNT(a[i])) {
+      d++;
+    }
+  }
+  return d;
+}
+int demSoLanX_XH(int a[], int n, int x){
+  int d=0;
+  for (int i = 0; i < n; i++) {
+    if (a[i]==x) {
+      d++;
+    }
+  }
+  return d;
+}
+int timSNT_MAX(int a[], int n){
+  int temp, max,bl=0;
+  for (int i = 0; i < n; i++) {
+    if (timSNT(a[i])) {
+      max = a[i];
+      temp = i;
+      bl=1;
+      break;
+    }
+  }
+  if (bl) {
+    for (int i = temp+1; i < n; i++) {
+      if (max<a[i]&&timSNT(a[i])) {
+        max=a[i];
+      }
+    }
+  }else{
+    return 0;
+  }
+  return max;
+}
+int kiemTraCo_zero(int a[], int n){
+  for (int i = 0; i < n; i++) {
+    if (a[i]==0) {
+      return 1;
+    }
+  }
+  return 0;
+}
+int kiemTraSD_min(int a[], int n){
+  int minD, maxA, bl1=0, bl2=0;
+  for (int i = 0; i < n; i++) {
+    if (a[i]>0) {
+      minD=a[i];
+    }
+    if (a[i]<0) {
+      maxA = a[i];
+    }
+  }
+  for (int i = 0; i < n; i++) {
+    if (maxA<a[i]&&a[i]<0) {
+      maxA = a[i];
+    }
+    if (minD>a[i]&&a[i]>0) {
+      minD = a[i];
+    }
+  }
+
+  for (int i = 0; i < n; i++) {
+    if (abs(maxA)==a[i]) {
+      bl1=1;
+    }
+    if (minD==-a[i]) {
+      bl2=1;
+    }
+  }
+  if (bl1&&bl2) {
+    return 1;
+  }
+  return 0;
+}
+int timSoDoiBP_min(int a[], int n){
+  int min, temp;
+  for (int i = 0; i < n; i++) {
+    if (a[i]>0) {
+      min = a[i];
+      temp = i;
+      break;
+    }
+  }
+  //err bug******************************
+  for (int i = temp+1; i < n; i++) {
+    if (min>a[i]&&a[i]>0) {
+      min = a[i]*a[i];
+    }
+  }
+  for (int i = 0; i < n; i++) {
+    if (a[i]*a[i]==min&&a[i]<0) {
+      temp = a[i];
+    }
+  }
+  return temp;
+}
+int timaBP_min(int a[], int n){
+  int temp = a[0];
+  int min = temp*temp;
+  for (int i = 0; i < n; i++) {
+    if (min>a[i]*a[i]) {
+      temp = a[i];
+      min = temp*temp;
+    }
+  }
+  return temp;
 }
