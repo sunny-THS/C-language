@@ -3,6 +3,16 @@
 #include<stdlib.h>
 #include<math.h>
 #define MAX_SIZE 1000
+void sapXepAD(int a[], int n);
+void sapXepCL(int a[], int n);
+void xoaSNT(int a[], int &n);
+void taoMang_DMKN(int a[],int n, int b[], int &k);
+int demSoDuong(int a[], int b);
+int layPhanDuong(int a[], int n, int i);
+void sapXepTangDan(int a[], int n);
+void sapXepGiamDan(int a[], int n);
+void swap(int &a, int &b);
+int timSoLanXH_max(int a[], int n);
 int kiemTraSD_min(int a[], int n);
 int kiemTraCo_zero(int a[], int n);
 int timSoDoiBP_min(int a[], int n);
@@ -18,10 +28,13 @@ int float_random(int,int);
 int random(int, int);
 void chenX_VT_i(int a[], int &n, int x, int m);
 void xoaPT_i(int a[], int &n, int m);
+
 void nhapMang(int a[], int &n){
   int chon;
-  printf("Nhap gia tri cua mang: ");
-  scanf("%d", &n);
+  do {
+    printf("Nhap gia tri cua mang: ");
+    scanf("%d", &n);
+  } while(n<=0||n>MAX_SIZE);
   printf("Chon phuong thuc:\n");
   printf("1. Nhap tu ban phim\n");
   printf("2. Phat sinh ngau nhien\n");
@@ -138,13 +151,64 @@ void main(){
         }
         break;
       }
-      case 9: {}
-      case 10: {}
-      case 11: {}
-      case 12: {}
-      case 13: {}
-      case 14: {}
-      case 15: {}
+      case 9: {
+        int arr[MAX_SIZE], n;
+        nhap_xuat_arr(arr, n);
+        if (timSoLanXH_max(arr, n)!=-1) {
+          printf("\nSo xuat hien nhieu nhat: %d\n", timSoLanXH_max(arr, n));
+        }else{
+          printf("\nMoi phan tu xuat hien mot lan\n");
+        }
+        break;
+      }
+      case 10: {
+        int arr[MAX_SIZE], n, b[MAX_SIZE];
+        nhap_xuat_arr(arr, n);
+        int k = demSoDuong(arr, n);
+        for (int i = 0; i < k; i++) {
+          b[i]= layPhanDuong(arr, n, i);
+        }
+        printf("\nXuat mang b[]: ");
+        xuatMang(b, k);
+        break;
+      }
+      case 11: {
+        int arr[MAX_SIZE], b[MAX_SIZE], n, k;
+        nhap_xuat_arr(arr, n);
+        taoMang_DMKN(arr, n, b, k);
+        printf("\nMang b[]: ");
+        xuatMang(b,k);
+        break;
+      }
+      case 12: {
+        int arr[MAX_SIZE], n;
+        nhap_xuat_arr(arr, n);
+        xoaSNT(arr, n);
+        printf("\nMang sau khi xoa: ");
+        xuatMang(arr, n);
+        break;
+      }
+      case 13: {
+        int arr[MAX_SIZE], n;
+        nhap_xuat_arr(arr, n);
+        sapXepCL(arr, n);
+        printf("\nMang sau khi sap xep: ");
+        xuatMang(arr,n);
+      }
+      case 14: {
+        int arr[MAX_SIZE], n;
+        nhap_xuat_arr(arr, n);
+        sapXepAD(arr, n);
+        printf("\nMang sau khi sap xep: ");
+        xuatMang(arr,n);
+        break;
+      }
+      case 15: {
+        int arr[MAX_SIZE], n;
+        nhap_xuat_arr(arr, n);
+        
+      }
+      default: printf("Invalid\n"); break;
     }
     printf("\n+=====+=======================+\n");
     stt=0;
@@ -296,12 +360,12 @@ int timSoDoiBP_min(int a[], int n){
       break;
     }
   }
-  //err bug******************************
   for (int i = temp+1; i < n; i++) {
     if (min>a[i]&&a[i]>0) {
-      min = a[i]*a[i];
+      min = a[i];
     }
   }
+  min*=min;
   for (int i = 0; i < n; i++) {
     if (a[i]*a[i]==min&&a[i]<0) {
       temp = a[i];
@@ -319,4 +383,130 @@ int timaBP_min(int a[], int n){
     }
   }
   return temp;
+}
+void swap(int &a, int &b){
+  int t;
+  t=a;
+  a=b;
+  b=t;
+}
+void sapXepGiamDan(int a[], int n){
+  for (int i = 0; i < n-1; i++) {
+    for (int j = i+1; j < n; j++) {
+      if (a[i]<a[j]) {
+        swap(a[i], a[j]);
+      }
+    }
+  }
+}
+void sapXepTangDan(int a[], int n){
+  for (int i = 0; i < n-1; i++) {
+    for (int j = i+1; j < n; j++) {
+      if (a[i]>a[j]) {
+        swap(a[i], a[j]);
+      }
+    }
+  }
+}
+int timSoLanXH_max(int a[], int n){
+  sapXepGiamDan(a, n);
+  int temp=-1, d=1, max=0;
+  for (int i = 0; i < n-1; i++) {
+    if (a[i]==a[i+1]) {
+      d++;
+      if (d>max) {
+        max = d;
+        temp = i;
+      }
+    }else {
+      d=1;
+    }
+  }
+	return a[temp];
+}
+int layPhanDuong(int a[], int n, int i){
+  sapXepGiamDan(a, n);
+  return a[i];
+}
+int demSoDuong(int a[], int b){
+  int d=0;
+  for (int i = 0; i < b; i++) {
+    if (a[i]>0) {
+      d++;
+    }
+  }
+  return d;
+}
+void taoMang_DMKN(int a[], int n, int b[], int &k){
+  k=0;
+  sapXepGiamDan(a, n);
+  for (int i = 0; i < n-1; i++) {
+    if (a[i]==a[i+1]) {
+      continue;
+    }
+    b[k++]=a[i];
+  }
+  if (a[n-2]!=a[n-1]) {
+    b[k++]=a[n-1];
+  }else{
+    b[k++]=a[n-2];
+  }
+}
+void xoaSNT(int a[], int &n){
+  int i=0;
+  while (i<n) {
+    if (timSNT(a[i])) {
+      for (int j = i; j < n-1; j++) {
+        a[j]=a[j+1];
+      }
+      n--;
+    }else{
+      i++;
+    }
+  }
+}
+void sapXepCL(int a[], int n){
+  int chan[MAX_SIZE], le[MAX_SIZE],c=0,l=0;
+  for (int i = 0; i < n; i++) {
+    if (a[i]%2==0) {
+      chan[c++]=a[i];
+    }else{
+      le[l++]=a[i];
+    }
+  }
+  sapXepTangDan(chan, c);
+  sapXepTangDan(le, l);
+  for (int i = 0; i < n; i++) {
+    if (i<c) {
+      a[i]= chan[i];
+    }else{
+      a[i]=le[--l];
+    }
+  }
+}
+void sapXepAD(int a[], int n){
+  int duong[MAX_SIZE], am[MAX_SIZE], khong[MAX_SIZE],q=0,w=0,k=0;
+  for (int i = 0; i < n; i++) {
+    if (a[i]!=0) {
+      if (a[i]>0) {
+        duong[q++]=a[i];
+      }else{
+        am[w++]=a[i];
+      }
+    }else {
+      khong[k++]=a[i];
+    }
+  }
+  sapXepTangDan(duong, q);
+  sapXepTangDan(am, w);
+  for (int i = 0; i < k; i++) {
+    a[n-1-i]=khong[i];
+  }
+  for (int i = 0; i < n-k; i++) {
+    if (i<q) {
+      a[i]= duong[i];
+    }else{
+      a[i]=am[--w];
+    }
+  }
 }
