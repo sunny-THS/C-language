@@ -6,6 +6,7 @@ void xoaKhoangChanThua(char *str);
 void lk_CHAR_inString(char *str);
 int demSoTu(char *str);
 char *layTenFILE(char *url);
+char *chuyenSangHe10(char *str);
 
 int kiemTraChuoiDoi(char *str){
    int len = strlen(str);
@@ -65,4 +66,8 @@ char *layTenFILE(char *url, char *fName){
    for(int j=i+1; j<strlen(url);j++)
       fName[d++]=url[i];
    return fName;
+}
+char *chuyenSangHe10(char *str){
+   int len = strlen(str);
+   
 }
