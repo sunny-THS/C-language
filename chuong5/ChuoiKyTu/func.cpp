@@ -9,11 +9,12 @@ int kiemTraChuoiDoi(char *str){
    return 1;
 }
 
-void xoaPt(char *str){
-
+char *xoaPt(char *str, int n, int &len){
+   for(int i = n; i<len-1; i++)
+      str[i]=str[i+1];
+   len--;
 }
 void xoaKhoangChanThua(char *str){
    int len = strlen(str);
-   if(str[0]==' ')
-      
+   
 }
