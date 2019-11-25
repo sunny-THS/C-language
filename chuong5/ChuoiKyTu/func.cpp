@@ -67,7 +67,31 @@ char *layTenFILE(char *url, char *fName){
       fName[d++]=url[i];
    return fName;
 }
-char *chuyenSangHe10(char *str){
-   int len = strlen(str);
-   
+int kiemTraHe2(char *str){
+   int len=strlen(str);
+   for(int i=0;i<len;i++)
+      if(str[i]!='1'&&str[i]!='0')
+         return 0;
+   return 1;
+}
+int luyThua2(int i){
+   if(i==1) return 2;
+   return 2*luyThua2(i-1);
+}
+char *chuyenSangHe10(char *str, char *n){
+   int len = strlen(str), s=0, d=0;
+   for(int i=0; i<len; i++)
+     s+=luyThua2(len-i-1)*((int)str[i]-48);
+   while(s!=0){
+      int a=s%10;
+      char c=(char)(a+48);//trong ascii 48 la so 0
+      n[d++]=c;
+      s/=10;
+   }
+   if(d==0){
+      n[0]='0';
+      n[1]='\0';
+   }else
+      n[d]='\0';
+   return n;
 }
