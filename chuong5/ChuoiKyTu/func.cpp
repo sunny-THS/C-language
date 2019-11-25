@@ -10,6 +10,8 @@ int kiemTrHe2(int);
 int luyThua2(int);
 char *chuyenSangHe10(char *str);
 void inTu_lenMax(char *str);
+int dem_char_a(char *str, char a);
+void inVT_a(char *str, char a);
 
 int kiemTraChuoiDoi(char *str){
    int len = strlen(str);
@@ -118,4 +120,18 @@ void inTu_lenMax(char *str){
    }
    for(int i=m;i<=n;i++)
       printf("%c", str[i]);
+}
+int dem_char_a(char *str, char a){
+   int len= strlen(str),d=0;
+   for(int i=0; i<len;i++)
+      if(str[i]==a)
+         d++;
+   return d;
+}
+void inVT_a(char *str, char a){
+   int len=strlen(str);
+   printf("Vi tri \"%c\" xuat hien: ",a);
+   for(int i=0; i<len; i++)
+      if(str[i]==x)
+         printf("%d ",i);
 }
