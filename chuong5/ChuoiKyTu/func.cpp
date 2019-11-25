@@ -72,6 +72,20 @@ char *layTenFILE(char *url, char *fName){
       fName[d++]=url[i];
    return fName;
 }
+
+
+//chua test
+
+/*
+********   ***   ***   ******
+***   **   ***   ***  ******
+***    *   ***   ***  **
+*** ***    ***   ***  **
+***   **   ***   ***  **  ****
+***    *   *********  **   **
+*** ***     *******   ******
+*/
+
 int kiemTraHe2(char *str){
    int len=strlen(str);
    for(int i=0;i<len;i++)
