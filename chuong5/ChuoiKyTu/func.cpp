@@ -116,4 +116,6 @@ void inTu_lenMax(char *str){
       }
       i=j;
    }
+   for(int i=m;i<=n;i++)
+      printf("%c", str[i]);
 }
