@@ -6,7 +6,10 @@ void xoaKhoangChanThua(char *str);
 void lk_CHAR_inString(char *str);
 int demSoTu(char *str);
 char *layTenFILE(char *url);
+int kiemTrHe2(int);
+int luyThua2(int);
 char *chuyenSangHe10(char *str);
+void inTu_lenMax(char *str);
 
 int kiemTraChuoiDoi(char *str){
    int len = strlen(str);
@@ -94,4 +97,23 @@ char *chuyenSangHe10(char *str, char *n){
    }else
       n[d]='\0';
    return n;
+}
+void inTu_lenMax(char *str){
+   int len = strlen(str), d, j, max=0,m,n;
+   for(int i=0; i<len; i++){
+      if(str[i]!=' '){
+         d=1;
+         j=i+1;
+      }
+      while(str[j]!=' '&&j<len){
+         d++;
+         if(max<d){
+            max=d;
+            m=i;
+            n=j;
+         }
+         j++
+      }
+      i=j;
+   }
 }
