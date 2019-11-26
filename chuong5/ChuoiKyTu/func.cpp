@@ -75,17 +75,7 @@ char *layTenFILE(char *url, char *fName){
 }
 
 
-//chua test
 
-/*
-********   ***   ***   ******
-***   **   ***   ***  ******
-***    *   ***   ***  **
-*** ***    ***   ***  **
-***   **   ***   ***  **  ****
-***    *   *********  **   **
-*** ***     *******   ******
-*/
 
 int kiemTraHe2(char *str){
    int len=strlen(str);
@@ -94,9 +84,10 @@ int kiemTraHe2(char *str){
          return 0;
    return 1;
 }
-int luyThua2(int i){
-   if(i==1) return 2;
-   return 2*luyThua2(i-1);
+int luyThua2(int a){
+   if(a==1) return 2;
+   if (a==0) return 1;
+   return 2*luyThua2(a-1);
 }
 char *chuyenSangHe10(char *str, char *n){
    int len = strlen(str), s=0, d=0;
@@ -111,11 +102,14 @@ char *chuyenSangHe10(char *str, char *n){
    if(d==0){
       n[0]='0';
       n[1]='\0';
-   }else
+   }else{	
       n[d]='\0';
+   }
+	//xuat ra roi dung ham strrev de dao lai
    return n;
 }
 void inTu_lenMax(char *str){
+	xoaKhoangChanThua(str);
    int len = strlen(str), d, j, max=0,m,n;
    for(int i=0; i<len; i++){
       if(str[i]!=' '){
@@ -145,7 +139,7 @@ int dem_char_a(char *str, char a){
 }
 void inVT_a(char *str, char a){
    int len=strlen(str);
-   printf("Vi tri \"%c\" xuat hien: ",a);
+   printf("Vi tri ki tu \"%c\" xuat hien: ",a);
    for(int i=0; i<len; i++)
       if(str[i]==a)
          printf("%d ",i);
