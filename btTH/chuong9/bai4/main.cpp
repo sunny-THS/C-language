@@ -3,7 +3,7 @@
 struct NV{
   char ms[5];
   char hoTen[50];
-  float heSoLuong;
+  int namSinh;
 };
 void xuatTT(NV *a);
 void main() {
