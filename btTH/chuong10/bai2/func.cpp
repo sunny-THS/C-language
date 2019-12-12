@@ -31,7 +31,7 @@ int nhapChucVu_True(char*a){
   }
   return 0;
 }
-void nhapTT_NV(NV a){
+void nhapTT_NV(NV &a){
   printf("msnv: ");
   gets(a.msnv);
   printf("Ho va ten: ");
