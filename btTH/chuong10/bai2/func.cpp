@@ -45,6 +45,7 @@ void nhapTT_NV(NV &a){
   } while(a.soNgayCong<1);
   printf("Luong 1 ngay: ");
   scanf("%f", &a.luong1Ngay);
+  fflush(stdin);
   do {
     printf("Chuc vu: ");
     gets(a.chucVu);
