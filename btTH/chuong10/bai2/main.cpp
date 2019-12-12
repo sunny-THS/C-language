@@ -8,7 +8,7 @@ typedef struct NhanVien{
   char chucVu[50];
 }NV;
 void nhapTT_NV(NV &a);
-flaat tinhTienThuc(NV a);
+float tinhTienThuc(NV a);
 
 void main() {
   NV a;

@@ -22,7 +22,7 @@ char* xoaKhoangChan(char*a);
 void swap(char *a, char *b);
 char* inHoaKiTuDau(char *a);
 int nhapChucVu_True(char*a);
-flaat tinhTienThuc(NV a);
+float tinhTienThuc(NV a);
 
 int nhapChucVu_True(char*a){
   char *tempA = inHoaKiTuDau(xoaKhoangChan(a));
