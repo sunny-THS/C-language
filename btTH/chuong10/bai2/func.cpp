@@ -107,7 +107,7 @@ char* inHoaKiTuDau(char *a){
   }
   return a;
 }
-flaat tinhTienThuc(NV a){
+float tinhTienThuc(NV a){
   float luong= tinhTienLuong(a)+tinhTienThuong(a)+tinhTienPhuCap(a);
   return luong;
 }
