@@ -25,7 +25,8 @@ int nhapChucVu_True(char*a);
 float tinhTienThuc(NV a);
 
 int nhapChucVu_True(char*a){
-  char *tempA = inHoaKiTuDau(xoaKhoangChan(a));
+  char tempA[50];
+  strcpy(tempA, inHoaKiTuDau(xoaKhoangChan(a)));
   if (strcmp(tempA, GD)==0||strcmp(tempA, PGD)==0||strcmp(tempA, TP)==0||strcmp(tempA, PP)==0) {
     return 1;
   }
@@ -102,7 +103,7 @@ char* inHoaKiTuDau(char *a){
   for (int i = 1; i < len; i++) {
     if (a[i]==32) {
       continue;
-    }else if(a[i]>=65||a[i]<=90){
+    }else if(a[i]>=65&&a[i]<=90){
       a[i]+=32;
     }
   }
