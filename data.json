@@ -1,4 +1,4 @@
-/*[
+[
   {
     "tt": "bài 1",
     "id": 1,
@@ -53,12 +53,9 @@
     "tt": "bài 11",
     "id": 11,
     "url": "https://raw.githubusercontent.com/sunny-THS/C-language/master/chuong2/bai11.cpp"
-  }
-
-]
-*/
-[{
+  },
+  {
   "tt": "tải về",
-  "id": 1,
+  "id": 12,
   "url": "https://firebasestorage.googleapis.com/v0/b/fir-9d177.appspot.com/o/chuong10.rar?alt=media&token=b3a743b6-739b-49bd-80f7-689220727483"
 }]
