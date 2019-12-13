@@ -33,6 +33,7 @@ float tinhDTB(SV a){
 }
 void xepLoai(SV a){
   float dtb = tinhDTB(a);
+  printf("Xep loai: ");
   if(dtb>=8){
     orintf("Gioi");
   }else if(dtb>=6.5){
