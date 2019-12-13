@@ -12,6 +12,8 @@ void xuatTT(Taxi a);
 int kiemTra_DiaDiemDonKhach(Taxi, char *diaChi);
 void xuatChoNgoi(Taxi);
 int tinhTienXe(Taxi);
+char *inHoaChuDau(char *a);
+char *xoaKhoangChan(char *a);
 
 void main(){
   Taxi a;
@@ -21,7 +23,7 @@ void main(){
   printf("\nNhap quan/huyen can kiem tra: ");
   fflush(stdin);
   gets(diaChi);
-  if(kiemTra_DiaDiemDonKhach(a, diaChi)){
+  if(kiemTra_DiaDiemDonKhach(a, inHoaChuDau(xoaKhoangChan(diaChi)))){
     printf("\nTaxi co chay tren quan/huyen %s\n", diaChi);
   }else printf("\nTaxi khongco chay tren quan/huyen %s\n", diaChi);
   xuatChoNgoi(a);
