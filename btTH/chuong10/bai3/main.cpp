@@ -1,18 +1,22 @@
 #include<stdio.h>
 #include<conio.h>
-typedef struct NhanVien{
-  char msnv[10];
-  char tenNv[50];
-  int soNgayCong;
-  float luong1Ngay;
-  char chucVu[50];
-}NV;
-void nhapTT_NV(NV &a);
-float tinhTienThuc(NV a);
+typedef struct SinhVien{
+  char mssv[11];
+  char tenSv[50];
+  float diemT;
+  float diemL;
+  float diemH;
+}SV;
+void nhapTT_SV(SV &a);
+void xuatTT_SV(SV a);
+float tinhDTB(SV a);
+void xepLoai(SV a);
 
 void main() {
-  NV a;
-  nhapTT_NV(a);
-  printf("Tien luong: %.0f\n", tinhTienThuc(a));
+  SV a;
+  nhapTT_SV(a);
+  xuatTT_SV(a);
+  printf("\n diem trung binh: %f\n",tinhDTB(a));
+  xepLoai(a);
   getch();
 }
