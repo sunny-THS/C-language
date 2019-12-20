@@ -12,7 +12,14 @@ char *chuyenSangHe10(char *str, char *n);
 void inTu_lenMax(char *str);
 int dem_char_a(char *str, char a);
 void inVT_a(char *str, char a);
-
+void tachTu(char *a){
+  char *token;
+  token = strtok(a, " ");
+  while (token!=NULL) {
+    printf("%s\n", token);
+    token = strtok(NULL, " ");
+  }
+}
 
 int kiemTraChuoiDoi(char *str){
    int len = strlen(str);
@@ -54,7 +61,7 @@ void lk_CHAR_inString(char *str){
          xoaPt(str, i, &len);
          i--;
       }
-   }  
+   }
 }
 int demSoTu(char *str){
    int dem = 0, len= strlen(str);
@@ -102,7 +109,7 @@ char *chuyenSangHe10(char *str, char *n){
    if(d==0){
       n[0]='0';
       n[1]='\0';
-   }else{	
+   }else{
       n[d]='\0';
    }
 	//xuat ra roi dung ham strrev de dao lai
