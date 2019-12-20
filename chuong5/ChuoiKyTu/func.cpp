@@ -12,6 +12,24 @@ char *chuyenSangHe10(char *str, char *n);
 void inTu_lenMax(char *str);
 int dem_char_a(char *str, char a);
 void inVT_a(char *str, char a);
+
+char *chuanHoaText(char *a){
+  int len = strlen(a);
+  if (a[0]>=97&&a[0]<=122){
+  	a[0]-=32;
+  }
+  for (int i = 1; i < len; i++){
+  	if (a[i]!=32&&a[i-1]==32&&(a[i]>=65&&a[i]<=90)){
+  		continue;
+  	}else if (a[i]!=32&&a[i-1]==32&&(a[i]>=97&&a[i]<=122)){
+  		a[i]-=32;
+  	}else if(a[i]!=32&&!(a[i]>=97&&a[i]<=122)){
+  		a[i]+=32;
+  	}
+  }
+  return a;
+}
+
 void tachTu(char *a){
   char *token;
   token = strtok(a, " ");
@@ -20,6 +38,7 @@ void tachTu(char *a){
     token = strtok(NULL, " ");
   }
 }
+
 
 int kiemTraChuoiDoi(char *str){
    int len = strlen(str);
