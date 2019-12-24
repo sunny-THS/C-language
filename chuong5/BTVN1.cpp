@@ -28,7 +28,37 @@ int float_random(int,int);
 int random(int, int);
 void chenX_VT_i(int a[], int &n, int x, int m);
 void xoaPT_i(int a[], int &n, int m);
+void tronMang(int *a, int na,int *b, int nb, int *c, int &nc);
 
+void tronMang(int *a, int na,int *b, int nb, int *c, int &nc){
+	nc =0;
+	if (na>=nb){
+		for (int i = 0; i < na; i++){
+			if (i<nb){
+				if (a[i]<=b[i]){
+					c[nc++]=a[i];
+				}else{
+					c[nc++]=b[i];
+				}
+			}else{
+				c[nc++]=a[i];
+			}
+		}
+	}
+	if (na<=nb){
+		for (int i = 0; i < nb; i++){
+			if (i<na){
+				if (a[i]<=b[i]){
+					c[nc++]=a[i];
+				}else{
+					c[nc++]=b[i];
+				}
+			}else{
+				c[nc++]=b[i];
+			}
+		}
+	}
+}
 void nhapMang(int a[], int &n){
   int chon;
   do {
@@ -206,7 +236,7 @@ void main(){
       case 15: {
         int arr[MAX_SIZE], n;
         nhap_xuat_arr(arr, n);
-        
+
       }
       default: printf("Invalid\n"); break;
     }
