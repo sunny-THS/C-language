@@ -12,7 +12,17 @@ char *chuyenSangHe10(char *str, char *n);
 void inTu_lenMax(char *str);
 int dem_char_a(char *str, char a);
 void inVT_a(char *str, char a);
+int kTraChuoiCon(char *a, char *b);
 
+int kTraChuoiCon(char *a, char *b){
+	char *c;
+	c = strstr(a,b);
+	if (c==NULL)
+	{
+		return 0;
+	}
+	return 1;
+}
 char *chuanHoaText(char *a){
   int len = strlen(a);
   if (a[0]>=97&&a[0]<=122){
