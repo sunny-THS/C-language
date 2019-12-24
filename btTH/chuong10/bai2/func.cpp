@@ -95,18 +95,13 @@ char* xoaKhoangChan(char*a){
   return a;
 }
 char* inHoaKiTuDau(char *a){
-  int len = strlen(a);
-  //trong ascii a -> 97  A -> 65
-  if (a[0]>97) {
-    a[0]-=32;
-  }
-  for (int i = 1; i < len; i++) {
-    if (a[i]==32) {
-      continue;
-    }else if(a[i]>=65&&a[i]<=90){
-      a[i]+=32;
-    }
-  }
+  for (int i = 0; a[i]; i++){
+     if (a[i] >=  65 && a[i] <= 90) a[i] += 32;
+     if (a[i - 1] == 32 || i == 0) {
+         if (a[i] >= 97 && a[i] <= 122)
+             a[i] = a[i] - 32;
+     }
+   }
   return a;
 }
 float tinhTienThuc(NV a){
