@@ -85,8 +85,7 @@ void swap(char &a, char &b){
 }
 char* xoaKhoangChan(char*a){
   int d=0;
-  int len = strlen(a);
-  for (int i = 0; i < len; i++) {
+  for (int i = 0; a[i]; i++) {
     if (a[i]!=32||a[i]==32&&a[i+1]!=32&&a[0]!=32) {
       swap(a[d++],a[i]);
     }
