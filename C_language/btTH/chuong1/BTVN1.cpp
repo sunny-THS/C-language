@@ -13,6 +13,5 @@ void main(){
 	printf("So thuc voi 2 so thap phan: %.2f\n", a);
 	printf("2 so thap phan cua so thuc: %d\n", phanThuc);
 	printf("Tong: %d", tong);
-  
 	getch();
 }
