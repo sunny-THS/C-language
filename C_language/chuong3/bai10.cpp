@@ -1,7 +1,6 @@
 #include<stdio.h>
-#include<conio.h>
 
-void main(){
+int main(){
   int nam;
   printf("Nhap 1 nam: ");
   scanf("%d", &nam);
@@ -10,5 +9,5 @@ void main(){
   }else{
     printf("Do khong phai la nam nhuan");
   }
-  getch();
+  return 0;
 }
