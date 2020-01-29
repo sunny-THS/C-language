@@ -98,6 +98,7 @@ void gotoxy(int x, int y){
 void cls(){
   system("cls");
 }
+//tao mau chu
 void textColor(int x){
   HANDLE color;
   color = GetStdHandle(STD_OUTPUT_HANDLE);
