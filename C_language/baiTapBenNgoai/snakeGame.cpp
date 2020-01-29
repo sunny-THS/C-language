@@ -4,15 +4,20 @@
 #include<windows.h>
 #include<conio.h>
 
-#define consoleHeight 30
-#define consoleWidth 120
+//tuy vao cua so console
+#define consoleHeight 30 //chieu cao cua console
+#define consoleWidth 120 // chieu dai cua console
 
+//gia tri cua chieu dai, chieu rong cua khung game
 enum KHUNGGAME {
+  // xy va yx tuong duong voi toa do x
+  // xx va yy tuong duong vơi toa do y
   xy = 2,
   xx = consoleWidth/2,
   yx = 1,
   yy = consoleHeight-consoleHeight/5
 };
+
 enum TrangThai {UP, DOWN, LEFT, RIGHT};
 
 typedef struct animation{
@@ -36,10 +41,10 @@ int main(){
   e.speed = 100;
 
   while (1) {
-    cls();
+    cls();//xoa man hinh moi vong lap
     draw(xx, xy, yx, yy);
-    gotoxy(e.x, e.y);
-    textColor(14);
+    gotoxy(e.x, e.y); // diem xuat phat
+    textColor(14); //text color
     printf("%s", e.text);
 
     //xu ly cham bien
@@ -67,6 +72,7 @@ int main(){
       }
     }
 
+    //auto di chuyen
     if (e.tt == DOWN) {
       e.y++;
     }else if (e.tt == UP) {
@@ -77,7 +83,7 @@ int main(){
       e.x--;
     }
 
-    Sleep(e.speed);
+    Sleep(e.speed); //toc do game
   }
   return 0;
 }
@@ -97,6 +103,8 @@ void textColor(int x){
   color = GetStdHandle(STD_OUTPUT_HANDLE);
   SetConsoleTextAttribute(color, x);
 }
+
+//ve khung hinh
 void draw(int xx, int xy, int yx, int yy){
   for (int i = xy; i <= xx; i++) {
     for (int j = yx; j <= yy; j++) {
