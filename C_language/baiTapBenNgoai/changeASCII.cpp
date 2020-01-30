@@ -2,7 +2,7 @@
 
 int main(){
   char c;
-  for (int i = 32; i <= 255; i++) {
+  for (int i = 1; i <= 255; i++) {
     c=i;
     if (i==32) {
       printf("%d space\t", i);
