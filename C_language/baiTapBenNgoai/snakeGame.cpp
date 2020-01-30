@@ -8,7 +8,7 @@
 //tuy vao cua so console
 #define CONSOLE_HEIGHT 30 //chieu cao cua console
 #define CONSOLE_WIDTH 120 // chieu dai cua console
-#define SPEED_MIN 50
+#define SPEED_MIN 50 // toc do toi da
 
 //gia tri cua chieu dai, chieu rong cua khung game
 enum KHUNGGAME {
