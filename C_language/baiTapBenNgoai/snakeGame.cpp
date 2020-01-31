@@ -29,7 +29,7 @@ struct Color{
   int color_Snake, color_Fruit, color_KhungGame;
 };
 struct Snake{
-  TD dot[50];
+  TD dot[100];
   int n;// do dai cua con ran
   TrangThai tt;
 };
@@ -71,11 +71,15 @@ int main(){
   return 0;
 }
 void beginGame(Snake &snake, Fruit &fr, TS &thongSo){
+  char title_Game[] = "\n\n\t\t ######  ##    ##    ###    ##    ## ########     ######      ###    ##     ## ########\n\t\t##    ## ###   ##   ## ##   ##   ##  ##          ##    ##    ## ##   ###   ### ##      \n\t\t##       ####  ##  ##   ##  ##  ##   ##          ##         ##   ##  #### #### ##      \n\t\t ######  ## ## ## ##     ## #####    ######      ##   #### ##     ## ## ### ## ######  \n\t\t      ## ##  #### ######### ##  ##   ##          ##    ##  ######### ##     ## ##      \n\t\t##    ## ##   ### ##     ## ##   ##  ##          ##    ##  ##     ## ##     ## ##      \n\t\t ######  ##    ## ##     ## ##    ## ########     ######   ##     ## ##     ## ########";
   char start[] = "Start Game";
   char help[] = "How to play";
   char e[] = "Exit";
   int y = 4, n = 15;//y la chon, n la khong chon
   int select = 1;//1 la start game, 2 la help, 3 la exit
+
+  textColor(10);
+  printf("%s", title_Game);
   while (1) {
     switch (select) {
       case 1: menu(start, help, e, y, n, n); break;
@@ -109,11 +113,10 @@ void beginGame(Snake &snake, Fruit &fr, TS &thongSo){
       }
     }
   }
-  Sleep(10);
 }
 
 void startGame(Snake &snake, Fruit &fr, TS &thongSo){
-  thongSo.speed = 10; // toc do game
+  thongSo.speed = 200; // toc do game
   thongSo.clr.color_Snake = 10;
   thongSo.clr.color_Fruit = 4;
   thongSo.clr.color_KhungGame = 14;
@@ -150,6 +153,7 @@ void startGame(Snake &snake, Fruit &fr, TS &thongSo){
       printf("%s %d", info_Score, thongSo.score);
       while (_getch()!=27);
       cls();
+      beginGame(snake, fr, thongSo);
       break;
     }
     Sleep(thongSo.speed); //toc do game
