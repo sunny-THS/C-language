@@ -8,8 +8,20 @@
 //tuy vao cua so console
 #define CONSOLE_HEIGHT 30 //chieu cao cua console
 #define CONSOLE_WIDTH 120 // chieu dai cua console
-#define SPEED_MIN 50 // toc do toi da
+#define SPEED_MIN 100 // toc do toi da
 
+//gia tri mau
+enum COLOR {
+  Blue = 1,
+  Green = 10,
+  Purple = 13,
+  Orange = 12,
+  White = 15,
+  Gray = 8,
+  Red = 4,
+  CadetBlue = 11,  // xanh lam
+  Yellow = 14
+};
 //gia tri cua chieu dai, chieu rong cua khung game
 enum KHUNGGAME {
   // xy va yx tuong duong voi toa do x
@@ -29,7 +41,7 @@ struct Color{
   int color_Snake, color_Fruit, color_KhungGame;
 };
 struct Snake{
-  TD dot[100];
+  TD dot[1000];
   int n;// do dai cua con ran
   TrangThai tt;
 };
@@ -56,6 +68,7 @@ void beginGame(Snake &snake, Fruit &fr, TS &thongSo);
 void startGame(Snake &s, Fruit &f, TS &ts);
 void menu(char *start, char *help, char *e, int, int, int);
 void howToPlay(Snake &snake, Fruit &fr, TS &thongSo);
+void loadingGame();
 
 // main function
 int main(){
@@ -65,11 +78,34 @@ int main(){
   TS thongSo;
   Fruit fr;
 
+  loadingGame();
   beginGame(snake, fr, thongSo);
   //startGame(snake, fr, thongSo);
 
   return 0;
 }
+
+void loadingGame(){
+  char title_Game[] = "\n\n\t\t ######  ##    ##    ###    ##    ## ########     ######      ###    ##     ## ########\n\t\t##    ## ###   ##   ## ##   ##   ##  ##          ##    ##    ## ##   ###   ### ##      \n\t\t##       ####  ##  ##   ##  ##  ##   ##          ##         ##   ##  #### #### ##      \n\t\t ######  ## ## ## ##     ## #####    ######      ##   #### ##     ## ## ### ## ######  \n\t\t      ## ##  #### ######### ##  ##   ##          ##    ##  ######### ##     ## ##      \n\t\t##    ## ##   ### ##     ## ##   ##  ##          ##    ##  ##     ## ##     ## ##      \n\t\t ######  ##    ## ##     ## ##    ## ########     ######   ##     ## ##     ## ########";
+  int loading = 0, time_delay = 5;
+  char t[] = "Game Loading...";
+
+  while (loading!=101) {
+    cls();
+    textColor(random(1,15));
+    printf("%s", title_Game);
+    gotoxy((CONSOLE_WIDTH-strlen(t))/2-3, CONSOLE_HEIGHT/2);
+    textColor(Green);
+    printf("%s %d", t, loading);
+    loading++;
+    if (loading >= 90) {
+      time_delay = 50;
+    }
+    Sleep(time_delay);
+  }
+  cls();
+}
+
 void beginGame(Snake &snake, Fruit &fr, TS &thongSo){
   char title_Game[] = "\n\n\t\t ######  ##    ##    ###    ##    ## ########     ######      ###    ##     ## ########\n\t\t##    ## ###   ##   ## ##   ##   ##  ##          ##    ##    ## ##   ###   ### ##      \n\t\t##       ####  ##  ##   ##  ##  ##   ##          ##         ##   ##  #### #### ##      \n\t\t ######  ## ## ## ##     ## #####    ######      ##   #### ##     ## ## ### ## ######  \n\t\t      ## ##  #### ######### ##  ##   ##          ##    ##  ######### ##     ## ##      \n\t\t##    ## ##   ### ##     ## ##   ##  ##          ##    ##  ##     ## ##     ## ##      \n\t\t ######  ##    ## ##     ## ##    ## ########     ######   ##     ## ##     ## ########";
   char start[] = "Start Game";
@@ -78,7 +114,7 @@ void beginGame(Snake &snake, Fruit &fr, TS &thongSo){
   int y = 4, n = 15;//y la chon, n la khong chon
   int select = 1;//1 la start game, 2 la help, 3 la exit
 
-  textColor(10);
+  textColor(Green);
   printf("%s", title_Game);
   while (1) {
     switch (select) {
@@ -90,12 +126,12 @@ void beginGame(Snake &snake, Fruit &fr, TS &thongSo){
     // dieu khien chon
     if (kbhit()) { // phat hien nhan phim
       char key = _getch();
-      if (key == 'w' || key == 'W' || key == 56) {
+      if (key == 'w' || key == 'W' || key == 56 || key == 72) {
         select--;
         if (select<1) {
           select = 3;
         }
-      }else if (key == 's' || key == 'S' || key == 50) {
+      }else if (key == 's' || key == 'S' || key == 50 || key == 80) {
         select++;
         if (select>3) {
           select = 1;
@@ -103,8 +139,11 @@ void beginGame(Snake &snake, Fruit &fr, TS &thongSo){
       }else if (key == 13) {
         // khi nhan phim enter
         switch (select) {
-          case 1: startGame(snake, fr, thongSo); break;
           case 2: howToPlay(snake, fr, thongSo); break;
+          case 1: {
+            startGame(snake, fr, thongSo);
+            select = 3;
+          }
           case 3: cls(); break;
         }
         if (select == 3) {
@@ -166,13 +205,13 @@ void howToPlay(Snake &snake, Fruit &fr, TS &thongSo){
     char info_3[] = "Nhan enter de dung lai";
     while (1) {
       gotoxy((CONSOLE_WIDTH-strlen(info_1))/2, CONSOLE_HEIGHT/2-3);
-      textColor(10);
+      textColor(Green);
       printf("%s", info_1);
       gotoxy((CONSOLE_WIDTH-strlen(info_2))/2, CONSOLE_HEIGHT/2+2-3);
-      textColor(10);
+      textColor(Green);
       printf("%s", info_2);
       gotoxy((CONSOLE_WIDTH-strlen(info_3))/2, CONSOLE_HEIGHT/2+4-3);
-      textColor(10);
+      textColor(Green);
       printf("%s", info_3);
       if (kbhit()) {
         char key = _getch();
@@ -227,7 +266,7 @@ void draw(int xx, int xy, int yx, int yy, TS thongSo){
   int chieuDaiKhung = 10;
   int chieuRongKhung= CONSOLE_WIDTH/4-xy;
   // ve khung
-  textColor(3);
+  textColor(CadetBlue);
   for (int i = 0; i < chieuDaiKhung; i++) {
     gotoxy(CONSOLE_WIDTH/2+2, xy+i);
     for (int j = 0; j < chieuRongKhung; j++) {
@@ -241,7 +280,7 @@ void draw(int xx, int xy, int yx, int yy, TS thongSo){
     }
     printf("\n");
   }
-  textColor(4);
+  textColor(Red);
   gotoxy((CONSOLE_WIDTH/2-strlen(title))/2+CONSOLE_WIDTH/2, CONSOLE_HEIGHT/7);
   printf("%s", title);
   gotoxy((CONSOLE_WIDTH/2-strlen(hr))/2+CONSOLE_WIDTH/2, CONSOLE_HEIGHT/4);
@@ -281,7 +320,7 @@ void hienThi_Snake(Snake snake, TS thongSo){
   for (int i = 0; i < snake.n; i++) {
     if (i==0) {
       gotoxy(snake.dot[i].x, snake.dot[i].y);
-      textColor(1);
+      textColor(Blue);
       putchar(42);
     }else {
       gotoxy(snake.dot[i].x, snake.dot[i].y);
