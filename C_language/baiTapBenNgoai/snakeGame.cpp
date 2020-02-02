@@ -86,11 +86,14 @@ int main(){
 }
 
 void loadingGame(){
+  char title_Game[] = "\n\n\t\t ######  ##    ##    ###    ##    ## ########     ######      ###    ##     ## ########\n\t\t##    ## ###   ##   ## ##   ##   ##  ##          ##    ##    ## ##   ###   ### ##      \n\t\t##       ####  ##  ##   ##  ##  ##   ##          ##         ##   ##  #### #### ##      \n\t\t ######  ## ## ## ##     ## #####    ######      ##   #### ##     ## ## ### ## ######  \n\t\t      ## ##  #### ######### ##  ##   ##          ##    ##  ######### ##     ## ##      \n\t\t##    ## ##   ### ##     ## ##   ##  ##          ##    ##  ##     ## ##     ## ##      \n\t\t ######  ##    ## ##     ## ##    ## ########     ######   ##     ## ##     ## ########";
   int loading = 0, time_delay = 5;
   char t[] = "Game Loading...";
 
   while (loading!=101) {
     cls();
+    textColor(random(1,15));
+    printf("%s", title_Game);
     gotoxy((CONSOLE_WIDTH-strlen(t))/2-3, CONSOLE_HEIGHT/2);
     textColor(Green);
     printf("%s %d", t, loading);
