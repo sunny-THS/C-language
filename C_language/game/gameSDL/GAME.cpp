@@ -88,7 +88,7 @@ int main (int arc, char*  argv[]) {
 		}
 	}
 
-	// xoa bo nho
+	// xoa bo nho chuong trinh
 	CleanUp();
 	SDL_Quit();
 
