@@ -88,6 +88,7 @@ int main (int arc, char*  argv[]) {
 		}
 	}
 
+	// xoa bo nho
 	CleanUp();
 	SDL_Quit();
 
