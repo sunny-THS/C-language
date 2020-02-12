@@ -6,12 +6,12 @@ using namespace std;
 
 class Birthday {
   private:
-    int day, month;
+    int day, month, year;
   public:
-    int year;
     Birthday(int d, int m, int y);
     void printDate();
     int proccessAge(int y);
+    friend Person::
 };
 
 class Person {
