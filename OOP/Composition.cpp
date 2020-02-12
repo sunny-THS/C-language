@@ -1,7 +1,6 @@
 #include "Composition.h"
 
 #define YEAR_NOW 2020 // nam hien tai
-
 // init
 Birthday::Birthday(int d, int m, int y)
 :day(d), month(m), year(y){}
