@@ -1,7 +1,5 @@
 #include "CommonFunction.h"
-
-// bien toan cuc (glocal)
-SDL_Surface *g_object = NULL;
+#include "MainObject.h"
 
 bool Init(){ // Ham khoi tao (initialization)
 	if (SDL_Init(SDL_INIT_EVERYTHING) == -1) {
@@ -30,18 +28,21 @@ int main (int arc, char*  argv[]) {
 	}
 	SDL_CommonFunction::ApplySurface(g_bkground, g_screen, 0, 0);
 
-	//hien nhan vat game
- 	g_object = SDL_CommonFunction::LoadImage("human.png");
-	if (g_object == NULL) {
+	MainObject human_object;
+	human_object.SetRect(100, 200); // vi tri cua nhan vat
+	bool ret = human_object.LoadIMG("plane.png");
+	if (!ret) { // ret == false
 		return 0;
 	}
-	SDL_CommonFunction::ApplySurface(g_object, g_screen, 300, 420);
+	human_object.Show(g_screen);
 
 	while (!is_quit) {
 		while (SDL_PollEvent(&g_event)) { // kiem tra nhan phim
 			if (g_event.type == SDL_QUIT) {
 				is_quit = true;
+				break;
 			}
+			human_object.HandleInputAction(g_event);
 		}
 		if (SDL_Flip(g_screen) == -1) {
 			return 0;

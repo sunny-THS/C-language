@@ -1,5 +1,5 @@
-#ifndef Common_Function_H
-#define Common_Function_H
+#ifndef Common_Function_H_
+#define Common_Function_H_
 
 //library
 #include<SDL.h>
@@ -22,4 +22,4 @@ namespace SDL_CommonFunction {
   void ApplySurface(SDL_Surface* src, SDL_Surface* des, int x, int y);
   void CleanUp();
 }
-#endif
+#endif // Common_Function_H_
