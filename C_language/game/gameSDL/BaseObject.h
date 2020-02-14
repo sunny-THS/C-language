@@ -6,7 +6,9 @@
 // lop co so
 class BaseObject {
   public:
+    // contructor
     BaseObject();
+    // destructor
     ~BaseObject();
     void Show(SDL_Surface* des);
     bool LoadIMG(const char* file_name);
