@@ -1,5 +1,6 @@
 #include "CommonFunction.h"
 #include "MainObject.h"
+#include "ThreatsObject.h"
 
 bool Init(){ // Ham khoi tao (initialization)
 	if (SDL_Init(SDL_INIT_EVERYTHING) == -1) {
@@ -15,6 +16,8 @@ bool Init(){ // Ham khoi tao (initialization)
 }
 
 int main (int arc, char*  argv[]) {
+	srand(time(NULL));
+
 	bool is_quit = false;
 	if (Init() == false) {
 		return 0;
@@ -22,16 +25,31 @@ int main (int arc, char*  argv[]) {
 
 	// ApplySurface(bkground, screen, x, y);
 	//hien background game
-	g_bkground = SDL_CommonFunction::LoadImage("bg2.png");
+	g_bkground = SDL_CommonFunction::LoadImage("bg.png");
 	if (g_bkground == NULL) {
 		return 0;
 	}
 
+	// Make MainObject
 	MainObject human_object;
 	human_object.SetRect(100, 200); // vi tri cua nhan vat
 	bool ret = human_object.LoadIMG("plane.png");
 	if (!ret) { // ret == false
 		return 0;
+	}
+
+	// Make ThreatsObject
+	ThreatsObject* threats = new ThreatsObject[NUM_THREATS];
+	for (int i = 0; i < NUM_THREATS; i++) {
+		ThreatsObject* p_threat = new ThreatsObject();
+		ret = p_threat->LoadIMG("af1.png");
+		p_threat->SetRect(SCREEN_WIDTH, SDL_CommonFunction::Random(0, SCREEN_HEIGHT*0.75));
+		if (!ret) {
+			return 0;
+		}
+		p_threat->set_x_val(2);
+		// khoi tao dan cua dinh
+		p_threat->InitBullet();
 	}
 
 	while (!is_quit) {
@@ -47,24 +65,29 @@ int main (int arc, char*  argv[]) {
 		human_object.HandleMove();
 
 		// hien thi duong di cua vien dan
-		for (int i = 0; i < human_object.GetAmoList().size(); i++) {
-			std::vector<AmoObject*> amo_list = human_object.GetAmoList();
-			AmoObject* p_amo = amo_list.at(i);
-			if (p_amo != NULL) {
-				if (p_amo->get_is_move()) {
-					p_amo->Show(g_screen);
-					p_amo->HandleMove(SCREEN_WIDTH, SCREEN_HEIGHT);
+		for (int i = 0; i < human_object.GetBulletList().size(); i++) {
+			std::vector<BulletObject*> bullet_list = human_object.GetBulletList();
+			BulletObject* p_bullet = bullet_list.at(i);
+			if (p_bullet != NULL) {
+				if (p_bullet->get_is_move()) {
+					p_bullet->Show(g_screen);
+					p_bullet->HandleMove(SCREEN_WIDTH, SCREEN_HEIGHT);
 				}else {
-					if (p_amo != NULL) {
-						amo_list.erase(amo_list.begin() + i);
-						human_object.SetAmoList(amo_list);
+					if (p_bullet != NULL) {
+						bullet_list.erase(bullet_list.begin() + i); // xoa phan tu ra khoi bullet_list
+						human_object.SetBulletList(bullet_list);
 
-						delete p_amo;
-						p_amo = NULL;
+						delete p_bullet;
+						p_bullet = NULL;
 					}
 				}
 			}
 		}
+
+		// Threats
+		p_threat->Show(g_screen);
+		p_threat->HandleMove(SCREEN_WIDTH, SCREEN_HEIGHT);
+		p_threat->MakeBullet(g_screen, SCREEN_WIDTH, SCREEN_HEIGHT);
 
 		if (SDL_Flip(g_screen) == -1) {
 			return 0;

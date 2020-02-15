@@ -50,22 +50,22 @@ void MainObject::HandleInputAction(SDL_Event events) {
         break;
     }
   }else if (events.type == SDL_MOUSEBUTTONDOWN) { // xu ly chuot
-    AmoObject* p_amo = new AmoObject();
+    BulletObject* p_bullet = new BulletObject();
     if (events.button.button == SDL_BUTTON_LEFT) {// click chuot phai
-      p_amo->SetW_H(WIDTH_LAZE, HEIGHT_LAZE);
-      p_amo->LoadIMG("laser.png");
-      p_amo->set_type(AmoObject::LAZE);
+      p_bullet->SetW_H(WIDTH_LAZE, HEIGHT_LAZE);
+      p_bullet->LoadIMG("laser.png");
+      p_bullet->set_type(BulletObject::LAZE);
     }else if (events.button.button == SDL_BUTTON_RIGHT) {// click chuot trai
-      p_amo->SetW_H(WIDTH_SPHERE, HEIGHT_SPHERE);
-      p_amo->LoadIMG("sphere.png");
-      p_amo->set_type(AmoObject::SPHERE);
+      p_bullet->SetW_H(WIDTH_SPHERE, HEIGHT_SPHERE);
+      p_bullet->LoadIMG("sphere.png");
+      p_bullet->set_type(BulletObject::SPHERE);
     }
-    // this -> rec_.x giong nhu AmoObject::rec_.x
-    p_amo->SetRect(this->rect_.x + WIDTH_MAIN_OBJECT - WIDTH_MAIN_OBJECT*0.3, this->rect_.y + HEIGHT_MAIN_OBJECT - HEIGHT_MAIN_OBJECT*0.4);
-    p_amo->set_is_move(true);
+    // this -> rec_.x giong nhu BulletObject::rec_.x
+    p_bullet->SetRect(this->rect_.x + WIDTH_MAIN_OBJECT - WIDTH_MAIN_OBJECT*0.3, this->rect_.y + HEIGHT_MAIN_OBJECT - HEIGHT_MAIN_OBJECT*0.15);
+    p_bullet->set_is_move(true);
 
-    // them vao amo_list
-    p_amo_list_.push_back(p_amo);
+    // them vao bullet_list
+    p_bullet_list_.push_back(p_bullet);
   }else if (events.type == SDL_MOUSEBUTTONUP) {
     /* code */
   }
@@ -76,7 +76,7 @@ void MainObject::HandleMove() {
     rect_.x -= x_val_;
   }
   rect_.y += y_val_;
-  if (rect_.y < 0 || (rect_.y + HEIGHT_MAIN_OBJECT) > SCREEN_HEIGHT - SCREEN_HEIGHT*0.4) {
+  if (rect_.y < 0 || (rect_.y + HEIGHT_MAIN_OBJECT) > SCREEN_HEIGHT*0.8) {
     rect_.y -= y_val_;
   }
 }

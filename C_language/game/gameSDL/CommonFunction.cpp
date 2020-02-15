@@ -29,3 +29,7 @@ void SDL_CommonFunction::CleanUp() {
 	SDL_FreeSurface(g_screen);
 	SDL_FreeSurface(g_bkground);
 }
+
+int SDL_CommonFunction::Random(int min, int max) {
+	return min + rand()%(max - min + 1);
+}

@@ -3,7 +3,7 @@
 
 #include "CommonFunction.h"
 #include "BaseObject.h"
-#include "AmoObject.h"
+#include "BulletObject.h"
 #include <vector>
 
 #define WIDTH_MAIN_OBJECT 80
@@ -18,13 +18,14 @@ class MainObject : public BaseObject {
 
     void HandleInputAction(SDL_Event events);
     void HandleMove();
-    void SetAmoList(std::vector<AmoObject*> amo_list) {p_amo_list_ = amo_list;}
-    std::vector<AmoObject*> GetAmoList() const {return p_amo_list_;}
+    
+    void SetBulletList(std::vector<BulletObject*> bullet_list) {p_bullet_list_ = bullet_list;}
+    std::vector<BulletObject*> GetBulletList() const {return p_bullet_list_;}
   private:
     int x_val_, y_val_;
 
     // std::vector<Khieu du lieu> tenBien;
-    std::vector<AmoObject*> p_amo_list_; // truong cua MainObject
+    std::vector<BulletObject*> p_bullet_list_; // truong cua MainObject
 };
 
 #endif // MAIN_OBJECT_H_
