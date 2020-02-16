@@ -11,7 +11,7 @@
 #define SCREEN_WIDTH 1200 // chieu rong cua chuong trinh
 #define SCREEN_HEIGHT 600 // chieu cao cua chuong trinh
 #define SCREEN_BPP 32
-#define NUM_THREATS 3
+#define NUM_THREATS 3 // so luong cua dich
 
 // bien tinh (static variables)
 static SDL_Surface *g_screen = NULL;
@@ -20,9 +20,9 @@ static SDL_Event g_event;
 
 // prototype function
 namespace SDL_CommonFunction {
-  int Random(int min, int max);
-  SDL_Surface* LoadImage(std::string file_path);
+  int Random(int min, int max);// value random
+  SDL_Surface* LoadImage(std::string file_path);// tao hinh anh trong game
   void ApplySurface(SDL_Surface* src, SDL_Surface* des, int x, int y);
-  void CleanUp();
+  void CleanUp();// clean memory
 }
 #endif // Common_Function_H_
