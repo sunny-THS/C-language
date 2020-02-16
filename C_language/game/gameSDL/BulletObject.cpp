@@ -6,7 +6,7 @@ BulletObject::BulletObject() {
   rect_.y = 0;
   x_val_ = 0;
   y_val_ = 0;
-  is_move_ = false;
+  is_move_ = false; // trang thai cua vien dan
   bullet_type_ = NONE;
 }
 
