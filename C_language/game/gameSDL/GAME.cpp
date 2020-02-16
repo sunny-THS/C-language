@@ -16,7 +16,7 @@ bool Init(){ // Ham khoi tao (initialization)
 }
 
 int main (int arc, char*  argv[]) {
-	srand(time(NULL));
+	srand(time(NULL)); // khoi tao thoi gian thuc cho game 
 
 	bool is_quit = false;
 	if (Init() == false) {
@@ -41,15 +41,16 @@ int main (int arc, char*  argv[]) {
 	// Make ThreatsObject
 	ThreatsObject* threats = new ThreatsObject[NUM_THREATS];
 	for (int i = 0; i < NUM_THREATS; i++) {
+		BulletObject* p_bullet = *(threats+i);
 		ThreatsObject* p_threat = new ThreatsObject();
 		ret = p_threat->LoadIMG("af1.png");
-		p_threat->SetRect(SCREEN_WIDTH, SDL_CommonFunction::Random(0, SCREEN_HEIGHT*0.75));
+		p_threat->SetRect(SCREEN_WIDTH, SDL_CommonFunction::Random(0, SCREEN_HEIGHT*0.75)); // vi tri cua dich
 		if (!ret) {
 			return 0;
 		}
 		p_threat->set_x_val(2);
-		// khoi tao dan cua dinh
-		p_threat->InitBullet();
+		// khoi tao dan cua dich
+		p_threat->InitBullet(p_bullet);
 	}
 
 	while (!is_quit) {
@@ -60,8 +61,8 @@ int main (int arc, char*  argv[]) {
 			}
 			human_object.HandleInputAction(g_event);
 		}
-		SDL_CommonFunction::ApplySurface(g_bkground, g_screen, 0, 0);
-		human_object.Show(g_screen);
+		SDL_CommonFunction::ApplySurface(g_bkground, g_screen, 0, 0); // khoi tao man hinh
+		human_object.Show(g_screen); // hien thi nhan vat chinh
 		human_object.HandleMove();
 
 		// hien thi duong di cua vien dan
