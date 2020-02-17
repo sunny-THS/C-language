@@ -16,7 +16,7 @@ bool Init(){ // Ham khoi tao (initialization)
 }
 
 int main (int arc, char*  argv[]) {
-	srand(time(NULL)); // khoi tao thoi gian thuc cho game 
+	srand(time(NULL));
 
 	bool is_quit = false;
 	if (Init() == false) {
@@ -24,77 +24,70 @@ int main (int arc, char*  argv[]) {
 	}
 
 	// ApplySurface(bkground, screen, x, y);
-	//hien background game
-	g_bkground = SDL_CommonFunction::LoadImage("bg.png");
+	g_bkground = SDL_CommonFunction::LoadImage(BKG_GAME);
 	if (g_bkground == NULL) {
 		return 0;
 	}
 
 	// Make MainObject
 	MainObject human_object;
-	human_object.SetRect(100, 200); // vi tri cua nhan vat
+	human_object.SetRect(100, 200);
 	bool ret = human_object.LoadIMG("plane.png");
 	if (!ret) { // ret == false
 		return 0;
 	}
 
 	// Make ThreatsObject
-	ThreatsObject* threats = new ThreatsObject[NUM_THREATS];
+	ThreatsObject* p_threats = new ThreatsObject[NUM_THREATS];
 	for (int i = 0; i < NUM_THREATS; i++) {
-		BulletObject* p_bullet = *(threats+i);
-		ThreatsObject* p_threat = new ThreatsObject();
-		ret = p_threat->LoadIMG("af1.png");
-		p_threat->SetRect(SCREEN_WIDTH, SDL_CommonFunction::Random(0, SCREEN_HEIGHT*0.75)); // vi tri cua dich
-		if (!ret) {
-			return 0;
+		ThreatsObject* p_threat = (p_threats + i);
+		if (p_threat != NULL) {
+			ret = p_threat->LoadIMG("af1.png");
+			if (!ret) {
+				return 0;
+			}
+			p_threat->SetRect(SCREEN_WIDTH + i* SDL_CommonFunction::Random(100, 300), SDL_CommonFunction::Random(0, SCREEN_HEIGHT*0.75));
+			p_threat->set_x_val(2); // speed threats
+
+			// Make bullet
+			BulletObject* p_bullet = new BulletObject();
+			p_threat->InitBullet(p_bullet);
 		}
-		p_threat->set_x_val(2);
-		// khoi tao dan cua dich
-		p_threat->InitBullet(p_bullet);
 	}
 
 	while (!is_quit) {
-		while (SDL_PollEvent(&g_event)) { // kiem tra nhan phim
+		while (SDL_PollEvent(&g_event)) {
 			if (g_event.type == SDL_QUIT) {
 				is_quit = true;
 				break;
 			}
 			human_object.HandleInputAction(g_event);
 		}
-		SDL_CommonFunction::ApplySurface(g_bkground, g_screen, 0, 0); // khoi tao man hinh
-		human_object.Show(g_screen); // hien thi nhan vat chinh
+		// Apply background
+		SDL_CommonFunction::ApplySurface(g_bkground, g_screen, 0, 0);
+
+		// Implement main object
+		human_object.Show(g_screen);
 		human_object.HandleMove();
+		human_object.MakeBullet(g_screen);
 
-		// hien thi duong di cua vien dan
-		for (int i = 0; i < human_object.GetBulletList().size(); i++) {
-			std::vector<BulletObject*> bullet_list = human_object.GetBulletList();
-			BulletObject* p_bullet = bullet_list.at(i);
-			if (p_bullet != NULL) {
-				if (p_bullet->get_is_move()) {
-					p_bullet->Show(g_screen);
-					p_bullet->HandleMove(SCREEN_WIDTH, SCREEN_HEIGHT);
-				}else {
-					if (p_bullet != NULL) {
-						bullet_list.erase(bullet_list.begin() + i); // xoa phan tu ra khoi bullet_list
-						human_object.SetBulletList(bullet_list);
-
-						delete p_bullet;
-						p_bullet = NULL;
-					}
-				}
+		// Implement Threats object
+		for (int i = 0; i < NUM_THREATS; i++) {
+			ThreatsObject* p_threat = (p_threats + i);
+			if (p_threat != NULL) {
+				p_threat->Show(g_screen);
+				p_threat->HandleMove(SCREEN_WIDTH, SCREEN_HEIGHT);
+				p_threat->MakeBullet(g_screen, SCREEN_WIDTH, SCREEN_HEIGHT);
 			}
 		}
 
-		// Threats
-		p_threat->Show(g_screen);
-		p_threat->HandleMove(SCREEN_WIDTH, SCREEN_HEIGHT);
-		p_threat->MakeBullet(g_screen, SCREEN_WIDTH, SCREEN_HEIGHT);
-
+		// Update screen
 		if (SDL_Flip(g_screen) == -1) {
 			return 0;
 		}
 	}
 
+	delete[] p_threats;
 	// xoa bo nho chuong trinh
 	SDL_CommonFunction::CleanUp();
 	SDL_Quit();

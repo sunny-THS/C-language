@@ -10,7 +10,18 @@ ThreatsObject::ThreatsObject() {
   y_val_ = 0;
 }
 //destructor
-ThreatsObject::~ThreatsObject() {}
+ThreatsObject::~ThreatsObject() {
+  if (p_bullet_list_.size() > 0) {
+    for (int i = 0; i < p_bullet_list_.size(); i++) {
+      BulletObject* p_bullet = p_bullet_list_.at(i);
+      if (p_bullet != NULL) {
+        delete p_bullet;
+        p_bullet = NULL;
+      }
+    }
+  }
+  p_bullet_list_.clear();
+}
 
 void ThreatsObject::InitBullet(BulletObject* p_bullet) {
   if (p_bullet != NULL) {
@@ -21,6 +32,7 @@ void ThreatsObject::InitBullet(BulletObject* p_bullet) {
       p_bullet->set_type(BulletObject::SPHERE);
       p_bullet->SetRect(rect_.x, rect_.y + rect_.h*0.5); // xac dinh vi tri cua vien dan
       p_bullet_list_.push_back(p_bullet); // them vao p_bullet_list_
+      p_bullet->set_x_val(5);
     }
   }
 }
@@ -28,7 +40,7 @@ void ThreatsObject::MakeBullet(SDL_Surface* des, const int& x_limit, const int& 
   for (int i = 0; i < p_bullet_list_.size(); i++) {
     BulletObject* p_bullet = p_bullet_list_.at(i);
     if (p_bullet != NULL) {
-      if (p_bullet->get_is_move()) {
+      if (p_bullet->get_is_move() && ThreatsObject::rect_.x <= SCREEN_WIDTH) {
         p_bullet->Show(des);
         p_bullet->HandleMoveRightToLeft();
       }else {// duoc lap lai khi cham bien trai
@@ -42,8 +54,8 @@ void ThreatsObject::MakeBullet(SDL_Surface* des, const int& x_limit, const int& 
 void ThreatsObject::HandleMove(const int& border_x, const int& border_y) {
   rect_.x -= x_val_;
   if (rect_.x < 0) {
-    rect_.x = SCREEN_WIDTH;
-    rect_.y = SDL_CommonFunction::Random(0, SCREEN_HEIGHT*0.75); 
+    rect_.x = SCREEN_WIDTH + SDL_CommonFunction::Random(100, 400);
+    rect_.y = SDL_CommonFunction::Random(HEIGHT_THREAT*0.5, SCREEN_HEIGHT*0.75);
   }
 }
 

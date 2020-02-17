@@ -49,9 +49,9 @@ void MainObject::HandleInputAction(SDL_Event events) {
         x_val_ -= WIDTH_MAIN_OBJECT/6;
         break;
     }
-  }else if (events.type == SDL_MOUSEBUTTONDOWN) { // xu ly chuot
+  }else if (events.type == SDL_MOUSEBUTTONDOWN) { // Handle click mouse button
     BulletObject* p_bullet = new BulletObject();
-    if (events.button.button == SDL_BUTTON_LEFT) {// click chuot phai
+    if (events.button.button == SDL_BUTTON_LEFT) {// click right mouse button
       p_bullet->SetW_H(WIDTH_LAZE, HEIGHT_LAZE);
       p_bullet->LoadIMG("laser.png");
       p_bullet->set_type(BulletObject::LAZE);
@@ -60,14 +60,18 @@ void MainObject::HandleInputAction(SDL_Event events) {
       p_bullet->LoadIMG("sphere.png");
       p_bullet->set_type(BulletObject::SPHERE);
     }
-    // this -> rec_.x giong nhu BulletObject::rec_.x
+    // this -> rec_.x is like BulletObject::rec_.x
+    //
     p_bullet->SetRect(this->rect_.x + WIDTH_MAIN_OBJECT - WIDTH_MAIN_OBJECT*0.3, this->rect_.y + HEIGHT_MAIN_OBJECT - HEIGHT_MAIN_OBJECT*0.15);
     p_bullet->set_is_move(true);
+    p_bullet->set_x_val(10); // speed bullet
 
     // them vao bullet_list
     p_bullet_list_.push_back(p_bullet);
+
+    BaseObject::LoadIMG("plane_bullet.png");
   }else if (events.type == SDL_MOUSEBUTTONUP) {
-    /* code */
+    BaseObject::LoadIMG("plane.png");
   }
 }
 void MainObject::HandleMove() {
@@ -78,5 +82,24 @@ void MainObject::HandleMove() {
   rect_.y += y_val_;
   if (rect_.y < 0 || (rect_.y + HEIGHT_MAIN_OBJECT) > SCREEN_HEIGHT*0.8) {
     rect_.y -= y_val_;
+  }
+}
+
+void MainObject::MakeBullet(SDL_Surface* des) {
+  for (int i = 0; i < p_bullet_list_.size(); i++) {
+    BulletObject* p_bullet = p_bullet_list_.at(i);
+    if (p_bullet != NULL) {
+      if (p_bullet->get_is_move()) {
+        p_bullet->Show(des);
+        p_bullet->HandleMove(SCREEN_WIDTH, SCREEN_HEIGHT);
+      }else {
+        if (p_bullet != NULL) {
+          p_bullet_list_.erase(p_bullet_list_.begin() + i);
+
+          delete p_bullet;
+          p_bullet = NULL;
+        }
+      }
+    }
   }
 }

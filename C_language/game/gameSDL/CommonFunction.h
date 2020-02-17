@@ -13,6 +13,9 @@
 #define SCREEN_BPP 32
 #define NUM_THREATS 3 // so luong cua dich
 
+// Image game
+#define BKG_GAME "bg.png"
+
 // bien tinh (static variables)
 static SDL_Surface *g_screen = NULL;
 static SDL_Surface *g_bkground = NULL;

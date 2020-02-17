@@ -14,7 +14,7 @@ BulletObject::BulletObject() {
 BulletObject::~BulletObject() {}
 
 void BulletObject::HandleMove(const int& x_border, const int& y_border) {
-  rect_.x += 10;// speed of bullet
+  rect_.x += x_val_;// speed of bullet
   if (rect_.x > x_border) {
     is_move_ = false;
   }
@@ -22,7 +22,7 @@ void BulletObject::HandleMove(const int& x_border, const int& y_border) {
 
 void BulletObject::HandleMoveRightToLeft() {
   // speed of bullet
-  rect_.x -= 10;
+  rect_.x -= x_val_;
   // khi cham bien phai
   if (rect_.x < 0) {
     set_is_move(false);

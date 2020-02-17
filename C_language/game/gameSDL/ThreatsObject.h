@@ -31,9 +31,10 @@ class ThreatsObject : public BaseObject {
     void SetBulletList(std::vector<BulletObject*> bullet_list) {p_bullet_list_ = bullet_list;}
     std::vector<BulletObject*> GetBulletList() const {return p_bullet_list_;}
 
-    // ham khoi tao vien dan (threats)
-    void InitBullet();
+    // Initialization bullet(threats)
+    void InitBullet(BulletObject* p_bullet);
     void MakeBullet(SDL_Surface* des, const int& x_limit, const int& y_limit);
+
 };
 
 #endif

@@ -18,7 +18,8 @@ class MainObject : public BaseObject {
 
     void HandleInputAction(SDL_Event events);
     void HandleMove();
-    
+    void MakeBullet(SDL_Surface* des);
+
     void SetBulletList(std::vector<BulletObject*> bullet_list) {p_bullet_list_ = bullet_list;}
     std::vector<BulletObject*> GetBulletList() const {return p_bullet_list_;}
   private:

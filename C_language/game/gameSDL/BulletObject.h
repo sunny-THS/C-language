@@ -36,6 +36,12 @@ class BulletObject : public BaseObject {
     void set_is_move(bool is_move) {is_move_ = is_move;}
 
     void SetW_H(const int& width, const int& height) {rect_.w = width; rect_.h = height;}
+
+    void set_x_val(const int& x_val) {x_val_ = x_val;}
+    int get_x_val() const {return x_val_;}
+    void set_y_val(const int& y_val) {y_val_ = y_val;}
+    int get_y_val() const {return y_val_;}
+
   private:
     int x_val_, y_val_, bullet_type_;
     bool is_move_;
