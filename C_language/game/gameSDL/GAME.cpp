@@ -32,7 +32,7 @@ int main (int arc, char*  argv[]) {
 	// Make MainObject
 	MainObject human_object;
 	human_object.SetRect(100, 200);
-	bool ret = human_object.LoadIMG("plane.png");
+	bool ret = human_object.LoadIMG(M_OBJ);
 	if (!ret) { // ret == false
 		return 0;
 	}
@@ -42,7 +42,7 @@ int main (int arc, char*  argv[]) {
 	for (int i = 0; i < NUM_THREATS; i++) {
 		ThreatsObject* p_threat = (p_threats + i);
 		if (p_threat != NULL) {
-			ret = p_threat->LoadIMG("af1.png");
+			ret = p_threat->LoadIMG(PLANE_THREAT);
 			if (!ret) {
 				return 0;
 			}

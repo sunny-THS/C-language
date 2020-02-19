@@ -53,11 +53,11 @@ void MainObject::HandleInputAction(SDL_Event events) {
     BulletObject* p_bullet = new BulletObject();
     if (events.button.button == SDL_BUTTON_LEFT) {// click right mouse button
       p_bullet->SetW_H(WIDTH_LAZE, HEIGHT_LAZE);
-      p_bullet->LoadIMG("laser.png");
+      p_bullet->LoadIMG(LAZE_BULLET);
       p_bullet->set_type(BulletObject::LAZE);
     }else if (events.button.button == SDL_BUTTON_RIGHT) {// click chuot trai
       p_bullet->SetW_H(WIDTH_SPHERE, HEIGHT_SPHERE);
-      p_bullet->LoadIMG("sphere.png");
+      p_bullet->LoadIMG(SPHERE_BULLET);
       p_bullet->set_type(BulletObject::SPHERE);
     }
     // this -> rec_.x is like BulletObject::rec_.x
@@ -69,9 +69,9 @@ void MainObject::HandleInputAction(SDL_Event events) {
     // them vao bullet_list
     p_bullet_list_.push_back(p_bullet);
 
-    BaseObject::LoadIMG("plane_bullet.png");
+    BaseObject::LoadIMG(M_OBJ_BULLET);
   }else if (events.type == SDL_MOUSEBUTTONUP) {
-    BaseObject::LoadIMG("plane.png");
+    BaseObject::LoadIMG(M_OBJ);
   }
 }
 void MainObject::HandleMove() {

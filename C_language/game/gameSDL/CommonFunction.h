@@ -13,13 +13,19 @@
 #define SCREEN_BPP 32
 #define NUM_THREATS 3 // so luong cua dich
 
-// Image game
-#define BKG_GAME "bg.png"
 
 // bien tinh (static variables)
 static SDL_Surface *g_screen = NULL;
 static SDL_Surface *g_bkground = NULL;
 static SDL_Event g_event;
+
+// Image game
+#define BKG_GAME "bg.png"
+#define M_OBJ "plane.png"
+#define M_OBJ_BULLET "plane_bullet.png"
+#define LAZE_BULLET "laze.png"
+#define SPHERE_BULLET "sphere.png"
+#define PLANE_THREAT "af1.png"
 
 // prototype function
 namespace SDL_CommonFunction {
@@ -28,4 +34,5 @@ namespace SDL_CommonFunction {
   void ApplySurface(SDL_Surface* src, SDL_Surface* des, int x, int y);
   void CleanUp();// clean memory
 }
+
 #endif // Common_Function_H_
