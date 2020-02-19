@@ -53,11 +53,11 @@ void MainObject::HandleInputAction(SDL_Event events) {
     BulletObject* p_bullet = new BulletObject();
     if (events.button.button == SDL_BUTTON_LEFT) {// click right mouse button
       p_bullet->SetW_H(WIDTH_LAZE, HEIGHT_LAZE);
-      p_bullet->LoadIMG(LAZE_BULLET);
+      p_bullet->LoadIMG(M_LAZE_BULLET);
       p_bullet->set_type(BulletObject::LAZE);
     }else if (events.button.button == SDL_BUTTON_RIGHT) {// click chuot trai
       p_bullet->SetW_H(WIDTH_SPHERE, HEIGHT_SPHERE);
-      p_bullet->LoadIMG(SPHERE_BULLET);
+      p_bullet->LoadIMG(M_SPHERE_BULLET);
       p_bullet->set_type(BulletObject::SPHERE);
     }
     // this -> rec_.x is like BulletObject::rec_.x

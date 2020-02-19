@@ -25,7 +25,7 @@ ThreatsObject::~ThreatsObject() {
 
 void ThreatsObject::InitBullet(BulletObject* p_bullet) {
   if (p_bullet != NULL) {
-    bool ret = p_bullet->LoadIMG(SPHERE_BULLET);
+    bool ret = p_bullet->LoadIMG(M_SPHERE_BULLET);
     if (ret) {
       p_bullet->set_is_move(true);
       p_bullet->SetW_H(WIDTH_SPHERE, HEIGHT_SPHERE);

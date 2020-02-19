@@ -20,12 +20,12 @@ static SDL_Surface *g_bkground = NULL;
 static SDL_Event g_event;
 
 // Image game
-#define BKG_GAME "bg.png"
-#define M_OBJ "plane.png"
-#define M_OBJ_BULLET "plane_bullet.png"
-#define LAZE_BULLET "laze.png"
-#define SPHERE_BULLET "sphere.png"
-#define PLANE_THREAT "af1.png"
+#define BKG_GAME "img/bg.png"
+#define M_OBJ "img/plane.png"
+#define M_OBJ_BULLET "img/plane_bullet.png"
+#define M_LAZE_BULLET "img/laser.png"
+#define M_SPHERE_BULLET "img/sphere.png"
+#define PLANE_THREAT "img/af1.png"
 
 // prototype function
 namespace SDL_CommonFunction {
