@@ -18,6 +18,9 @@ bool Init(){ // Ham khoi tao (initialization)
 int main (int arc, char*  argv[]) {
 	srand(time(NULL));
 
+	int bkg_x = 0;
+	bool is_run_screen = true;
+
 	bool is_quit = false;
 	if (Init() == false) {
 		return 0;
@@ -47,7 +50,7 @@ int main (int arc, char*  argv[]) {
 				return 0;
 			}
 			p_threat->SetRect(SCREEN_WIDTH + i* SDL_CommonFunction::Random(100, 300), SDL_CommonFunction::Random(0, SCREEN_HEIGHT*0.75));
-			p_threat->set_x_val(2); // speed threats
+			p_threat->set_x_val(4); // speed threats
 
 			// Make bullet
 			BulletObject* p_bullet = new BulletObject();
@@ -63,8 +66,18 @@ int main (int arc, char*  argv[]) {
 			}
 			human_object.HandleInputAction(g_event);
 		}
+
 		// Apply background
-		SDL_CommonFunction::ApplySurface(g_bkground, g_screen, 0, 0);
+		if (is_run_screen) {
+			bkg_x -= 2;
+			if (bkg_x >= SCREEN_WIDTH - WIDTH_BACKGROUND) {
+				SDL_CommonFunction::ApplySurface(g_bkground, g_screen, bkg_x, 0);
+			}else {
+				is_run_screen = false;
+			}
+		}else {
+			SDL_CommonFunction::ApplySurface(g_bkground, g_screen, bkg_x, 0);
+		}
 
 		// Implement main object
 		human_object.Show(g_screen);
@@ -72,12 +85,17 @@ int main (int arc, char*  argv[]) {
 		human_object.MakeBullet(g_screen);
 
 		// Implement Threats object
-		for (int i = 0; i < NUM_THREATS; i++) {
-			ThreatsObject* p_threat = (p_threats + i);
-			if (p_threat != NULL) {
-				p_threat->Show(g_screen);
-				p_threat->HandleMove(SCREEN_WIDTH, SCREEN_HEIGHT);
-				p_threat->MakeBullet(g_screen, SCREEN_WIDTH, SCREEN_HEIGHT);
+		if (p_threats->is_run_threats) {
+			for (int i = 0; i < NUM_THREATS; i++) {
+				ThreatsObject* p_threat = (p_threats + i);
+				if (p_threat != NULL) {
+					p_threat->Show(g_screen);
+					p_threat->HandleMove(SCREEN_WIDTH, SCREEN_HEIGHT);
+					p_threat->MakeBullet(g_screen, SCREEN_WIDTH, SCREEN_HEIGHT);
+					if (is_run_screen) {
+						p_threats->is_run_threats = true;
+					}
+				}
 			}
 		}
 

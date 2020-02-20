@@ -8,10 +8,12 @@
 #include<SDL_image.h>
 #include<ctime>
 
-#define SCREEN_WIDTH 1200 // chieu rong cua chuong trinh
-#define SCREEN_HEIGHT 600 // chieu cao cua chuong trinh
+#define WIDTH_BACKGROUND 4800
+#define HEIGHT_BACKGROUND 600
+#define SCREEN_WIDTH 1200
+#define SCREEN_HEIGHT 600
 #define SCREEN_BPP 32
-#define NUM_THREATS 3 // so luong cua dich
+#define NUM_THREATS 3
 
 
 // bien tinh (static variables)
@@ -20,12 +22,13 @@ static SDL_Surface *g_bkground = NULL;
 static SDL_Event g_event;
 
 // Image game
-#define BKG_GAME "img/bg.png"
+#define BKG_GAME "img/bg4800.png"
 #define M_OBJ "img/plane.png"
 #define M_OBJ_BULLET "img/plane_bullet.png"
 #define M_LAZE_BULLET "img/laser.png"
 #define M_SPHERE_BULLET "img/sphere.png"
 #define PLANE_THREAT "img/af1.png"
+#define T_BULLET "img/sphere2.png"
 
 // prototype function
 namespace SDL_CommonFunction {
