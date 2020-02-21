@@ -8,7 +8,6 @@ ThreatsObject::ThreatsObject() {
   rect_.h = HEIGHT_THREAT;
   x_val_ = 0;
   y_val_ = 0;
-  is_run_threats = true;
 }
 //destructor
 ThreatsObject::~ThreatsObject() {
@@ -57,9 +56,6 @@ void ThreatsObject::HandleMove(const int& border_x, const int& border_y) {
   if (rect_.x < 0) {
     rect_.x = SCREEN_WIDTH + SDL_CommonFunction::Random(100, 400);
     rect_.y = SDL_CommonFunction::Random(HEIGHT_THREAT*0.5, SCREEN_HEIGHT*0.75);
-    is_run_threats = false;
-  }else {
-    is_run_threats = true;
   }
 }
 

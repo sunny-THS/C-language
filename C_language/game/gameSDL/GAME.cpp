@@ -33,9 +33,9 @@ int main (int arc, char*  argv[]) {
 	}
 
 	// Make MainObject
-	MainObject human_object;
-	human_object.SetRect(100, 200);
-	bool ret = human_object.LoadIMG(M_OBJ);
+	MainObject plane_object;
+	plane_object.SetRect(100, 200);
+	bool ret = plane_object.LoadIMG(M_OBJ);
 	if (!ret) { // ret == false
 		return 0;
 	}
@@ -64,13 +64,13 @@ int main (int arc, char*  argv[]) {
 				is_quit = true;
 				break;
 			}
-			human_object.HandleInputAction(g_event);
+			plane_object.HandleInputAction(g_event);
 		}
 
 		// Apply background
 		if (is_run_screen) {
 			bkg_x -= 2;
-			if (bkg_x >= SCREEN_WIDTH - WIDTH_BACKGROUND) {
+			if (bkg_x > SCREEN_WIDTH - WIDTH_BACKGROUND) {
 				SDL_CommonFunction::ApplySurface(g_bkground, g_screen, bkg_x, 0);
 			}else {
 				is_run_screen = false;
@@ -80,20 +80,28 @@ int main (int arc, char*  argv[]) {
 		}
 
 		// Implement main object
-		human_object.Show(g_screen);
-		human_object.HandleMove();
-		human_object.MakeBullet(g_screen);
+		plane_object.HandleMove();
+		plane_object.Show(g_screen);
+		plane_object.MakeBullet(g_screen);
 
 		// Implement Threats object
-		if (p_threats->is_run_threats) {
-			for (int i = 0; i < NUM_THREATS; i++) {
-				ThreatsObject* p_threat = (p_threats + i);
-				if (p_threat != NULL) {
-					p_threat->Show(g_screen);
-					p_threat->HandleMove(SCREEN_WIDTH, SCREEN_HEIGHT);
-					p_threat->MakeBullet(g_screen, SCREEN_WIDTH, SCREEN_HEIGHT);
-					if (is_run_screen) {
-						p_threats->is_run_threats = true;
+		for (int i = 0; i < NUM_THREATS; i++) {
+			ThreatsObject* p_threat = (p_threats + i);
+			if (p_threat != NULL) {
+				p_threat->HandleMove(SCREEN_WIDTH, SCREEN_HEIGHT);
+				p_threat->Show(g_screen);
+				p_threat->MakeBullet(g_screen, SCREEN_WIDTH, SCREEN_HEIGHT);
+
+				
+
+				// Check Collision main and threats
+				bool is_col = SDL_CommonFunction::CheckCollision(plane_object.GetRect(), p_threat->GetRect());
+				if (is_col) {
+					if (MessageBox(NULL, "Game over!", "Info", MB_OK) == IDOK) {
+						delete[] p_threats;
+						SDL_CommonFunction::CleanUp();
+						SDL_Quit();
+						return 1;
 					}
 				}
 			}

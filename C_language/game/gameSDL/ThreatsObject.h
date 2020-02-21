@@ -15,8 +15,6 @@ class ThreatsObject : public BaseObject {
 
     std::vector<BulletObject*> p_bullet_list_; // truong cua BulletObject
   public:
-    bool is_run_threats;
-
     // contructor
     ThreatsObject();
     // destructor
