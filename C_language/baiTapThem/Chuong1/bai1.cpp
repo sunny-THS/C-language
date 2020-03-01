@@ -23,6 +23,6 @@ int main() {
   cout << "x + y= " << Sum(x, y) << endl;
   cout << "x - y= " << Sub(x, y) << endl;
   cout << "x * y= " << Mul(x, y) << endl;
-  cout << "x / y= " << setprrcision(3) << Div(x, y) << endl;
+  cout << "x / y= " << setprecision(3) << Div(x, y) << endl;
   return 0;
 }
