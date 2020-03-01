@@ -1,5 +1,5 @@
 #include<iostream>
-#include<math.h>
+#include<iomanip>
 using namespace std;
 
 int Sum(int x, int y) {
@@ -19,10 +19,10 @@ int main() {
   int x, y;
   cout << "Nhap 2 so x, y: ";
   cin >> x >> y;
-  cout << "Ket qua la: " <<endl;
+  cout << "Ket qua la: " << endl;
   cout << "x + y= " << Sum(x, y) << endl;
   cout << "x - y= " << Sub(x, y) << endl;
   cout << "x * y= " << Mul(x, y) << endl;
-  cout << "x / y= " << floorf(Div(x, y)) << endl;
+  cout << "x / y= " << setprrcision(3) << Div(x, y) << endl;
   return 0;
 }
