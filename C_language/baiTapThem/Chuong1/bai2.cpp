@@ -9,6 +9,6 @@ int main() {
     cout << "Chan";
   else
     cout << "Le";
-  
+
   return 0;
 }
