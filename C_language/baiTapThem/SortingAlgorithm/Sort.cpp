@@ -15,6 +15,9 @@ void SortAlgorithm::BubbleSort(int *arr, int n) {
         swapped_ = true;
       }
     }
+    if (!swapped_) {
+      break;
+    }
   }
 }
 
