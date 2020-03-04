@@ -45,7 +45,7 @@ int main() {
   do {
     cout << "Nhap a, b: ";
     cin >> a >> b;
-  } while(a <= 0 || b <= 0);
+  } while(a < 0 || b < 0);
   cout << "GCD(" << a << ", "<< b << ")= " << Ucln(a, b);
 
   return 0;
