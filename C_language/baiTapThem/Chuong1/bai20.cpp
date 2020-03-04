@@ -17,7 +17,7 @@ int Ucln(int x, int y) {
   // cach 2//
   // dung thuat toan Euclid
   // de qui
-  // return b ? Ucln(a, a%b) : a;
+  // return b ? Ucln(b, a%b) : a;
   // a%b la so du cua a va b
   // dung vong lap
   // int tmp;
