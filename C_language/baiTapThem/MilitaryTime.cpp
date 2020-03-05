@@ -45,7 +45,8 @@ void getTime(char* time) {
 }
 int main() {
   char a[20];
-  gets(a);
+  // gets(a);
+  fgets(a, 9, stdin); // stdin : standard input
   getTime(a);
   return 0;
 }
