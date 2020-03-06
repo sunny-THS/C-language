@@ -29,21 +29,21 @@ void inChongChong(int s) {
         cout << ' ';
       }
       // tam giac 2
-      gotoxy(j+s-2+(SCREEN_WIDTH/2-s-s), i+s-1+(SCREEN_HEIGHT/2-s));
-      if (j>i+1) {
-        cout << ' ';
-      }else {
-        cout << "*";
-      }
-      // tam giac 3
       gotoxy(j+s-1+(SCREEN_WIDTH/2-s-s), i+(SCREEN_HEIGHT/2-s));
       if (s-j-1<i) {
         cout << "*";
       }else {
         cout << ' ';
       }
+      // tam giac 3
+      gotoxy(j+s-2+(SCREEN_WIDTH/2-s-s), i+s-1+(SCREEN_HEIGHT/2-s));
+      if (j>i+1) {
+        cout << ' ';
+      }else {
+        cout << "*";
+      }
       // tam giac 4
-      gotoxy(j-s-s+(SCREEN_WIDTH/2-s-s), i-1+s+(SCREEN_HEIGHT/2-s));
+      gotoxy(j-1+(SCREEN_WIDTH/2-s-s), i+s-1+(SCREEN_HEIGHT/2-s));
       if (s-j+1>i) {
         cout << "*";
       }else {
