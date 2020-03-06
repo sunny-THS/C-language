@@ -1,6 +1,7 @@
 #include<stdio.h>
 
 int fibonacci(int a){
+  // cach 1
   int x1 = 1, x2 = 1;
   long x3;
   if (a == 1 || a == 2) {
@@ -12,6 +13,13 @@ int fibonacci(int a){
     x2 = x3;
   }
   return x3;
+  // cach 2
+  // dung de quy
+  // if (a==0 || a==1) {
+  //   return a;
+  // }else {
+  //   return fibonacci(a-1) + fibonacci(a-2);
+  }
 }
 
 int main(){

@@ -1,7 +1,13 @@
 #include<iostream>
 using namespace std;
 int Ucln(int a, int b) {
-  return b ? Ucln(b, a%b) : a;
+  int tmp;
+  while (b!=0) {
+    tmp = a%b;
+    a = b;
+    b = tmp;
+  }
+  return a;
 }
 int main() {
   int x, y, result;
