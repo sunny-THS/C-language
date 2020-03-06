@@ -3,13 +3,15 @@
 using namespace std;
 int tachSo(int a) {
   static int i = 1;
+  static int num = 0;
   int b;
+  if (num!=a) {// initialization value
+    i=1;
+    num = a;
+  }
   a/=i;
   b = a%10;
   i*=10;
-  if (!a) {
-    i=1;
-  }
   return b;
 }
 int num_len(int a) {
@@ -42,11 +44,16 @@ void sort(int a) {
   for (const auto& item:num) {
     cout << item;
   }
+  num.clear();
 }
 int main() {
   int a;
-  cout << "Nhap n: ";
-  cin >> a;
-  sort(a);
+  int d=6;
+  do {
+    cout << "Nhap n: ";
+    cin >> a;
+    sort(a);
+    cout<<endl;
+  } while(d-->0);
   return 0;
 }
