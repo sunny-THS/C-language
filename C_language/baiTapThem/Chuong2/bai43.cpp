@@ -1,6 +1,7 @@
 #include<iostream>
 #include<windows.h>
 #include<cstdio>
+#include<conio.h>
 using namespace std;
 
 #define SCREEN_HEIGHT 30
@@ -24,25 +25,25 @@ void inChongChong(int s, int color1, int color2) {
   for (int i = 0; i < s; i++) {
     for (int j = 1; j <= s; j++) {
       // tam giac 1
-      textColor(11);
+      textColor(color2);
       gotoxy(j+(SCREEN_WIDTH/2-s-s),i+(SCREEN_HEIGHT/2-s));
       if (j>i) {
         cout << "*";
       }
       // tam giac 2
-      textColor(10);
+      textColor(color1);
       gotoxy(j+s-1+(SCREEN_WIDTH/2-s-s), i+(SCREEN_HEIGHT/2-s));
       if (s-j-1<i) {
         cout << "*";
       }
       // tam giac 3
-      textColor(10);
+      textColor(color1);
       gotoxy(j-1+(SCREEN_WIDTH/2-s-s), i+s-1+(SCREEN_HEIGHT/2-s));
       if (s-j+1>i) {
         cout << "*";
       }
       // tam giac 4
-      textColor(11);
+      textColor(color2);
       gotoxy(j+s-1+(SCREEN_WIDTH/2-s-s), i+s-1+(SCREEN_HEIGHT/2-s));
       if (j<=i+1) {
         cout << "*";
@@ -52,8 +53,18 @@ void inChongChong(int s, int color1, int color2) {
   }
 }
 int main() {
-  int a=6;
-  inChongChong(a);
+  int a=6, color1=BLUE, color2=GREEN, tmp;
+  bool repeat = true;
+  while (repeat) {
+    if (kbhit()) {
+      repeat=false;
+    }
+    tmp = color1;
+    color1 = color2;
+    color2 = tmp;
+    inChongChong(a, color1, color2);
+    Sleep(200);
+  }
   system("pause>nul");
   return 0;
 }
