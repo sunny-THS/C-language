@@ -5,6 +5,8 @@ using namespace std;
 
 #define SCREEN_HEIGHT 30
 #define SCREEN_WIDTH 120
+#define BLUE 11
+#define GREEN 10
 
 void textColor(int x) {
   HANDLE color;
@@ -18,36 +20,32 @@ void gotoxy(short int x, short int y) {
   COORD c = { x, y };
   SetConsoleCursorPosition(h, c);
 }
-void inChongChong(int s) {
+void inChongChong(int s, int color1, int color2) {
   for (int i = 0; i < s; i++) {
     for (int j = 1; j <= s; j++) {
       // tam giac 1
-      gotoxy(j-1+(SCREEN_WIDTH/2-s-s),i+(SCREEN_HEIGHT/2-s));
+      textColor(11);
+      gotoxy(j+(SCREEN_WIDTH/2-s-s),i+(SCREEN_HEIGHT/2-s));
       if (j>i) {
         cout << "*";
-      }else {
-        cout << ' ';
       }
       // tam giac 2
+      textColor(10);
       gotoxy(j+s-1+(SCREEN_WIDTH/2-s-s), i+(SCREEN_HEIGHT/2-s));
       if (s-j-1<i) {
         cout << "*";
-      }else {
-        cout << ' ';
       }
       // tam giac 3
-      gotoxy(j+s-2+(SCREEN_WIDTH/2-s-s), i+s-1+(SCREEN_HEIGHT/2-s));
-      if (j>i+1) {
-        cout << ' ';
-      }else {
-        cout << "*";
-      }
-      // tam giac 4
+      textColor(10);
       gotoxy(j-1+(SCREEN_WIDTH/2-s-s), i+s-1+(SCREEN_HEIGHT/2-s));
       if (s-j+1>i) {
         cout << "*";
-      }else {
-        cout << ' ';
+      }
+      // tam giac 4
+      textColor(11);
+      gotoxy(j+s-1+(SCREEN_WIDTH/2-s-s), i+s-1+(SCREEN_HEIGHT/2-s));
+      if (j<=i+1) {
+        cout << "*";
       }
 
     }
