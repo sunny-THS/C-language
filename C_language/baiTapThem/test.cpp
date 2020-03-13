@@ -1,51 +1,23 @@
 #include<iostream>
-#include<cstring>
+#include<vector>
+#include<string.h>
 using namespace std;
-void getTime(char* time) {
-  int tmp1, tmp2, h, i, len=strlen(time);
-  i = 0;
-  while (time[i]!=':') {
-    i++;
-  }
-  if (i-1) {
-    tmp1 = time[0] - '0';
-    tmp2 = time[1] - '0';
-    h = tmp1*10+tmp2;
-  }else {
-    h = time[0] - '0';
-  }
-  if (time[len-2]=='A' || time[len-2]=='a') {
-    if (h==12) {
-      cout << "00";
-      for (int nn = i; nn < len-2; nn++) {
-        cout << time[nn];
-      }
-    }else {
-      if (h<10) {
-        cout << 0;
-      }
-      for (int nn = 0; nn < len-2; nn++) {
-        cout << time[nn];
-      }
-    }
-  }else {
-    if (h==12) {
-      cout << h;
-      for (int nn = i; nn < len-2; nn++) {
-        cout << time[nn];
-      }
-    }else {
-      h+=12;
-      cout << h;
-      for (int nn = i; nn < len-2; nn++) {
-        cout << time[nn];
-      }
-    }
-  }
+void swap(char& a, char& b) {
+  char t = a;
+  a = b;
+  b = t;
 }
 int main() {
-  char a[20];
-  gets(a);
-  getTime(a);
+  vector<char> text;
+  char t[10];
+  gets(t);
+  for(int i=0; i< strlen(t); i++) {
+    text.push_back(t[i]);
+  }
+  swap(text[1], text[2]);
+  for (int i = 0; i < text.size(); i++) {
+    cout << text.at(i);
+  }
+  system("pause>nul");
   return 0;
 }

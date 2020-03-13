@@ -24,25 +24,25 @@ void gotoxy(short int x, short int y) {
 void inChongChong(int s, int color1, int color2) {
   for (int i = 0; i < s; i++) {
     for (int j = 1; j <= s; j++) {
-      // tam giac 1
+      // tam giac 1 - top left
       textColor(color2);
       gotoxy(j+(SCREEN_WIDTH/2-s-s),i+(SCREEN_HEIGHT/2-s));
       if (j>i) {
         cout << "*";
       }
-      // tam giac 2
+      // tam giac 2 - top right
       textColor(color1);
       gotoxy(j+s-1+(SCREEN_WIDTH/2-s-s), i+(SCREEN_HEIGHT/2-s));
       if (s-j-1<i) {
         cout << "*";
       }
-      // tam giac 3
+      // tam giac 3 - bottom left
       textColor(color1);
       gotoxy(j-1+(SCREEN_WIDTH/2-s-s), i+s-1+(SCREEN_HEIGHT/2-s));
       if (s-j+1>i) {
         cout << "*";
       }
-      // tam giac 4
+      // tam giac 4 - bottom right
       textColor(color2);
       gotoxy(j+s-1+(SCREEN_WIDTH/2-s-s), i+s-1+(SCREEN_HEIGHT/2-s));
       if (j<=i+1) {
