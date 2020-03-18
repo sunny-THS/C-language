@@ -1,23 +1,20 @@
 #include<iostream>
-#include<vector>
-#include<string.h>
+#include<cmath>
 using namespace std;
-void swap(char& a, char& b) {
-  char t = a;
-  a = b;
-  b = t;
-}
 int main() {
-  vector<char> text;
-  char t[10];
-  gets(t);
-  for(int i=0; i< strlen(t); i++) {
-    text.push_back(t[i]);
-  }
-  swap(text[1], text[2]);
-  for (int i = 0; i < text.size(); i++) {
-    cout << text.at(i);
-  }
+  int x;
+  float f;
+  cout << "Nhap x: ";
+  cin >> x;
+
+  if (x<0)
+    f = sin(x)*cos(5*x);
+  else if (x==0)
+    f = 0;
+  else
+    f = exp(x)*(pow(5, x)/(x+5));
+
+  cout << f;
   system("pause>nul");
   return 0;
 }
