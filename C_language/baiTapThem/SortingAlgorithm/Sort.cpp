@@ -42,7 +42,7 @@ void SortAlgorithm::InsertionSort(int* arr, int n) {
     // Insert
     while (j >= 0 && temp < arr[j]) {
       arr[j+1] = arr[j];
-      --j;
+      j--;
     }
     arr[j+1] = temp;
   }
