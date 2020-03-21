@@ -3,6 +3,7 @@
 #include<cstdlib>
 #include<conio.h>
 using namespace std;
+
 int leapYear(int y) {
   if (y%400==0 || y%4==0 && y%100!=0) {
     return 1;
@@ -35,7 +36,11 @@ void getTime(Type time) {
       }
     }
     if (time->tm_mday<1) {
-      time->tm_mon--;
+      time->tm_mon--;//*****
+      if (time->tm_mon<1) {
+        time->tm_year--;
+        time->tm_mon = 12;
+      }
       time->tm_mday = getDay(time);
     }else if (time->tm_mday>getDay(time)) {
       time->tm_mon++;
@@ -45,10 +50,8 @@ void getTime(Type time) {
     if (time->tm_mon>12) {
       time->tm_year++;
       time->tm_mon = 1;
-    }else if (time->tm_mon<1) {
-      time->tm_year--;
-      time->tm_mon = 12;
     }
+
     cout << time->tm_mday << '/' << time->tm_mon << '/' << time->tm_year;
   }
 }
