@@ -53,7 +53,7 @@ void inChongChong(int s, int color1, int color2) {
   }
 }
 int main() {
-  int a=6, color1=BLUE, color2=GREEN, tmp;
+  int a=10, color1=BLUE, color2=GREEN, tmp;
   bool repeat = true;
   while (repeat) {
     if (kbhit()) {
