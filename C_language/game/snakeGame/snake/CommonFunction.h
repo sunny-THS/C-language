@@ -6,11 +6,14 @@
   #include<conio.h>
   #include<cstdlib>
   #include<vector>
+  #include<ctime>
 
   #define CONSOLE_HEIGHT 30 // the height of console
   #define CONSOLE_WIDTH 120 // the width of console
-  #define WIDTH_GAME 110
-  #define HEIGHT_GAME 20
+  #define AMOUNT_FOOD 3 // the amount food in game
+  #define SCROLL_WIDTH 2
+  // #define WIDTH_GAME 110
+  // #define HEIGHT_GAME 20
 
   enum COLOR {
     Blue = 1,
@@ -35,7 +38,7 @@
     void gotoxy(int x, int y);
     void cls();
     void textColor(int x);
-    int random(int min, int max);
+    int random(int max, int min=0);
     void pause();
   }
 

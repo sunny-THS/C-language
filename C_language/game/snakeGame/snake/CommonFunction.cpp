@@ -17,7 +17,7 @@ void CommonFunction::textColor(int x){
   SetConsoleTextAttribute(color, x);
 }
 // ham random
-int CommonFunction::random(int min, int max){
+int CommonFunction::random(int max, int min){
   return min + rand()%(max-min+1);
 }
 // pause

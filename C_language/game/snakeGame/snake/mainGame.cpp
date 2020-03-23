@@ -1,10 +1,12 @@
 #include "CommonFunction.h"
 #include "Snake.h"
-#include "BoardGame.h"
+#include "Game.h"
 
 int main() {
+  srand(time(0));
+  Game game;
   Snake snake;
   snake.drawSnake();
-  CommonFunction::pause();
+  // CommonFunction::pause();
   return 0;
 }
