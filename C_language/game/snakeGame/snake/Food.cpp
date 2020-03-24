@@ -2,8 +2,8 @@
 
 Food::Food() {
   for (int i = 0; i < AMOUNT_FOOD; i++) {
-    fruit_[i].x = CommonFunction::random(CONSOLE_WIDTH-SCROLL_WIDTH);
-    fruit_[i].y = CommonFunction::random(CONSOLE_HEIGHT);
+    fruit_[i].x = CommonFunction::random(LIMIT_BOARD_GAME-1);
+    fruit_[i].y = CommonFunction::random(CONSOLE_HEIGHT-1);
   }
 }
 Food::~Food() {}
@@ -14,3 +14,8 @@ void Food::drawFood() {
   }
 }
 void Food::updateFruit() {}
+
+void Food::SetRectFruit (int x, int y, int i) {
+  fruit_[i].x = x;
+  fruit_[i].y = y;
+}

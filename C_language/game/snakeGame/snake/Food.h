@@ -5,6 +5,8 @@
      public:
        Food();
        ~Food();
+
+       void SetRectFruit (int x, int y, int i);
        void drawFood();
        void updateFruit();
      protected:

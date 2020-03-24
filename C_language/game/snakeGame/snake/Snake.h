@@ -1,22 +1,27 @@
 #ifndef Snake_H_
   #define Snake_H_
   #include "CommonFunction.h"
+  #include "InfoUser.h"
   #include "Food.h"
-  #include "Game.h"
 
-  class Snake : Food{
+  class Snake : Food {
+    private:
+      InfoUser info;
     public:
       Snake();
       ~Snake();
 
-      void drawSnake();
+      void Init();
+      void draw();
+      void drawBoardGame();
+      void drawBoardInfo();
+      void drawBodySnake();
       void updateSnake();
       void HandleInputAction();
-      int GetSnakeLen() {return snakeLen_-tmp;}
       void HandleCollision();
+      void HandleScore(int index);
     protected:
-      Game game_;
-      int tmp;// tmp variable
+      int score;
       int snakeLen_, speed_;
       TrangThai tt_;
       bool is_move_;

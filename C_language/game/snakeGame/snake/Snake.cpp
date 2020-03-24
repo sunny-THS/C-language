@@ -3,21 +3,25 @@
 // initialization snake
 Snake::Snake() {
   is_move_ = true;
-  speed_ = 100;
-  snakeLen_ = 3;
-  tmp = snakeLen_;
+  speed_ = 200; // speed is value from 100 to 200
+  snakeLen_ = 3; // setup snake
   oxy_.x = 0;
   oxy_.y = 0;
+}
+Snake::~Snake() {
+  dot_.clear();
+}
+void Snake::Init() {
   for (int i = 0; i < snakeLen_; i++) {
     dot_.push_back(oxy_);
   }
-  dot_[0].x = CommonFunction::random(CONSOLE_WIDTH);
+  dot_[0].x = CommonFunction::random(LIMIT_BOARD_GAME-1);
   dot_[0].y = CommonFunction::random(CONSOLE_HEIGHT);
   for (int i = 1; i < snakeLen_; i++) {
     dot_[i].x = dot_[0].x-i;
     dot_[i].y = dot_[0].y;
   }
-  if (dot_[0].x>CONSOLE_WIDTH/2) {
+  if (dot_[0].x>(LIMIT_BOARD_GAME)/2) {
     if (dot_[0].y>CONSOLE_HEIGHT/2) {
       tt_ = UP;
     }else {
@@ -27,27 +31,24 @@ Snake::Snake() {
     tt_ = RIGHT;
   }
 }
-Snake::~Snake() {
-  dot_.clear();
-}
-void Snake::drawSnake() {
+void Snake::draw() {
   CommonFunction::cls();
+  // info.boardInfoUser();
   drawFood();
-  for (int i = 0; i < this->dot_.size(); i++) {
-    CommonFunction::gotoxy(dot_[i].x, dot_[i].y);
-    putchar(248);
-  }
+  drawBoardGame();
+  drawBodySnake();
+  drawBoardInfo();
   Sleep(speed_);
   updateSnake();
 }
 void Snake::updateSnake() {
   if (is_move_) {
-    for (int i = snakeLen_ - 1; i > 0; i--)
+    for (int i = dot_.size() - 1; i > 0; i--)
       dot_[i] = dot_[i-1];
     HandleInputAction();
     HandleCollision();
   }
-  drawSnake();
+  draw();
 }
 void Snake::HandleInputAction() {
   if (kbhit()) { // Press keyboard
@@ -77,17 +78,40 @@ void Snake::HandleInputAction() {
   }
 }
 void Snake::HandleCollision() {
-  if (dot_[0].x>CONSOLE_WIDTH-SCROLL_WIDTH || dot_[0].x<0 || dot_[0].y<0 || dot_[0].y>CONSOLE_HEIGHT) {
+  if (dot_[0].x>LIMIT_BOARD_GAME-1 || dot_[0].x<0 || dot_[0].y<0 || dot_[0].y>CONSOLE_HEIGHT) {
     CommonFunction::pause();
   }
-  for (int iSnake=1; iSnake<snakeLen_; iSnake++) {
+  for (int iSnake=1; iSnake<dot_.size(); iSnake++) {
     if (dot_[0].x==dot_[iSnake].x && dot_[0].y==dot_[iSnake].y) {
       CommonFunction::pause();
     }
   }
   for (int iFruit = 0; iFruit < AMOUNT_FOOD; iFruit++) {
     if (dot_[0].x==fruit_[iFruit].x && dot_[0].y==fruit_[iFruit].y) {
-      CommonFunction::pause();
+      HandleScore(iFruit);
     }
+  }
+}
+void Snake::HandleScore(int index) {
+  dot_.push_back(oxy_);
+  SetRectFruit(CommonFunction::random(LIMIT_BOARD_GAME-1), CommonFunction::random(CONSOLE_HEIGHT-1), index);
+  info.SetScore(dot_.size()-snakeLen_);
+}
+void Snake::drawBoardGame() {
+  for (int i = 0; i < CONSOLE_HEIGHT; i++) {
+    CommonFunction::gotoxy(LIMIT_BOARD_GAME, i);
+    putchar(186);
+  }
+}
+void Snake::drawBoardInfo() {
+  for (size_t i = 0; i < LIMIT_BOARD_INFO; i++) {
+    CommonFunction::gotoxy(WIDTH_BOARD_INFO+i, HEIGHT_BOARD_INFO);
+    putchar(205);
+  }
+}
+void Snake::drawBodySnake() {
+  for (int i = 0; i < this->dot_.size(); i++) {
+    CommonFunction::gotoxy(dot_[i].x, dot_[i].y);
+    putchar(248);
   }
 }
