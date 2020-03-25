@@ -9,8 +9,9 @@ Food::Food() {
 Food::~Food() {}
 void Food::drawFood() {
   for (int i = 0; i < AMOUNT_FOOD; i++) {
+    CommonFunction::textColor(Red);
     CommonFunction::gotoxy(fruit_[i].x, fruit_[i].y);
-    putchar(42);
+    putchar(167);
   }
 }
 void Food::updateFruit() {}

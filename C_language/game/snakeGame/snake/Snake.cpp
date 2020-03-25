@@ -4,7 +4,7 @@
 Snake::Snake() {
   is_move_ = true;
   speed_ = 200; // speed is value from 100 to 200
-  snakeLen_ = 3; // setup snake
+  snakeLen_ = 70; // setup snake
   oxy_.x = 0;
   oxy_.y = 0;
 }
@@ -32,9 +32,12 @@ void Snake::Init() {
   }
 }
 void Snake::draw() {
+  while (strcmp(info.GetName(),"")==0 || strcmp(info.GetName()," ")==0) {
+    info.inputUserName();
+  }
   CommonFunction::cls();
-  // info.boardInfoUser();
   drawFood();
+  info.boardInfoUser();
   drawBoardGame();
   drawBodySnake();
   drawBoardInfo();
@@ -78,11 +81,13 @@ void Snake::HandleInputAction() {
   }
 }
 void Snake::HandleCollision() {
-  if (dot_[0].x>LIMIT_BOARD_GAME-1 || dot_[0].x<0 || dot_[0].y<0 || dot_[0].y>CONSOLE_HEIGHT) {
+  if (dot_[0].x>LIMIT_BOARD_GAME-1 || dot_[0].x<0 || dot_[0].y<0 || dot_[0].y>CONSOLE_HEIGHT-1) {
+    is_move_ = false;
     CommonFunction::pause();
   }
   for (int iSnake=1; iSnake<dot_.size(); iSnake++) {
     if (dot_[0].x==dot_[iSnake].x && dot_[0].y==dot_[iSnake].y) {
+      is_move_ = false;
       CommonFunction::pause();
     }
   }
@@ -96,22 +101,35 @@ void Snake::HandleScore(int index) {
   dot_.push_back(oxy_);
   SetRectFruit(CommonFunction::random(LIMIT_BOARD_GAME-1), CommonFunction::random(CONSOLE_HEIGHT-1), index);
   info.SetScore(dot_.size()-snakeLen_);
+  speed_ -= 2;
+  if (speed_<100) {
+    speed_ = LIMIT_SPEED;
+  }
 }
 void Snake::drawBoardGame() {
   for (int i = 0; i < CONSOLE_HEIGHT; i++) {
+    CommonFunction::textColor(White);
     CommonFunction::gotoxy(LIMIT_BOARD_GAME, i);
     putchar(186);
   }
 }
 void Snake::drawBoardInfo() {
   for (size_t i = 0; i < LIMIT_BOARD_INFO; i++) {
+    CommonFunction::textColor(White);
     CommonFunction::gotoxy(WIDTH_BOARD_INFO+i, HEIGHT_BOARD_INFO);
     putchar(205);
   }
 }
 void Snake::drawBodySnake() {
   for (int i = 0; i < this->dot_.size(); i++) {
-    CommonFunction::gotoxy(dot_[i].x, dot_[i].y);
-    putchar(248);
+    if (i==0) { // head snake
+      CommonFunction::textColor(Blue);
+      CommonFunction::gotoxy(dot_[i].x, dot_[i].y);
+      putchar(248);
+    }else {
+      CommonFunction::textColor(Green);
+      CommonFunction::gotoxy(dot_[i].x, dot_[i].y);
+      putchar(248);
+    }
   }
 }

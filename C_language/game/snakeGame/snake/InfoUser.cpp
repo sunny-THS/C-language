@@ -2,7 +2,7 @@
 
 InfoUser::InfoUser() {
   score_ = 0;
-  strcat(user_name_, " ");
+  strcpy(user_name_, "");
 }
 void InfoUser::SetTime() {
   time(&rawTime);
@@ -51,10 +51,20 @@ void InfoUser::menu(char *start, char *help, char *e, int a, int b, int c){
   puts(e);
 }
 void InfoUser::boardInfoUser() {
-  CommonFunction::gotoxy(LIMIT_BOARD_GAME+(LIMIT_BOARD_INFO+1-strlen(TITLE))/2, HEIGHT_BOARD_INFO/3);
+  CommonFunction::textColor(Green);
+  CommonFunction::gotoxy(LIMIT_BOARD_GAME+(LIMIT_BOARD_INFO+1+SCROLL_WIDTH-strlen(TITLE))/2, HEIGHT_BOARD_INFO/3);
   puts(TITLE);
-  // CommonFunction::gotoxy(LIMIT_BOARD_GAME+(LIMIT_BOARD_INFO-strlen(user_name_))/2, HEIGHT_BOARD_INFO/2);
-  // std::cout << GetName();
-  CommonFunction::gotoxy(LIMIT_BOARD_GAME+(LIMIT_BOARD_INFO-8)/2, HEIGHT_BOARD_INFO-HEIGHT_BOARD_INFO/4);
+  CommonFunction::textColor(White);
+  CommonFunction::gotoxy(LIMIT_BOARD_GAME+(LIMIT_BOARD_INFO+1+SCROLL_WIDTH-strlen(user_name_)-4)/2, HEIGHT_BOARD_INFO/2);
+  std::cout << "Hi, " << GetName();
+  CommonFunction::gotoxy(LIMIT_BOARD_GAME+(LIMIT_BOARD_INFO+1+SCROLL_WIDTH-8)/2, HEIGHT_BOARD_INFO-HEIGHT_BOARD_INFO/4);
   std::cout << "Score: " << score_;
+}
+void InfoUser::inputUserName() {
+  CommonFunction::cls();
+  char name[50];
+  char label[] = "User name: ";
+  CommonFunction::gotoxy((CONSOLE_WIDTH-strlen(label))/2, CONSOLE_HEIGHT/2);
+  std::cout << label;
+  SetName(gets(name));
 }

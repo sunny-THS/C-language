@@ -18,6 +18,7 @@
     public:
       InfoUser();
       int titleGame();
+      void inputUserName();
       void menu(char *start, char *help, char *e, int, int, int);
       void boardInfoUser();
       void SetScore(const int& s) {score_ = s;}
