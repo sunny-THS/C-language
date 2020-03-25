@@ -21,7 +21,6 @@
       void HandleCollision();
       void HandleScore(int index);
     protected:
-      int score;
       int snakeLen_, speed_;
       TrangThai tt_;
       bool is_move_;
