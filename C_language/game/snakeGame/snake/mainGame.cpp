@@ -4,7 +4,7 @@
 
 int main() {
   srand(time(0));
-  systen("title SnakeGame");
+  system("title SnakeGame");
   // Snake snake;
   // snake.Init();
   // snake.draw();
