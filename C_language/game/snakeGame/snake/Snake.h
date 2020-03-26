@@ -20,10 +20,15 @@
       void HandleInputAction();
       void HandleCollision();
       void HandleScore(int index);
+
+      void boardSelect();
+      void titleSelect();
+      void gameOver();
+
     protected:
       int snakeLen_, speed_;
       TrangThai tt_;
-      bool is_move_;
+      bool is_move_, is_pause_;
       std::vector<TD> dot_;
       TD oxy_;
   };

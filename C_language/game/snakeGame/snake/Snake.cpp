@@ -3,8 +3,9 @@
 // initialization snake
 Snake::Snake() {
   is_move_ = true;
+  is_pause_ = false;
   speed_ = 200; // speed is value from 100 to 200
-  snakeLen_ = 70; // setup snake
+  snakeLen_ = 3; // setup snake
   oxy_.x = 0;
   oxy_.y = 0;
 }
@@ -35,49 +36,49 @@ void Snake::draw() {
   while (strcmp(info.GetName(),"")==0 || strcmp(info.GetName()," ")==0) {
     info.inputUserName();
   }
-  CommonFunction::cls();
-  drawFood();
-  info.boardInfoUser();
-  drawBoardGame();
-  drawBodySnake();
-  drawBoardInfo();
-  Sleep(speed_);
-  updateSnake();
-}
-void Snake::updateSnake() {
-  if (is_move_) {
-    for (int i = dot_.size() - 1; i > 0; i--)
-      dot_[i] = dot_[i-1];
+  while (is_move_) {
+    CommonFunction::cls();
+    drawFood();
+    info.boardInfoUser();
+    drawBoardGame();
+    drawBodySnake();
+    drawBoardInfo();
+    Sleep(speed_);
     HandleInputAction();
+    if (!is_pause_) {
+      updateSnake();
+    }
     HandleCollision();
   }
-  draw();
+}
+void Snake::updateSnake() {
+  for (int i = dot_.size() - 1; i > 0; i--)
+    dot_[i] = dot_[i-1];
+    // move
+    if (tt_ == UP) {
+      dot_[0].y--;
+    }else if (tt_ == DOWN) {
+      dot_[0].y++;
+    }else if (tt_ == LEFT) {
+      dot_[0].x--;
+    }else if (tt_ == RIGHT) {
+      dot_[0].x++;
+    }
 }
 void Snake::HandleInputAction() {
   if (kbhit()) { // Press keyboard
     char key = _getch();
-    if ((key == 'a' || key == 'A' || key == 52) && tt_ != RIGHT) {
+    if ((key=='a'||key=='A'||key==52)&&tt_!=RIGHT&&!is_pause_) {
       tt_ = LEFT;
-    }else if ((key == 'd' || key == 'D' || key == 54) && tt_ != LEFT) {
+    }else if ((key=='d'||key=='D'||key==54)&&tt_!=LEFT&&!is_pause_) {
       tt_ = RIGHT;
-    }else if ((key == 'w' || key == 'W' || key == 56) && tt_ != DOWN) {
+    }else if ((key=='w'||key=='W'||key==56)&&tt_!=DOWN&&!is_pause_) {
       tt_ = UP;
-    }else if ((key == 's' || key == 'S' || key == 50) && tt_ != UP) {
+    }else if ((key=='s'||key=='S'||key==50)&&tt_!=UP&&!is_pause_) {
       tt_ = DOWN;
     }else if (key == 32) {
-      CommonFunction::pause();
+      is_pause_ = !is_pause_;
     }
-  }
-
-  // move
-  if (tt_ == UP) {
-    dot_[0].y--;
-  }else if (tt_ == DOWN) {
-    dot_[0].y++;
-  }else if (tt_ == LEFT) {
-    dot_[0].x--;
-  }else if (tt_ == RIGHT) {
-    dot_[0].x++;
   }
 }
 void Snake::HandleCollision() {
@@ -132,4 +133,13 @@ void Snake::drawBodySnake() {
       putchar(248);
     }
   }
+}
+void Snake::boardSelect() {
+  CommonFunction::textColor(White);
+  CommonFunction::gotoxy() {
+
+  }
+}
+void Snake::titleSelect() {
+
 }
