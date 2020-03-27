@@ -205,6 +205,7 @@ void Snake::GameOver() {
   int y = Red, n = White;//y is select, n is no select
   int select = 1;//1 is start game, 2 is howToPlay, 3 is exit
   while (!is_move_) {
+    CommonFunction::gotoxy()
     switch (select) {
       case 1: titleSelect(y, n, n); break;
       case 2: titleSelect(n, y, n); break;
