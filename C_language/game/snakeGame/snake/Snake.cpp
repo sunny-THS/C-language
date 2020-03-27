@@ -1,10 +1,9 @@
 #include "Snake.h"
 
-// initialization snake
 Snake::Snake() {
   is_move_ = true;
   is_pause_ = false;
-  speed_ = 200; // speed is value from 100 to 200
+  speed_ = 400; // speed is value from 100 to 200
   snakeLen_ = 3; // setup snake
   oxy_.x = 0;
   oxy_.y = 0;
@@ -12,6 +11,7 @@ Snake::Snake() {
 Snake::~Snake() {
   dot_.clear();
 }
+// initialization snake
 void Snake::Init() {
   speed_ = 200;
   for (int i = 0; i < snakeLen_; i++) {
@@ -39,12 +39,17 @@ void Snake::draw() {
   }
   while (is_move_) {
     CommonFunction::cls();
+    // test speed of snake
+    // CommonFunction::gotoxy(LIMIT_BOARD_GAME+(LIMIT_BOARD_INFO+1+SCROLL_WIDTH-8)/2, HEIGHT_BOARD_INFO-HEIGHT_BOARD_INFO/3);
+    // std::cout << speed_;
     drawFood();
     info.boardInfoUser();
     drawBoardGame();
     drawBodySnake();
     drawBoardInfo();
-    boardSelect();// when is_pause_ = true, it will appear
+    if (boardSelect()) // when is_pause_ = true, it will appear
+      // if select exit return 1
+      break;
     Sleep(speed_);
     HandleInputAction();
     updateSnake();
@@ -135,9 +140,9 @@ void Snake::drawBodySnake() {
     }
   }
 }
-void Snake::boardSelect() {
-  int y = Red, n = White;//y is select, n is no select
-  int select = 1;//1 is start game, 2 is howToPlay, 3 is exit
+int Snake::boardSelect() {
+  int y = CadetBlue, n = White;//y is select, n is no select
+  int select = 1;//1 is resume game, 2 is start game, 3 is howToPlay, 4 is end game
   while (is_pause_) {
     switch (select) {
       case 1: titleSelect(n, n, n, y); break;
@@ -179,11 +184,12 @@ void Snake::boardSelect() {
             dot_.clear();
             Init();
           }break;
-          case 4: dot_.clear(); return;
+          case 4: dot_.clear(); return 1;
         }
       }
     }
   }
+  return 0;
 }
 void Snake::titleSelect(const int& a, const int& b, const int& c, const int& d) {
   if (is_pause_) {
@@ -202,10 +208,15 @@ void Snake::titleSelect(const int& a, const int& b, const int& c, const int& d) 
   puts(TEXT_EXIT);
 }
 void Snake::GameOver() {
-  int y = Red, n = White;//y is select, n is no select
+  int y = CadetBlue, n = White;//y is select, n is no select
   int select = 1;//1 is start game, 2 is howToPlay, 3 is exit
+  if (!is_move_) {
+    info.saveInfo();
+  }
   while (!is_move_) {
-    CommonFunction::gotoxy()
+    CommonFunction::gotoxy((LIMIT_BOARD_GAME-strlen(TEXT_GAMEOVER))/2, CONSOLE_HEIGHT/2);
+    CommonFunction::textColor(Red);
+    puts(TEXT_GAMEOVER);
     switch (select) {
       case 1: titleSelect(y, n, n); break;
       case 2: titleSelect(n, y, n); break;

@@ -2,6 +2,7 @@
   #define Info_User_H
   #include "CommonFunction.h"
   #include <string.h>
+  #include <fstream>
 
   #define TEXT_TITLE "\n\n\t\t ######  ##    ##    ###    ##    ## ########     ######      ###    ##     ## ########\n\t\t##    ## ###   ##   ## ##   ##   ##  ##          ##    ##    ## ##   ###   ### ##      \n\t\t##       ####  ##  ##   ##  ##  ##   ##          ##         ##   ##  #### #### ##      \n\t\t ######  ## ## ## ##     ## #####    ######      ##   #### ##     ## ## ### ## ######  \n\t\t      ## ##  #### ######### ##  ##   ##          ##    ##  ######### ##     ## ##      \n\t\t##    ## ##   ### ##     ## ##   ##  ##          ##    ##  ##     ## ##     ## ##      \n\t\t ######  ##    ## ##     ## ##    ## ########     ######   ##     ## ##     ## ########"
   #define TITLE "Snake Game"
@@ -13,15 +14,23 @@
   #define TEXT_GAMEOVER "Game Over"
   #define TEXT_EXIT "Exit"
 
+  struct infomation {
+    char name[50];
+    int score;
+  };
+
   class InfoUser {
     private:
       int score_;
       char user_name_[50];
-      time_t rawTime;
-      struct tm *localTime;
+      time_t rawTime_;
+      struct tm *localTime_;
+      infomation inf;
+      std::vector<infomation> rank_;
     public:
       InfoUser();
       int titleGame();
+      void saveInfo();
       void inputUserName();
       void menu(char *start, char *help, char *e, int, int, int);
       void boardInfoUser();

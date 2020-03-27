@@ -5,19 +5,19 @@
 int main() {
   srand(time(0));
   bool is_move = true;
-  system("title SnakeGame");
-  // Snake snake;
-  // snake.Init();
-  // snake.draw();
+  system("title SnakeGame"); // title on title bar
+
   InfoUser info;
   while (is_move) {
     CommonFunction::cls();
     switch (info.titleGame()) {
-      case 1: {
+      case 1: { // start game
         Snake snake;
         snake.Init();
         snake.draw();
       }break;
+      case 2: break; // how to game
+      case 3: is_move = false; break; // end game
     }
   }
 

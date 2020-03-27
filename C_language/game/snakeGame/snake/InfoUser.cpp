@@ -5,11 +5,13 @@ InfoUser::InfoUser() {
   strcpy(user_name_, "");
 }
 void InfoUser::SetTime() {
-  time(&rawTime);
-  localTime = localtime(&rawTime);
+  time(&rawTime_);
+  localTime_ = localtime(&rawTime_);
+  localTime_->tm_year+=1900;
+  localTime_->tm_mon++;
 }
 int InfoUser::titleGame() {
-  int y = Red, n = White;//y is select, n is no select
+  int y = Green, n = White;//y is select, n is no select
   int select = 1;//1 is start game, 2 is howToPlay, 3 is exit
 
   CommonFunction::textColor(Green);
@@ -39,6 +41,7 @@ int InfoUser::titleGame() {
     }
   }
 }
+// creat menu game
 void InfoUser::menu(char *start, char *help, char *e, int a, int b, int c){
   CommonFunction::gotoxy((CONSOLE_WIDTH-strlen(start))/2, CONSOLE_HEIGHT/2-3);
   CommonFunction::textColor(a);
@@ -60,6 +63,7 @@ void InfoUser::boardInfoUser() {
   CommonFunction::gotoxy(LIMIT_BOARD_GAME+(LIMIT_BOARD_INFO+1+SCROLL_WIDTH-8)/2, HEIGHT_BOARD_INFO-HEIGHT_BOARD_INFO/4);
   std::cout << "Score: " << score_;
 }
+// user name player
 void InfoUser::inputUserName() {
   CommonFunction::cls();
   char name[50];
@@ -67,4 +71,16 @@ void InfoUser::inputUserName() {
   CommonFunction::gotoxy((CONSOLE_WIDTH-strlen(label))/2, CONSOLE_HEIGHT/2);
   std::cout << label;
   SetName(gets(name));
+}
+// save infomation player
+void InfoUser::saveInfo() {
+  SetTime();
+  std::ofstream log;
+  log.open("D:/visual/SnakeGame/Debug/logGame.txt", std::ios::app);
+  log << localTime_->tm_mday<<'/'<<localTime_->tm_mon<<'/'<<localTime_->tm_year;
+  log << ' '<<localTime_->tm_hour<<':'<<localTime_->tm_min<<':'<<localTime_->tm_sec<<"\n";
+  log << "Name: " << user_name_ << "\n";
+  log << "Score: " << score_ << "\n\n";
+
+  log.close();
 }

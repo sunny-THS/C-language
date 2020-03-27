@@ -21,7 +21,7 @@
       void HandleCollision();
       void HandleScore(int index);
 
-      void boardSelect();
+      int boardSelect();
       void titleSelect(const int& a, const int& b, const int& c, const int& d = White);
       void GameOver();
 
