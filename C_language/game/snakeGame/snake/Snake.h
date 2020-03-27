@@ -22,8 +22,8 @@
       void HandleScore(int index);
 
       void boardSelect();
-      void titleSelect();
-      void gameOver();
+      void titleSelect(const int& a, const int& b, const int& c, const int& d = White);
+      void GameOver();
 
     protected:
       int snakeLen_, speed_;

@@ -13,6 +13,7 @@ Snake::~Snake() {
   dot_.clear();
 }
 void Snake::Init() {
+  speed_ = 200;
   for (int i = 0; i < snakeLen_; i++) {
     dot_.push_back(oxy_);
   }
@@ -43,12 +44,12 @@ void Snake::draw() {
     drawBoardGame();
     drawBodySnake();
     drawBoardInfo();
+    boardSelect();// when is_pause_ = true, it will appear
     Sleep(speed_);
     HandleInputAction();
-    if (!is_pause_) {
-      updateSnake();
-    }
+    updateSnake();
     HandleCollision();
+    GameOver();
   }
 }
 void Snake::updateSnake() {
@@ -77,19 +78,19 @@ void Snake::HandleInputAction() {
     }else if ((key=='s'||key=='S'||key==50)&&tt_!=UP&&!is_pause_) {
       tt_ = DOWN;
     }else if (key == 32) {
-      is_pause_ = !is_pause_;
+      is_pause_ = true;
     }
   }
 }
 void Snake::HandleCollision() {
   if (dot_[0].x>LIMIT_BOARD_GAME-1 || dot_[0].x<0 || dot_[0].y<0 || dot_[0].y>CONSOLE_HEIGHT-1) {
     is_move_ = false;
-    CommonFunction::pause();
+    // CommonFunction::pause();
   }
   for (int iSnake=1; iSnake<dot_.size(); iSnake++) {
     if (dot_[0].x==dot_[iSnake].x && dot_[0].y==dot_[iSnake].y) {
       is_move_ = false;
-      CommonFunction::pause();
+      // CommonFunction::pause();
     }
   }
   for (int iFruit = 0; iFruit < AMOUNT_FOOD; iFruit++) {
@@ -135,11 +136,114 @@ void Snake::drawBodySnake() {
   }
 }
 void Snake::boardSelect() {
-  CommonFunction::textColor(White);
-  CommonFunction::gotoxy() {
+  int y = Red, n = White;//y is select, n is no select
+  int select = 1;//1 is start game, 2 is howToPlay, 3 is exit
+  while (is_pause_) {
+    switch (select) {
+      case 1: titleSelect(n, n, n, y); break;
+      case 2: titleSelect(y, n, n); break;
+      case 3: titleSelect(n, y, n); break;
+      case 4: titleSelect(n, n, y); break;
+    }
 
+    if (kbhit()) { // press keysboard
+      char key = _getch();
+      if (key == 'w' || key == 'W' || key == 56 || key == 72) {
+        select--;
+        if (select<1) {
+          select = 4;
+        }
+      }else if (key == 's' || key == 'S' || key == 50 || key == 80) {
+        select++;
+        if (select>4) {
+          select = 1;
+        }
+      }else if (key == 13) {
+        switch(select) {
+          case 1: {
+            is_pause_ = false;
+          }break;
+          case 2: {
+            is_pause_ = false;
+            info.SetName("");
+            info.SetScore(0);
+            dot_.clear();
+            while (strcmp(info.GetName(),"")==0 || strcmp(info.GetName()," ")==0) {
+              info.inputUserName();
+            }
+            Init();
+          }break;
+          case 3: {
+            is_pause_ = false;
+            info.SetScore(0);
+            dot_.clear();
+            Init();
+          }break;
+          case 4: dot_.clear(); return;
+        }
+      }
+    }
   }
 }
-void Snake::titleSelect() {
+void Snake::titleSelect(const int& a, const int& b, const int& c, const int& d) {
+  if (is_pause_) {
+    CommonFunction::gotoxy(LIMIT_BOARD_GAME+(LIMIT_BOARD_INFO+1+SCROLL_WIDTH-strlen(TEXT_RESUME))/2, HEIGHT_BOARD_INFO+(CONSOLE_HEIGHT-HEIGHT_BOARD_INFO)/2-2);
+    CommonFunction::textColor(d);
+    puts(TEXT_RESUME);
+  }
+  CommonFunction::gotoxy(LIMIT_BOARD_GAME+(LIMIT_BOARD_INFO+1+SCROLL_WIDTH-strlen(TEXT_NEWGAME))/2, HEIGHT_BOARD_INFO+(CONSOLE_HEIGHT-HEIGHT_BOARD_INFO)/2-1);
+  CommonFunction::textColor(a);
+  puts(TEXT_NEWGAME);
+  CommonFunction::gotoxy(LIMIT_BOARD_GAME+(LIMIT_BOARD_INFO+1+SCROLL_WIDTH-strlen(TEXT_RESTART))/2, HEIGHT_BOARD_INFO+(CONSOLE_HEIGHT-HEIGHT_BOARD_INFO)/2);
+  CommonFunction::textColor(b);
+  puts(TEXT_RESTART);
+  CommonFunction::gotoxy(LIMIT_BOARD_GAME+(LIMIT_BOARD_INFO+1+SCROLL_WIDTH-strlen(TEXT_EXIT))/2, HEIGHT_BOARD_INFO+(CONSOLE_HEIGHT-HEIGHT_BOARD_INFO)/2+1);
+  CommonFunction::textColor(c);
+  puts(TEXT_EXIT);
+}
+void Snake::GameOver() {
+  int y = Red, n = White;//y is select, n is no select
+  int select = 1;//1 is start game, 2 is howToPlay, 3 is exit
+  while (!is_move_) {
+    switch (select) {
+      case 1: titleSelect(y, n, n); break;
+      case 2: titleSelect(n, y, n); break;
+      case 3: titleSelect(n, n, y); break;
+    }
 
+    if (kbhit()) { // press keysboard
+      char key = _getch();
+      if (key == 'w' || key == 'W' || key == 56 || key == 72) {
+        select--;
+        if (select<1) {
+          select = 3;
+        }
+      }else if (key == 's' || key == 'S' || key == 50 || key == 80) {
+        select++;
+        if (select>3) {
+          select = 1;
+        }
+      }else if (key == 13) {
+        switch(select) {
+          case 1: {
+            is_move_ = true;
+            info.SetName("");
+            info.SetScore(0);
+            dot_.clear();
+            while (strcmp(info.GetName(),"")==0 || strcmp(info.GetName()," ")==0) {
+              info.inputUserName();
+            }
+            Init();
+          }break;
+          case 2: {
+            is_move_ = true;
+            info.SetScore(0);
+            dot_.clear();
+            Init();
+          }break;
+          case 3: dot_.clear(); return;
+        }
+      }
+    }
+  }
 }

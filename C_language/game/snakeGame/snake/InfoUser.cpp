@@ -9,7 +9,7 @@ void InfoUser::SetTime() {
   localTime = localtime(&rawTime);
 }
 int InfoUser::titleGame() {
-  int y = 4, n = 15;//y is select, n is no select
+  int y = Red, n = White;//y is select, n is no select
   int select = 1;//1 is start game, 2 is howToPlay, 3 is exit
 
   CommonFunction::textColor(Green);

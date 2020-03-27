@@ -6,7 +6,11 @@
   #define TEXT_TITLE "\n\n\t\t ######  ##    ##    ###    ##    ## ########     ######      ###    ##     ## ########\n\t\t##    ## ###   ##   ## ##   ##   ##  ##          ##    ##    ## ##   ###   ### ##      \n\t\t##       ####  ##  ##   ##  ##  ##   ##          ##         ##   ##  #### #### ##      \n\t\t ######  ## ## ## ##     ## #####    ######      ##   #### ##     ## ## ### ## ######  \n\t\t      ## ##  #### ######### ##  ##   ##          ##    ##  ######### ##     ## ##      \n\t\t##    ## ##   ### ##     ## ##   ##  ##          ##    ##  ##     ## ##     ## ##      \n\t\t ######  ##    ## ##     ## ##    ## ########     ######   ##     ## ##     ## ########"
   #define TITLE "Snake Game"
   #define TEXT_START "Start Game"
+  #define TEXT_NEWGAME "New Game"
+  #define TEXT_RESUME "Resume"
+  #define TEXT_RESTART "Restart Game"
   #define TEXT_HOWTOGAME "How to game"
+  #define TEXT_GAMEOVER "Game Over"
   #define TEXT_EXIT "Exit"
 
   class InfoUser {
