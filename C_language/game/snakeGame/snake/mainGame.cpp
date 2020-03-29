@@ -16,7 +16,8 @@ int main() {
         snake.Init();
         snake.draw();
       }break;
-      case 3: info.printf_Rank();break; // how to game
+      case 2: info.printf_Howtogame();break;
+      case 3: info.printf_Rank();break; // rank
       case 4: is_move = false; break; // end game
     }
   }
