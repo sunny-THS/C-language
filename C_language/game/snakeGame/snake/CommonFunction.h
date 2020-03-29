@@ -10,6 +10,7 @@
 
   #define CONSOLE_HEIGHT 30 // the height of console
   #define CONSOLE_WIDTH 120 // the width of console
+  #define CENTER_CONSOLE_HEIGHT CONSOLE_HEIGHT/2
   #define AMOUNT_FOOD 3 // the amount food in game
   #define SCROLL_WIDTH 2
   #define LIMIT_BOARD_GAME CONSOLE_WIDTH-CONSOLE_WIDTH/3

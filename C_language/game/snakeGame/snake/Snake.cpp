@@ -1,19 +1,18 @@
 #include "Snake.h"
 
-Snake::Snake() {
-  is_move_ = true;
-  is_pause_ = false;
-  speed_ = 400; // speed is value from 100 to 200
-  snakeLen_ = 3; // setup snake
-  oxy_.x = 0;
-  oxy_.y = 0;
-}
+Snake::Snake() {}
 Snake::~Snake() {
   dot_.clear();
 }
 // initialization snake
 void Snake::Init() {
-  speed_ = 200;
+  speed_ = 200; // speed is value from 100 to 200
+  is_move_ = true;
+  is_pause_ = false;
+  snakeLen_ = 3; // setup snake
+  oxy_.x = 0;
+  oxy_.y = 0;
+
   for (int i = 0; i < snakeLen_; i++) {
     dot_.push_back(oxy_);
   }
@@ -40,8 +39,8 @@ void Snake::draw() {
   while (is_move_) {
     CommonFunction::cls();
     // test speed of snake
-    // CommonFunction::gotoxy(LIMIT_BOARD_GAME+(LIMIT_BOARD_INFO+1+SCROLL_WIDTH-8)/2, HEIGHT_BOARD_INFO-HEIGHT_BOARD_INFO/3);
-    // std::cout << speed_;
+    CommonFunction::gotoxy(LIMIT_BOARD_GAME+(LIMIT_BOARD_INFO+1+SCROLL_WIDTH-8)/2, HEIGHT_BOARD_INFO-HEIGHT_BOARD_INFO/3);
+    std::cout << speed_;
     drawFood();
     info.boardInfoUser();
     drawBoardGame();
@@ -109,7 +108,7 @@ void Snake::HandleScore(int index) {
   SetRectFruit(CommonFunction::random(LIMIT_BOARD_GAME-1), CommonFunction::random(CONSOLE_HEIGHT-1), index);
   info.SetScore(dot_.size()-snakeLen_);
   speed_ -= 2;
-  if (speed_<100) {
+  if (speed_<1) {
     speed_ = LIMIT_SPEED;
   }
 }
