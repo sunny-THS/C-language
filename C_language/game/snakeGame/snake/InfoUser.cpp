@@ -122,7 +122,7 @@ void InfoUser::printf_Rank() {
     tmpName = rank_[sortingI].name;
     tmpScore = rank_[sortingI].score;
     sortingJ = sortingI - 1;
-    // stoi function to change string -> int
+    // stoi function convert string to int value
     while (sortingJ>=0 && stoi(tmpScore)> stoi(rank_[sortingJ].score)) {
       rank_[sortingJ+1] = rank_[sortingJ];
       sortingJ--;
