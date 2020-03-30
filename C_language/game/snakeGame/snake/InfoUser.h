@@ -15,6 +15,7 @@
   #define TEXT_HOWTOGAME "How to game"
   #define TEXT_GAMEOVER "Game Over"
   #define TEXT_EXIT "Exit"
+  #define HOWTOPLAY "Press w, a, s, d to move snake, press space to pause game and esc to back menu"
   #define LIMIT_RANK 5
   #define LIMIT_SPACE_TEXT 15
 
@@ -36,6 +37,7 @@
       void saveInfo();
       void SetInfo();
       void printf_Rank();
+      void printf_Howtogame();
       void inputUserName();
       void menu(char *start, char *help, char *e, char* rank, int, int, int, int);
       void boardInfoUser();

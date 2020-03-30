@@ -122,7 +122,7 @@ void InfoUser::printf_Rank() {
     tmpName = rank_[sortingI].name;
     tmpScore = rank_[sortingI].score;
     sortingJ = sortingI - 1;
-    // stoi function do string -> int
+    // stoi function to change string -> int
     while (sortingJ>=0 && stoi(tmpScore)> stoi(rank_[sortingJ].score)) {
       rank_[sortingJ+1] = rank_[sortingJ];
       sortingJ--;
@@ -151,6 +151,20 @@ void InfoUser::printf_Rank() {
       CommonFunction::gotoxy((CONSOLE_WIDTH)/2+LIMIT_SPACE_TEXT-3,CENTER_CONSOLE_HEIGHT-LIMIT_RANK/2+i);
       std::cout << rank_[i].score;
     }
+    if (kbhit()) {
+      char key = _getch();
+      if (key == 27) {
+        break;
+      }
+    }
+  }
+}
+void InfoUser::printf_Howtogame() {
+  CommonFunction::cls();
+  while (1) {
+    CommonFunction::gotoxy((CONSOLE_WIDTH-strlen(HOWTOPLAY))/2, CONSOLE_HEIGHT/2);
+    CommonFunction::textColor(Green);
+    puts(HOWTOPLAY);
     if (kbhit()) {
       char key = _getch();
       if (key == 27) {
