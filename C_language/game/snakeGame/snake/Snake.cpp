@@ -39,8 +39,8 @@ void Snake::draw() {
   while (is_move_) {
     CommonFunction::cls();
     // test speed of snake
-    CommonFunction::gotoxy(LIMIT_BOARD_GAME+(LIMIT_BOARD_INFO+1+SCROLL_WIDTH-8)/2, HEIGHT_BOARD_INFO-HEIGHT_BOARD_INFO/3);
-    std::cout << speed_;
+    // CommonFunction::gotoxy(LIMIT_BOARD_GAME+(LIMIT_BOARD_INFO+1+SCROLL_WIDTH-8)/2, HEIGHT_BOARD_INFO-HEIGHT_BOARD_INFO/3);
+    // std::cout << speed_;
     drawFood();
     info.boardInfoUser();
     drawBoardGame();
