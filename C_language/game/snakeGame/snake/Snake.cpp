@@ -60,15 +60,15 @@ void Snake::updateSnake() {
   for (int i = dot_.size() - 1; i > 0; i--)
     dot_[i] = dot_[i-1];
     // move
-    if (tt_ == UP) {
-      dot_[0].y--;
-    }else if (tt_ == DOWN) {
-      dot_[0].y++;
-    }else if (tt_ == LEFT) {
-      dot_[0].x--;
-    }else if (tt_ == RIGHT) {
-      dot_[0].x++;
-    }
+  if (tt_ == UP) {
+    dot_[0].y--;
+  }else if (tt_ == DOWN) {
+    dot_[0].y++;
+  }else if (tt_ == LEFT) {
+    dot_[0].x--;
+  }else if (tt_ == RIGHT) {
+    dot_[0].x++;
+  }
 }
 void Snake::HandleInputAction() {
   if (kbhit()) { // Press keyboard

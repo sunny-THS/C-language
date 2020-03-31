@@ -6,9 +6,9 @@
        Food();
        ~Food();
 
-       void SetRectFruit (int x, int y, int i);
        void drawFood();
        void updateFruit();
+       void SetRectFruit (int x, int y, int i);
      protected:
        TD fruit_[AMOUNT_FOOD];
   };
