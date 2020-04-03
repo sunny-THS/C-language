@@ -39,9 +39,10 @@
       void printf_Rank();
       void printf_Howtogame();
       void inputUserName();
-      void menu(char *start, char *help, char *e, char* rank, int, int, int, int);
+      void menu(int, int, int, int);
       void boardInfoUser();
       void SetScore(const int& s) {score_ = s;}
+      int GetScore() {return score_;}
       void SetTime();
       void SetName(const char*s) {strcpy(user_name_, s);}
       char* GetName() {return user_name_;}

@@ -1,5 +1,5 @@
 #include "CommonFunction.h"
-#include "Snake.h"
+#include "SnakeGame.h"
 #include "InfoUser.h"
 
 int main() {
@@ -12,11 +12,11 @@ int main() {
     CommonFunction::cls();
     switch (info.titleGame()) {
       case 1: { // start game
-        Snake snake;
-        snake.Init();
-        snake.draw();
+        SnakeGame snakeGame;
+        snakeGame.Init();
+        snakeGame.draw();
       }break;
-      case 2: info.printf_Howtogame();break;
+      case 2: info.printf_Howtogame();break; // how to play
       case 3: info.printf_Rank();break; // rank
       case 4: is_move = false; break; // end game
     }

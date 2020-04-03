@@ -1,15 +1,15 @@
-#include "Snake.h"
+#include "SnakeGame.h"
 
-Snake::Snake() {}
-Snake::~Snake() {
+SnakeGame::SnakeGame() {}
+SnakeGame::~SnakeGame() {
   dot_.clear();
 }
-// initialization snake
-void Snake::Init() {
+// initialization SnakeGame
+void SnakeGame::Init() {
   speed_ = 200; // speed is value from 100 to 200
   is_move_ = true;
   is_pause_ = false;
-  snakeLen_ = 3; // setup snake
+  snakeLen_ = 3; // setup SnakeGame
   oxy_.x = 0;
   oxy_.y = 0;
 
@@ -17,13 +17,13 @@ void Snake::Init() {
     dot_.push_back(oxy_);
   }
   dot_[0].x = CommonFunction::random(LIMIT_BOARD_GAME-1);
-  dot_[0].y = CommonFunction::random(CONSOLE_HEIGHT);
+  dot_[0].y = CommonFunction::random(CONSOLE_HEIGHT-1);
   for (int i = 1; i < snakeLen_; i++) {
     dot_[i].x = dot_[0].x-i;
     dot_[i].y = dot_[0].y;
   }
   if (dot_[0].x>(LIMIT_BOARD_GAME)/2) {
-    if (dot_[0].y>CONSOLE_HEIGHT/2) {
+    if (dot_[0].y>CENTER_CONSOLE_HEIGHT) {
       tt_ = UP;
     }else {
       tt_ = DOWN;
@@ -31,8 +31,9 @@ void Snake::Init() {
   }else {
     tt_ = RIGHT;
   }
+  setup(); // initialization food
 }
-void Snake::draw() {
+void SnakeGame::draw() {
   while (strcmp(info.GetName(),"")==0 || strcmp(info.GetName()," ")==0) {
     info.inputUserName();
   }
@@ -56,7 +57,7 @@ void Snake::draw() {
     GameOver();
   }
 }
-void Snake::updateSnake() {
+void SnakeGame::updateSnake() {
   for (int i = dot_.size() - 1; i > 0; i--)
     dot_[i] = dot_[i-1];
     // move
@@ -70,23 +71,23 @@ void Snake::updateSnake() {
     dot_[0].x++;
   }
 }
-void Snake::HandleInputAction() {
+void SnakeGame::HandleInputAction() {
   if (kbhit()) { // Press keyboard
     char key = _getch();
-    if ((key=='a'||key=='A'||key==52)&&tt_!=RIGHT&&!is_pause_) {
+    if ((key=='a'||key=='A'||key==Numpad_4)&&tt_!=RIGHT&&!is_pause_) {
       tt_ = LEFT;
-    }else if ((key=='d'||key=='D'||key==54)&&tt_!=LEFT&&!is_pause_) {
+    }else if ((key=='d'||key=='D'||key==Numpad_6)&&tt_!=LEFT&&!is_pause_) {
       tt_ = RIGHT;
-    }else if ((key=='w'||key=='W'||key==56)&&tt_!=DOWN&&!is_pause_) {
+    }else if ((key=='w'||key=='W'||key==Numpad_8)&&tt_!=DOWN&&!is_pause_) {
       tt_ = UP;
-    }else if ((key=='s'||key=='S'||key==50)&&tt_!=UP&&!is_pause_) {
+    }else if ((key=='s'||key=='S'||key==Numpad_2)&&tt_!=UP&&!is_pause_) {
       tt_ = DOWN;
-    }else if (key == 32) {
+    }else if (key == Space_Key) {
       is_pause_ = true;
     }
   }
 }
-void Snake::HandleCollision() {
+void SnakeGame::HandleCollision() {
   if (dot_[0].x>LIMIT_BOARD_GAME-1 || dot_[0].x<0 || dot_[0].y<0 || dot_[0].y>CONSOLE_HEIGHT-1) {
     is_move_ = false;
     // CommonFunction::pause();
@@ -103,30 +104,30 @@ void Snake::HandleCollision() {
     }
   }
 }
-void Snake::HandleScore(int index) {
+void SnakeGame::HandleScore(int index) {
   dot_.push_back(oxy_);
-  SetRectFruit(CommonFunction::random(LIMIT_BOARD_GAME-1), CommonFunction::random(CONSOLE_HEIGHT-1), index);
+  updateFruit(GetIX(), GetIY(), index);
   info.SetScore(dot_.size()-snakeLen_);
   speed_ -= 2;
-  if (speed_<1) {
+  if (speed_<LIMIT_SPEED) {
     speed_ = LIMIT_SPEED;
   }
 }
-void Snake::drawBoardGame() {
+void SnakeGame::drawBoardGame() {
   for (int i = 0; i < CONSOLE_HEIGHT; i++) {
     CommonFunction::textColor(White);
     CommonFunction::gotoxy(LIMIT_BOARD_GAME, i);
     putchar(186);
   }
 }
-void Snake::drawBoardInfo() {
-  for (size_t i = 0; i < LIMIT_BOARD_INFO; i++) {
+void SnakeGame::drawBoardInfo() {
+  for (int i = 0; i < LIMIT_BOARD_INFO; i++) {
     CommonFunction::textColor(White);
     CommonFunction::gotoxy(WIDTH_BOARD_INFO+i, HEIGHT_BOARD_INFO);
     putchar(205);
   }
 }
-void Snake::drawBodySnake() {
+void SnakeGame::drawBodySnake() {
   for (int i = 0; i < this->dot_.size(); i++) {
     if (i==0) { // head snake
       CommonFunction::textColor(Blue);
@@ -139,7 +140,7 @@ void Snake::drawBodySnake() {
     }
   }
 }
-int Snake::boardSelect() {
+int SnakeGame::boardSelect() {
   int y = CadetBlue, n = White;//y is select, n is no select
   int select = 1;//1 is resume game, 2 is start game, 3 is howToPlay, 4 is end game
   while (is_pause_) {
@@ -152,17 +153,17 @@ int Snake::boardSelect() {
 
     if (kbhit()) { // press keysboard
       char key = _getch();
-      if (key == 'w' || key == 'W' || key == 56 || key == 72) {
+      if (key == 'w' || key == 'W' || key == Up_Arrow || key == Numpad_8) {
         select--;
         if (select<1) {
           select = 4;
         }
-      }else if (key == 's' || key == 'S' || key == 50 || key == 80) {
+      }else if (key == 's' || key == 'S' || key == Down_Arrow || key == Numpad_2) {
         select++;
         if (select>4) {
           select = 1;
         }
-      }else if (key == 13) {
+      }else if (key == Enter_Key) {
         switch(select) {
           case 1: {
             is_pause_ = false;
@@ -190,7 +191,7 @@ int Snake::boardSelect() {
   }
   return 0;
 }
-void Snake::titleSelect(const int& a, const int& b, const int& c, const int& d) {
+void SnakeGame::titleSelect(const int& a, const int& b, const int& c, const int& d) {
   if (is_pause_) {
     CommonFunction::gotoxy(LIMIT_BOARD_GAME+(LIMIT_BOARD_INFO+1+SCROLL_WIDTH-strlen(TEXT_RESUME))/2, HEIGHT_BOARD_INFO+(CONSOLE_HEIGHT-HEIGHT_BOARD_INFO)/2-2);
     CommonFunction::textColor(d);
@@ -206,14 +207,14 @@ void Snake::titleSelect(const int& a, const int& b, const int& c, const int& d) 
   CommonFunction::textColor(c);
   puts(TEXT_EXIT);
 }
-void Snake::GameOver() {
+void SnakeGame::GameOver() {
   int y = CadetBlue, n = White;//y is select, n is no select
   int select = 1;//1 is start game, 2 is howToPlay, 3 is exit
   if (!is_move_) {
     info.saveInfo();
   }
   while (!is_move_) {
-    CommonFunction::gotoxy((LIMIT_BOARD_GAME-strlen(TEXT_GAMEOVER))/2, CONSOLE_HEIGHT/2);
+    CommonFunction::gotoxy((LIMIT_BOARD_GAME-strlen(TEXT_GAMEOVER))/2, CENTER_CONSOLE_HEIGHT);
     CommonFunction::textColor(Red);
     puts(TEXT_GAMEOVER);
     switch (select) {
@@ -224,17 +225,17 @@ void Snake::GameOver() {
 
     if (kbhit()) { // press keysboard
       char key = _getch();
-      if (key == 'w' || key == 'W' || key == 56 || key == 72) {
+      if (key == 'w' || key == 'W' || key == Up_Arrow || key == Numpad_8) {
         select--;
         if (select<1) {
           select = 3;
         }
-      }else if (key == 's' || key == 'S' || key == 50 || key == 80) {
+      }else if (key == 's' || key == 'S' || key == Down_Arrow || key == Numpad_2) {
         select++;
         if (select>3) {
           select = 1;
         }
-      }else if (key == 13) {
+      }else if (key == Enter_Key) {
         switch(select) {
           case 1: {
             is_move_ = true;

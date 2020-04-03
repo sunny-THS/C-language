@@ -14,25 +14,23 @@ void InfoUser::SetTime() {
 int InfoUser::titleGame() {
   int y = Green, n = White;//y is select, n is no select
   int select = 1;//1 is start game, 2 is howToPlay, 3 is exit
-
   CommonFunction::textColor(Green);
   puts(TEXT_TITLE);
   while (1) {
     switch (select) {
-      case 1: menu(TEXT_START, TEXT_HOWTOGAME, TEXT_EXIT, TEXT_RANK, y, n, n, n); break;
-      case 2: menu(TEXT_START, TEXT_HOWTOGAME, TEXT_EXIT, TEXT_RANK, n, y, n, n); break;
-      case 3: menu(TEXT_START, TEXT_HOWTOGAME, TEXT_EXIT, TEXT_RANK, n, n, y, n); break;
-      case 4: menu(TEXT_START, TEXT_HOWTOGAME, TEXT_EXIT, TEXT_RANK, n, n, n, y); break;
+      case 1: menu(y, n, n, n); break;
+      case 2: menu(n, y, n, n); break;
+      case 3: menu(n, n, y, n); break;
+      case 4: menu(n, n, n, y); break;
     }
-
     if (kbhit()) { // press keysboard
       char key = _getch();
-      if (key == 'w' || key == 'W' || key == 56 || key == 72) {
+      if (key == 'w' || key == 'W' || key == Up_Arrow || key == Numpad_8) {
         select--;
         if (select<1) {
           select = 4;
         }
-      }else if (key == 's' || key == 'S' || key == 50 || key == 80) {
+      }else if (key == 's' || key == 'S' || key == Down_Arrow || key == Numpad_2) {
         select++;
         if (select>4) {
           select = 1;
@@ -44,19 +42,19 @@ int InfoUser::titleGame() {
   }
 }
 // creat menu game
-void InfoUser::menu(char *start, char *help, char *e, char* rank, int a, int b, int c, int d){
-  CommonFunction::gotoxy((CONSOLE_WIDTH-strlen(start))/2, CONSOLE_HEIGHT/2-3);
-  CommonFunction::textColor(a);
-  puts(start);
-  CommonFunction::gotoxy((CONSOLE_WIDTH-strlen(help))/2, CONSOLE_HEIGHT/2+2-3);
-  CommonFunction::textColor(b);
-  puts(help);
-  CommonFunction::gotoxy((CONSOLE_WIDTH-strlen(rank))/2, CONSOLE_HEIGHT/2+4-3);
-  CommonFunction::textColor(c);
-  puts(rank);
-  CommonFunction::gotoxy((CONSOLE_WIDTH-strlen(e))/2, CONSOLE_HEIGHT/2+6-3);
-  CommonFunction::textColor(d);
-  puts(e);
+void InfoUser::menu(int color_a, int color_b, int color_c, int color_d){
+  CommonFunction::gotoxy((CONSOLE_WIDTH-strlen(TEXT_START))/2, CENTER_CONSOLE_HEIGHT-3);
+  CommonFunction::textColor(color_a);
+  puts(TEXT_START);
+  CommonFunction::gotoxy((CONSOLE_WIDTH-strlen(TEXT_HOWTOGAME))/2, CENTER_CONSOLE_HEIGHT+2-3);
+  CommonFunction::textColor(color_b);
+  puts(TEXT_HOWTOGAME);
+  CommonFunction::gotoxy((CONSOLE_WIDTH-strlen(TEXT_RANK))/2, CENTER_CONSOLE_HEIGHT+4-3);
+  CommonFunction::textColor(color_c);
+  puts(TEXT_RANK);
+  CommonFunction::gotoxy((CONSOLE_WIDTH-strlen(TEXT_EXIT))/2, CENTER_CONSOLE_HEIGHT+6-3);
+  CommonFunction::textColor(color_d);
+  puts(TEXT_EXIT);
 }
 void InfoUser::boardInfoUser() {
   CommonFunction::textColor(Green);
@@ -66,14 +64,14 @@ void InfoUser::boardInfoUser() {
   CommonFunction::gotoxy(LIMIT_BOARD_GAME+(LIMIT_BOARD_INFO+1+SCROLL_WIDTH-strlen(user_name_)-4)/2, HEIGHT_BOARD_INFO/2);
   std::cout << "Hi, " << GetName();
   CommonFunction::gotoxy(LIMIT_BOARD_GAME+(LIMIT_BOARD_INFO+1+SCROLL_WIDTH-8)/2, HEIGHT_BOARD_INFO-HEIGHT_BOARD_INFO/4);
-  std::cout << "Score: " << score_;
+  std::cout << "Score: " << GetScore();
 }
 // user name player
 void InfoUser::inputUserName() {
   CommonFunction::cls();
   char name[50];
   char label[] = "User name: ";
-  CommonFunction::gotoxy((CONSOLE_WIDTH-strlen(label))/2, CONSOLE_HEIGHT/2);
+  CommonFunction::gotoxy((CONSOLE_WIDTH-strlen(label))/2, CENTER_CONSOLE_HEIGHT);
   std::cout << label;
   SetName(gets(name));
 }
@@ -86,8 +84,7 @@ void InfoUser::saveInfo() {
   log << ' '<<localTime_->tm_hour<<':'<<localTime_->tm_min<<':'<<localTime_->tm_sec<<"\n";
   log << user_name_ << "\n";
   log << score_ << "\n";
-
-  log.close();
+  log.close(); // close file
 }
 void InfoUser::SetInfo() {
   std::ifstream Infomation("../Debug/logGame.txt");
@@ -106,13 +103,12 @@ void InfoUser::SetInfo() {
     }
     rank_.push_back(inf_);
   }
-
-  Infomation.close();
+  Infomation.close(); // close file
 }
 void InfoUser::printf_Rank() {
   SetInfo();
   CommonFunction::cls();
-  // sorting rank
+  // sort rank
   int sortingJ;
   std::string tmpTime;
   std::string tmpName;
@@ -123,7 +119,7 @@ void InfoUser::printf_Rank() {
     tmpScore = rank_[sortingI].score;
     sortingJ = sortingI - 1;
     // stoi function convert string to int value
-    while (sortingJ>=0 && stoi(tmpScore)> stoi(rank_[sortingJ].score)) {
+    while (sortingJ>=0 && stoi(tmpScore)>stoi(rank_[sortingJ].score)) {
       rank_[sortingJ+1] = rank_[sortingJ];
       sortingJ--;
     }
@@ -134,7 +130,7 @@ void InfoUser::printf_Rank() {
     tmpName.clear();
     tmpScore.clear();
   }
-  //_____________
+  //______________________________________________________________________________________________
   CommonFunction::gotoxy((CONSOLE_WIDTH-strlen(TEXT_RANK))/2,CENTER_CONSOLE_HEIGHT-LIMIT_RANK/2-2);
   CommonFunction::textColor(Red);
   puts(TEXT_RANK);
@@ -153,7 +149,7 @@ void InfoUser::printf_Rank() {
     }
     if (kbhit()) {
       char key = _getch();
-      if (key == 27) {
+      if (key == Esc_Key) {
         break;
       }
     }
@@ -162,12 +158,12 @@ void InfoUser::printf_Rank() {
 void InfoUser::printf_Howtogame() {
   CommonFunction::cls();
   while (1) {
-    CommonFunction::gotoxy((CONSOLE_WIDTH-strlen(HOWTOPLAY))/2, CONSOLE_HEIGHT/2);
+    CommonFunction::gotoxy((CONSOLE_WIDTH-strlen(HOWTOPLAY))/2, CENTER_CONSOLE_HEIGHT);
     CommonFunction::textColor(Green);
     puts(HOWTOPLAY);
     if (kbhit()) {
       char key = _getch();
-      if (key == 27) {
+      if (key == Esc_Key) {
         break;
       }
     }

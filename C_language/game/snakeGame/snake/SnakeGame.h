@@ -4,12 +4,12 @@
   #include "InfoUser.h"
   #include "Food.h"
 
-  class Snake : Food {
+  class SnakeGame : Food {
     private:
       InfoUser info;
     public:
-      Snake();
-      ~Snake();
+      SnakeGame();
+      ~SnakeGame();
 
       void Init();
       void draw();
@@ -20,11 +20,9 @@
       void HandleInputAction();
       void HandleCollision();
       void HandleScore(int index);
-
       int boardSelect();
       void titleSelect(const int& a, const int& b, const int& c, const int& d = White);
       void GameOver();
-
     protected:
       int snakeLen_, speed_;
       TrangThai tt_;
