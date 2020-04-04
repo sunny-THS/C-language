@@ -1,12 +1,11 @@
 #ifndef Common_Function_H_
-#define Common_Function_H_
-
-  #include<iostream>
-  #include<Windows.h>
-  #include<conio.h>
-  #include<cstdlib>
+  #define Common_Function_H_
+  #include<iostream> // cout
+  #include<Windows.h> // GetStdHandle(), SetConsoleCursorPosition(), SetConsoleTextAttribute(), STD_OUTPUT_HANDLE,
+  #include<conio.h> // _getch(), kbhit()
+  #include<cstdlib> // rand(), srand()
   #include<vector>
-  #include<ctime>
+  #include<ctime> // time(), time_t and struct tm, localtime()
   #define CONSOLE_HEIGHT 30 // the height of console
   #define CONSOLE_WIDTH 120 // the width of console
   #define CENTER_CONSOLE_HEIGHT CONSOLE_HEIGHT/2
@@ -26,7 +25,7 @@
     White = 15,
     Gray = 8,
     Red = 4,
-    CadetBlue = 11  // xanh lam
+    CadetBlue = 11
   };
   enum KeyPress {
     Numpad_2 = 50,
@@ -52,5 +51,4 @@
     int random(int max, int min=0);
     void pause();
   }
-
 #endif

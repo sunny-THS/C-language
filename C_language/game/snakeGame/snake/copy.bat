@@ -7,9 +7,9 @@ pause > nul
 
 echo.
 echo file cpp
-copy D:\github\Programming_language\C_language\game\snakeGame\snake\*.cpp D:\visual\SnakeGame\SnakeGame /y
+copy D:\github\Programming_language\C_language\game\snakeGame\*.cpp D:\visual\SnakeGame\SnakeGame /y
 echo file header
-copy D:\github\Programming_language\C_language\game\snakeGame\snake\*.h D:\visual\SnakeGame\SnakeGame /y
+copy D:\github\Programming_language\C_language\game\snakeGame\*.h D:\visual\SnakeGame\SnakeGame /y
 echo ===================================================
 
 goto copyFile

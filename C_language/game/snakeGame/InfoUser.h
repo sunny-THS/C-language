@@ -1,10 +1,9 @@
 #ifndef Info_User_H
   #define Info_User_H
   #include "CommonFunction.h"
-  #include <cstring>
-  #include <fstream>
+  #include <cstring> // strlen(), strcmp(), strcpy()
+  #include <fstream> // std::ofstream, std::ifstream, std::ios::app
   #include <string>
-
   #define TEXT_TITLE "\n\n\t\t ######  ##    ##    ###    ##    ## ########     ######      ###    ##     ## ########\n\t\t##    ## ###   ##   ## ##   ##   ##  ##          ##    ##    ## ##   ###   ### ##      \n\t\t##       ####  ##  ##   ##  ##  ##   ##          ##         ##   ##  #### #### ##      \n\t\t ######  ## ## ## ##     ## #####    ######      ##   #### ##     ## ## ### ## ######  \n\t\t      ## ##  #### ######### ##  ##   ##          ##    ##  ######### ##     ## ##      \n\t\t##    ## ##   ### ##     ## ##   ##  ##          ##    ##  ##     ## ##     ## ##      \n\t\t ######  ##    ## ##     ## ##    ## ########     ######   ##     ## ##     ## ########"
   #define TITLE "Snake Game"
   #define TEXT_START "Start Game"
@@ -18,7 +17,6 @@
   #define HOWTOPLAY "Press w, a, s, d to move snake, press space to pause game and esc to back menu"
   #define LIMIT_RANK 5
   #define LIMIT_SPACE_TEXT 15
-
   struct infomation {
     std::string time, name, score;
   };

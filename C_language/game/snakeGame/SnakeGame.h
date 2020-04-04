@@ -3,19 +3,17 @@
   #include "CommonFunction.h"
   #include "InfoUser.h"
   #include "Food.h"
-
   class SnakeGame : Food {
     private:
       InfoUser info;
     public:
       SnakeGame();
       ~SnakeGame();
-
       void Init();
       void draw();
+      void drawSnake();
       void drawBoardGame();
       void drawBoardInfo();
-      void drawBodySnake();
       void updateSnake();
       void HandleInputAction();
       void HandleCollision();

@@ -5,7 +5,6 @@
      public:
        Food();
        ~Food();
-
        void setup();
        void drawFood();
        int GetIX() {return CommonFunction::random(LIMIT_BOARD_GAME-1);} // return x index

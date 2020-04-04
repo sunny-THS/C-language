@@ -12,7 +12,7 @@ int main() {
     CommonFunction::cls();
     switch (info.titleGame()) {
       case 1: { // start game
-        SnakeGame snakeGame;
+        SnakeGame snakeGame; // initialization snake
         snakeGame.Init();
         snakeGame.draw();
       }break;
