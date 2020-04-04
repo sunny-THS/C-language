@@ -4,7 +4,7 @@
 
 - Hướng dẫn chơi
   - Điều khiển bằng các nút w, a, s, d hoặc các nút số bên phải 8, 4, 2, 6
-  - Dừng game : enter
+  - Dừng game : space
   - Quay lại : esc
 
 - Hình ảnh trong game:
