@@ -18,12 +18,14 @@ void CommonFunction::gotoXY(short int x, short int y) {
   COORD c = { x, y };
   SetConsoleCursorPosition(h, c);
 }
-int CommonFunction::random(int max, int min) {
-  static int max_=0, min_=0, val_rand=0; // static variable
+float CommonFunction::random(int max, int min) {
+  static float max_=0, min_=0, val_rand=0; // static variable
+  float scale;
   if (max_!=max || min_!=min) {
     max_ = max;
     min_ = min;
-    val_rand = min_ - rand()%(max_-min_+1);
+    scale = rand()/(RAND_MAX*1.0);
+    val_rand = min_ + scale*(max_-min_);
   }
   return val_rand;
 }
