@@ -28,9 +28,7 @@ int Ucln(int x, int y) {
   // }
   // return a;
   // cach 3 //
-  // if (x == 0 || y == 0) {
-  //   return x+y;
-  // }
+  //
   // while (x*y!=0) {
   //   if (x<y) {
   //     y%=x;
@@ -38,7 +36,7 @@ int Ucln(int x, int y) {
   //     x%=y
   //   }
   // }
-  // return x;
+  // return x+y;
 }
 int main() {
   int a, b;

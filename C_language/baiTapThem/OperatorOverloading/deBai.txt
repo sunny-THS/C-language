@@ -1,0 +1,6 @@
+Ví dụ 1:
+Khai báo struct sinh viên gồm: Mã sinh viên, tên sinh viên, điểm
+Nhập thông tin - xuất thông tin sinh viên
+Ví dụ 2:
+Tạo cấu trúc phân số gồm tử và mẫu
+Tính tổng hai phân số
