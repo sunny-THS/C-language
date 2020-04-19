@@ -12,3 +12,12 @@ Nguyen Van C,N13DCCN179,08/09/1995
 Lap trinh mang-10
 Mang may tinh-9
 Lap trinh web-9
+Nguyen Van D,N13DCCN179,05/12/2000
+3
+Lap trinh mang-10
+Mang may tinh-9
+Vi xu li-9
+Nguyen Van E,N13DCCN179,12/09/2000
+2
+Lap trinh mang-10
+Lap trinh web-9

@@ -30,5 +30,3 @@ Yêu cầu:
 1. Đọc dữ liệu từ file SINHVIEN.TXT
 2. Nhập vào tên sinh viên và in ra màn hình thông tin sinh viên có tên trùng với tên cần tìm
 3. Lưu vào file NAMSINH.TXT thông tin các sinh viên có năm sinh yyyy nhập từ bàn phím
-4. Lưu vào file DIEMMAX.TXT thông tin sinh viên và môn học có điểm cao nhất của từng sinh viên tương ứng
-5. Đọc dữ liệu từ file DIEMMAX.TXT và lưu vào file DEM.TXT tổng số môn học hiện có của tất cả sinh viên
