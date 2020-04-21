@@ -50,6 +50,5 @@
     int whereX();
     int whereY();
     void ShowCur(bool CursorVisibility);
-    int inputKey();
   }
 #endif

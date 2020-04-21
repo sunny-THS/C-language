@@ -10,10 +10,13 @@ void Food::Setup() {
 }
 void Food::DrawFood() {
   for (int i = 0; i < AMOUNT_FOOD; i++) {
-    CommonFunction::SetColor(Red);
-    CommonFunction::GotoXY(fruit_[i].x, fruit_[i].y);
-    putchar(167);
+    DrawOneFood(i);
   }
+}
+void Food::DrawOneFood(int index) {
+  CommonFunction::SetColor(Red);
+  CommonFunction::GotoXY(fruit_[index].x, fruit_[index].y);
+  putchar(167);
 }
 void Food::UpdateFruit (int x, int y, int i) {
   fruit_[i].x = x;

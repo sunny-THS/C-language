@@ -36,27 +36,6 @@ void CommonFunction::ShowCur(bool CursorVisibility) {
 	CONSOLE_CURSOR_INFO cursor = { 1, CursorVisibility };
 	SetConsoleCursorInfo(handle, &cursor);
 }
-//======= trả về mã phím người dùng bấm =========
-int CommonFunction::inputKey() {
-	if (_kbhit())
-	{
-		int key = _getch();
-
-		if (key == 224)
-		{
-			key = _getch();
-			return key + 1000;
-		}
-
-		return key;
-	}
-	else
-	{
-		return KEY_NONE;
-	}
-
-	return KEY_NONE;
-}
 void CommonFunction::SetVideoMode(int w, int h, char *text){
   HANDLE wHnd = GetStdHandle(STD_OUTPUT_HANDLE);
   HANDLE rHnd = GetStdHandle(STD_INPUT_HANDLE);

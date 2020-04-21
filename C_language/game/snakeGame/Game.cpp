@@ -1,16 +1,18 @@
 #include "Game.h"
+Game::Game() {
+  score_ =0;
+}
 void Game::DrawTopBar() {
-  CommonFunction::SetColor(240);
-  for (size_t i = 0; i < WIDTH-2; i++) {
+  for (size_t i = 0; i < WIDTH; i++) {
     CommonFunction::GotoXY(i, 0);
-    putchar(32);
+    CommonFunction::SetColor(Green);
+    putchar(95);
   }
 }
-void Game::HandleCollision() {
-  if (snake_.Collision()==-1) {
-    system("pause>nul");
-  }
-  if (snake_.Collision()) {
-    system("pause>nul");
-  }
+void Game::Score(Snake snake) {
+  score_ = snake.dot_.size() - snake.len_start_;
+  char *scoreText = "SCORE: ";
+  CommonFunction::SetColor(Green);
+  CommonFunction::GotoXY((WIDTH-3-strlen(scoreText))/2, 0);
+  std::cout << scoreText << score_;
 }
