@@ -36,9 +36,8 @@ void CommonFunction::ShowCur(bool CursorVisibility) {
 	CONSOLE_CURSOR_INFO cursor = { 1, CursorVisibility };
 	SetConsoleCursorInfo(handle, &cursor);
 }
-void CommonFunction::SetVideoMode(int w, int h, char *text){
+void CommonFunction::SetConsole(int w, int h, char *text){
   HANDLE wHnd = GetStdHandle(STD_OUTPUT_HANDLE);
-  HANDLE rHnd = GetStdHandle(STD_INPUT_HANDLE);
 	SetConsoleTitle(TEXT(text));
 	SMALL_RECT windowSize = {0, 0, w, h};
 	COORD bufferSize = {w, h};

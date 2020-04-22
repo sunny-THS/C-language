@@ -3,6 +3,7 @@
   #include <iostream>
   #include <Windows.h>
   #include <string>
+  #include <cstring>
   #include <cstdlib>
   #include <ctime>
   #include <vector>
@@ -46,7 +47,7 @@
     int random(int max, int min = 0);
     void SetColor(int);
     void GotoXY(int, int);
-    void SetVideoMode(int w, int h, char *text);
+    void SetConsole(int w, int h, char *text);
     int whereX();
     int whereY();
     void ShowCur(bool CursorVisibility);
