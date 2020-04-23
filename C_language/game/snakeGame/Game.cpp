@@ -1,6 +1,7 @@
 #include "Game.h"
 Game::Game() {
   score_ =0;
+  is_work = true;
   rect_.x = 0;
   rect_.y = 0;
 }
@@ -20,7 +21,7 @@ void Game::Score(Snake snake) {
 }
 void Game::MenuGame(int a, int b, int c, int d, int slt) {
   CommonFunction::SetColor(CadetBlue);
-  DrawBoard(strlen(TEXT_HOWTOGAME)+2, HEIGHT_BOARD, slt);
+  DrawBoard(WIDTH_BOARD+strlen(TEXT_HOWTOGAME), HEIGHT_BOARD, slt);
   CommonFunction::GotoXY((WIDTH-strlen(TEXT_START))/2, HEIGHT/2);
   CommonFunction::SetColor(a);
   puts(TEXT_START);
@@ -34,25 +35,28 @@ void Game::MenuGame(int a, int b, int c, int d, int slt) {
   CommonFunction::SetColor(d);
   puts(TEXT_EXIT);
 }
-void Game::SelectMenu() {
+int Game::SelectMenu() {
   static int select = 1;
   int t = 2;
   int y = CadetBlue, n = White;
   if (kbhit()) {
     char key = _getch();
     if (key==Up_Arrow) {
-      DelBoard(strlen(TEXT_HOWTOGAME)+2, HEIGHT_BOARD, select);
+      DelBoard(WIDTH_BOARD+strlen(TEXT_HOWTOGAME), HEIGHT_BOARD, select);
       select-=t;
       if (select<1) {
         select = 7;
       }
     }
     if (key==Down_Arrow) {
-      DelBoard(strlen(TEXT_HOWTOGAME)+2, HEIGHT_BOARD, select);
+      DelBoard(WIDTH_BOARD+strlen(TEXT_HOWTOGAME), HEIGHT_BOARD, select);
       select+=t;
       if (select>7) {
         select = 1;
       }
+    }
+    if (key==Enter_Key) {
+      return select;
     }
   }
   switch (select) {
@@ -65,6 +69,7 @@ void Game::SelectMenu() {
     case 7: MenuGame(n, n, n, y, select);
     break;
   }
+  return 0;
 }
 void Game::DrawBoard(int w, int h, int index) {
   rect_.x = (WIDTH-w)/2;

@@ -13,18 +13,20 @@ int main() {
   Snake snake;
   Food food;
   Game game;
-  food.Setup();
-  snake.Setup();
-  // food.DrawFood();
-  // game.DrawTopBar();
+  std::cout << TEXT_TITLEGAME;
   game.MenuGame();
-  while (true) {
-    game.SelectMenu();
-    // game.Score(snake);
-    // snake.HandleCollision(food);
-    // snake.Update();
-    // snake.Draw();
-    Sleep(100);
+  while (game.is_work) {
+    switch (game.SelectMenu()) {
+      case 1:
+      break;
+      case 3:
+      break;
+      case 5:
+      break;
+      case 7:
+      break;
+      default: break;
+    }
   }
   return 0;
 }
