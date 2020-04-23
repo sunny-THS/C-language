@@ -7,8 +7,7 @@
 int main() {
   srand(time(0));
 
-  CommonFunction::SetConsole(WIDTH, HEIGHT, "Snake Game");
-  CommonFunction::ShowCur(false);
+  CommonFunction::SetConsole(WIDTH, HEIGHT, "Snake Game", false, false);
 
   Snake snake;
   Food food;

@@ -36,11 +36,19 @@ void CommonFunction::ShowCur(bool CursorVisibility) {
 	CONSOLE_CURSOR_INFO cursor = { 1, CursorVisibility };
 	SetConsoleCursorInfo(handle, &cursor);
 }
-void CommonFunction::SetConsole(int w, int h, char *text){
+void CommonFunction::SetConsole(int w, int h, char *text, bool CursorVisibility, bool maximize){
   HANDLE wHnd = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleTitle(TEXT(text));
 	SMALL_RECT windowSize = {0, 0, w, h};
 	COORD bufferSize = {w, h};
 	SetConsoleScreenBufferSize(wHnd, bufferSize);
 	SetConsoleWindowInfo(wHnd, TRUE, &windowSize);
+  ShowCur(CursorVisibility);
+  if (!maximize) {
+    HWND hwnd = GetConsoleWindow();
+    DWORD style = GetWindowLong(hwnd, GWL_STYLE);
+    style &= ~WS_MAXIMIZEBOX;
+    SetWindowLong(hwnd, GWL_STYLE, style);
+    SetWindowPos(hwnd, NULL, 0, 0, 0, 0, SWP_NOSIZE|SWP_NOMOVE|SWP_FRAMECHANGED);
+  }
 }
