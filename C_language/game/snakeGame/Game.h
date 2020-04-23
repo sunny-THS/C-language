@@ -22,7 +22,7 @@
   class Game : public BaseObject{
     public:
       int score_;
-      bool is_work;
+      bool is_run;
       Game();
       void MenuGame(int a=CadetBlue, int b=White, int c=White, int d=White, int slt=1);
       int SelectMenu();

@@ -1,7 +1,7 @@
 #include "Game.h"
 Game::Game() {
   score_ =0;
-  is_work = true;
+  is_run = true;
   rect_.x = 0;
   rect_.y = 0;
 }

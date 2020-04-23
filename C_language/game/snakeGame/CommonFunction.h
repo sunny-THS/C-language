@@ -47,7 +47,7 @@
     int random(int max, int min = 0);
     void SetColor(int);
     void GotoXY(int, int);
-    void SetConsole(int w, int h, char *text);
+    void SetConsole(int w, int h, char *text, bool, bool);
     int whereX();
     int whereY();
     void ShowCur(bool CursorVisibility);
