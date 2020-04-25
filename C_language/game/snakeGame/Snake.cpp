@@ -13,10 +13,10 @@ void Snake::Setup() {
     dot_.push_back(GetRect());
   }
   dot_[0].x = CommonFunction::random(WIDTH/2);
-  dot_[0].y = CommonFunction::random(HEIGHT/2);
+  dot_[0].y = CommonFunction::random(HEIGHT/2, 1);
   for (size_t i = 1; i < len_start_; i++) {
-    dot_[i].x = dot_[i].x-1;
-    dot_[i].y = dot_[i].y;
+    dot_[i].x = dot_[0].x-1;
+    dot_[i].y = dot_[0].y;
   }
   tt_ = RIGHT;
 }
@@ -34,8 +34,7 @@ void Snake::Draw() {
 }
 void Snake::Update() {
   for (int i = dot_.size() - 1; i > 0; i--) {
-    CommonFunction::GotoXY(dot_[i].x, dot_[i].y);
-    putchar(32);
+    DelCase(i);
     dot_[i] = dot_[i-1];
   }
   HandleInputAction();
@@ -66,13 +65,18 @@ void Snake::HandleInputAction() {
     }
   }
 }
+void Snake::DelCase(int index, int shape) {
+  CommonFunction::SetColor(Green);
+  CommonFunction::GotoXY(dot_[index].x, dot_[index].y);
+  putchar(shape);
+}
 void Snake::HandleCollision(Food &food) {
   if (dot_[0].x>WIDTH-2 || dot_[0].x<1 || dot_[0].y<1 || dot_[0].y>HEIGHT-1) {
     is_move_ = false;
     system("pause>nul");
-
-    // CommonFunction::pause();
   }
+  // CommonFunction::pause();
+
   for (int iSnake=1; iSnake<dot_.size(); iSnake++) {
     if (dot_[0].x==dot_[iSnake].x && dot_[0].y==dot_[iSnake].y) {
       is_move_ = false;

@@ -12,18 +12,17 @@ int main() {
   Snake snake;
   Food food;
   Game game;
-  CommonFunction::SetColor(Green);
-  std::cout << TEXT_TITLEGAME;
+  game.Setup();
   game.MenuGame();
   while (game.is_run) {
     switch (game.SelectMenu()) {
-      case 1:
+      case 1: game.StartGame(snake, food);
       break;
-      case 3:
-      break;
-      case 5:
+      case 4: // game.StartGame(snake, food, true);
       break;
       case 7:
+      break;
+      case 10:
       break;
       default: break;
     }

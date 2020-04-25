@@ -52,3 +52,7 @@ void CommonFunction::SetConsole(int w, int h, char *text, bool CursorVisibility,
     SetWindowPos(hwnd, NULL, 0, 0, 0, 0, SWP_NOSIZE|SWP_NOMOVE|SWP_FRAMECHANGED);
   }
 }
+//============== xóa màn hình ===========
+void CommonFunction::cls() {
+  system("cls");
+}

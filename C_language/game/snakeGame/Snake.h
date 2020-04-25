@@ -10,6 +10,7 @@
       void Setup();
       void Draw();
       void Update();
+      void DelCase(int, int shape = 32);
       void HandleInputAction();
       void HandleCollision(Food&);
       std::vector<Rect> dot_;
