@@ -18,11 +18,9 @@ int main() {
     switch (game.SelectMenu()) {
       case 1: game.StartGame(snake, food);
       break;
-      case 4: // game.StartGame(snake, food, true);
+      case 4: game.HowToGame();
       break;
       case 7:
-      break;
-      case 10:
       break;
       default: break;
     }

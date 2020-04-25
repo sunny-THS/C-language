@@ -20,7 +20,7 @@
 
   class Game : public BaseObject{
     private:
-      string username_;
+      std::string username_;
     public:
       int score_;
       bool is_run;
@@ -31,11 +31,12 @@
       void DrawBoard(int, int, int, int);
       void DelBoard(int, int, int, int);
       void StartGame(Snake, Food, bool mod = false);
+      void HowToGame();
       void EndGame();
       void GameOver();
       void DrawTopBar();
       void Score(Snake);
-      void SetName(string name_) {username_=name_;}
-      string GetName() {return username_;}
+      void SetName(std::string name_) {username_=name_;}
+      std::string GetName() {return username_;}
   };
 #endif

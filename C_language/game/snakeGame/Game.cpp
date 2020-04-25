@@ -113,3 +113,17 @@ void Game::StartGame(Snake snake, Food food, bool mod) {
     Sleep(100);
   }
 }
+void Game::HowToGame() {
+  CommonFunction::cls();
+  while (1) {
+    CommonFunction::GotoXY((WIDTH-strlen(HOWTOPLAY))/2, HEIGHT/2);
+    CommonFunction::SetColor(Green);
+    puts(HOWTOPLAY);
+    if (kbhit()) {
+      char key = _getch();
+      if (key == Esc_Key) {
+        break;
+      }
+    }
+  }
+}
