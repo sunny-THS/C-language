@@ -14,13 +14,18 @@ int main() {
   Game game;
   game.Setup();
   game.MenuGame();
-  while (game.is_run) {
+  while (game.is_run_) {
+    CommonFunction::SetColor(Blue);
+    CommonFunction::GotoXY(0, 0);
+    std::cout << TEXT_TITLEGAME;
     switch (game.SelectMenu()) {
       case 1: game.StartGame(snake, food);
       break;
-      case 4: game.HowToGame();
-      break;
-      case 7:
+      case 4: {
+        game.HowToGame();
+        CommonFunction::cls();
+      }break;
+      case 7: game.is_run_ = !game.is_run_;
       break;
       default: break;
     }

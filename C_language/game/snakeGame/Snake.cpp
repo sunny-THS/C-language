@@ -5,7 +5,6 @@ Snake::~Snake() {
 }
 void Snake::Setup() {
   is_move_ = true;
-  is_pause_ = false;
   rect_.x = WIDTH;
   rect_.y = HEIGHT;
   len_start_ = 3;
@@ -52,16 +51,14 @@ void Snake::Update() {
 void Snake::HandleInputAction() {
   if (kbhit()) { // Press keyboard
     char key = _getch();
-    if ((key=='a'||key=='A'||key==Numpad_4)&&tt_!=RIGHT&&!is_pause_) {
+    if ((key=='a'||key=='A'||key==Numpad_4)&&tt_!=RIGHT) {
       tt_ = LEFT;
-    }else if ((key=='d'||key=='D'||key==Numpad_6)&&tt_!=LEFT&&!is_pause_) {
+    }else if ((key=='d'||key=='D'||key==Numpad_6)&&tt_!=LEFT) {
       tt_ = RIGHT;
-    }else if ((key=='w'||key=='W'||key==Numpad_8)&&tt_!=DOWN&&!is_pause_) {
+    }else if ((key=='w'||key=='W'||key==Numpad_8)&&tt_!=DOWN) {
       tt_ = UP;
-    }else if ((key=='s'||key=='S'||key==Numpad_2)&&tt_!=UP&&!is_pause_) {
+    }else if ((key=='s'||key=='S'||key==Numpad_2)&&tt_!=UP) {
       tt_ = DOWN;
-    }else if (key==Space_Key) {
-      is_pause_ = true; // pause game
     }
   }
 }
@@ -71,18 +68,12 @@ void Snake::DelCase(int index, int shape) {
   putchar(shape);
 }
 void Snake::HandleCollision(Food &food) {
-  if (dot_[0].x>WIDTH-2 || dot_[0].x<1 || dot_[0].y<1 || dot_[0].y>HEIGHT-1) {
+  if (dot_[0].x>WIDTH-2 || dot_[0].x<1 || dot_[0].y<2 || dot_[0].y>HEIGHT-1) {
     is_move_ = false;
-    system("pause>nul");
   }
-  // CommonFunction::pause();
-
   for (int iSnake=1; iSnake<dot_.size(); iSnake++) {
     if (dot_[0].x==dot_[iSnake].x && dot_[0].y==dot_[iSnake].y) {
       is_move_ = false;
-      system("pause>nul");
-
-      // CommonFunction::pause();
     }
   }
   for (int iFruit = 0; iFruit < AMOUNT_FOOD; iFruit++) {

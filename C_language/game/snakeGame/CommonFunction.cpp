@@ -56,3 +56,7 @@ void CommonFunction::SetConsole(int w, int h, char *text, bool CursorVisibility,
 void CommonFunction::cls() {
   system("cls");
 }
+//============== dừng màn hình ===========
+void CommonFunction::pause() {
+  system("pause>nul");
+}

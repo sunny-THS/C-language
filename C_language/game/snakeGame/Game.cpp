@@ -1,7 +1,8 @@
 #include "Game.h"
 Game::Game() {
   score_ =0;
-  is_run = true;
+  is_run_ = true;
+  is_pause_ = !is_run_;
   rect_.x = 0;
   rect_.y = 0;
 }
@@ -106,12 +107,19 @@ void Game::StartGame(Snake snake, Food food, bool mod) {
   food.Setup();
   food.DrawFood();
   while (snake.is_move_) {
+    if (kbhit()) {
+      char key = _getch();
+      if (key==Space_Key) {
+        PauseGame();
+      }
+    }
     Score(snake);
     snake.Update();
     snake.Draw();
     snake.HandleCollision(food);
     Sleep(100);
   }
+  GameOver();
 }
 void Game::HowToGame() {
   CommonFunction::cls();
@@ -126,4 +134,57 @@ void Game::HowToGame() {
       }
     }
   }
+}
+void Game::GameOver() {
+  CommonFunction::GotoXY((WIDTH-strlen(TEXT_GAMEOVER))/2, HEIGHT/2);
+  CommonFunction::SetColor(Red);
+  puts(TEXT_GAMEOVER);
+  _getch();
+}
+void Game::PauseGame() {
+  is_pause_ = !is_pause_;
+  while (is_pause_) {
+    // create frame
+    DrawFramePause();
+    // create Menu
+    MenuPause();
+    // Handle press keyboard
+    if (kbhit()) {
+      char key = _getch();
+      if (/* condition */) {
+        /* code */
+      }
+      
+    }
+  }
+}
+void Game::DrawFramePause() {
+  CommonFunction::SetColor(190);
+  for (size_t i = 0; i < HEIGHT_PAUSE; i++) {
+    for (size_t j = 0; j < WIDTH_PAUSE; j++) {
+      CommonFunction::GotoXY((WIDTH-WIDTH_PAUSE)/2+j, (HEIGHT-HEIGHT_PAUSE)/2+i);
+      if (i==0||i==HEIGHT_PAUSE-1) {
+        std::cout << " ";
+      }else if ((j==0||j==WIDTH_PAUSE-1)) {
+        std::cout << " ";
+      }
+    }
+  }
+}
+void Game::MenuPause(int a, int b, int c) {
+  CommonFunction::GotoXY((WIDTH-strlen(TEXT_RESUME))/2, (HEIGHT-3)/2);
+  CommonFunction::SetColor(a);
+  puts(TEXT_RESUME);
+  CommonFunction::GotoXY((WIDTH-strlen(TEXT_RESTART))/2, (HEIGHT-2)/2);
+  CommonFunction::SetColor(b);
+  puts(TEXT_RESTART);
+  CommonFunction::GotoXY((WIDTH-strlen(TEXT_EXIT))/2, (HEIGHT)/2);
+  CommonFunction::SetColor(c);
+  puts(TEXT_EXIT);
+}
+void Game::SetTime() {
+  time(&rawTime_);
+  localTime_ = localtime(&rawTime_);
+  localTime_->tm_year+=1900;
+  localTime_->tm_mon++;
 }

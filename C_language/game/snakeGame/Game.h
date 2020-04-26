@@ -17,13 +17,21 @@
   "Press w, a, s, d to move snake, press space to pause game and esc to back menu"
   #define HEIGHT_BOARD 3
   #define WIDTH_BOARD 10
-
+  #define WIDTH_PAUSE 30
+  #define HEIGHT_PAUSE 10
+  struct InformationUser {
+    std::string time;
+    int score;
+  };
+  typedef struct InformationUser INFOUSER;
   class Game : public BaseObject{
     private:
-      std::string username_;
-    public:
+      struct tm *localTime_;
+      time_t rawTime_;
       int score_;
-      bool is_run;
+      INFOUSER ifuser;
+    public:
+      bool is_run_, is_pause_;
       Game();
       void Setup();
       void MenuGame(int a=Red, int b=Yellow, int c=Yellow, int slt=1);
@@ -32,11 +40,12 @@
       void DelBoard(int, int, int, int);
       void StartGame(Snake, Food, bool mod = false);
       void HowToGame();
-      void EndGame();
       void GameOver();
+      void PauseGame();
+      void MenuPause(int a = Yellow, int b = White, int c = White);
+      void DrawFramePause();
       void DrawTopBar();
       void Score(Snake);
-      void SetName(std::string name_) {username_=name_;}
-      std::string GetName() {return username_;}
+      void SetTime();
   };
 #endif

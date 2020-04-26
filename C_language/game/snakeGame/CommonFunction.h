@@ -47,6 +47,7 @@
     int random(int max, int min = 0);
     void cls();
     void SetColor(int);
+    void pause();
     void GotoXY(int, int);
     void SetConsole(int w, int h, char *text, bool, bool);
     int whereX();

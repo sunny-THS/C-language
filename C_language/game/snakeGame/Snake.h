@@ -16,6 +16,6 @@
       std::vector<Rect> dot_;
       int len_start_;
       TrangThai tt_;
-      bool is_move_, is_pause_;
+      bool is_move_;
   };
 #endif
