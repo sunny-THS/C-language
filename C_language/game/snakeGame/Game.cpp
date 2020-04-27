@@ -144,10 +144,31 @@ void Game::HowToGame() {
   }
 }
 void Game::GameOver() {
+  SetTime();
+  std::fstream fileout, filein, tmp;
+  std::string t;
   int select = 1;
   int mnSelect = 1, mxSelect = 2;
   int y=Yellow, n=White;
   is_pause_ = !is_pause_;
+  // test file
+  tmp.open("log.txt", std::ios::in);
+  getline(tmp, t);
+  if (stricmp(t.c_str(), " ")!=0) {
+    getline(filein, t, ':');
+    filein >> ifuser.score;
+    if (score_<ifuser.score) {
+      score_ = ifuser.score;
+    }
+  }
+  // save Infomation
+  fileout.open("log.txt", std::ios::out);
+  GetInfo(fileout);
+  fileout.close();
+  // set value from file
+  filein.open("log.txt", std::ios::in);
+  SetInfo(filein, ifuser);
+  filein.close();
   // create frame
   DrawFrame();
   // create Menu
@@ -192,9 +213,12 @@ void Game::GameOver() {
   }
 }
 void Game::MenuGameOver(int a, int b) {
-  CommonFunction::GotoXY((WIDTH-strlen(TEXT_GAMEOVER))/2+1, (HEIGHT-4)/2);
+  CommonFunction::GotoXY((WIDTH-strlen(TEXT_GAMEOVER))/2+1, (HEIGHT-6)/2);
   CommonFunction::SetColor(Red);
   puts(TEXT_GAMEOVER);
+  CommonFunction::GotoXY((WIDTH-strlen(HIGHTSCORE)-3)/2+1, (HEIGHT-4)/2);
+  CommonFunction::SetColor(Green);
+  std::cout << HIGHTSCORE << " " << ifuser.score;
   CommonFunction::GotoXY((WIDTH-strlen(TEXT_RESTART))/2, (HEIGHT)/2);
   CommonFunction::SetColor(a);
   puts(TEXT_RESTART);
@@ -290,4 +314,15 @@ void Game::SetTime() {
   localTime_ = localtime(&rawTime_);
   localTime_->tm_year+=1900;
   localTime_->tm_mon++;
+}
+void Game::GetInfo(std::fstream &fileout) {
+  fileout << localTime_->tm_mday<<'/'<<localTime_->tm_mon<<'/'<<localTime_->tm_year;
+  fileout << ' '<<localTime_->tm_hour<<':'<<localTime_->tm_min<<':'<<localTime_->tm_sec<<"\n";
+  fileout << "Score:" << score_;
+}
+void Game::SetInfo(std::fstream &filein, INFOUSER &info) {
+  std::string tmp;
+  getline(filein, info.time);
+  getline(filein, tmp, ':');
+  filein >> info.score;
 }

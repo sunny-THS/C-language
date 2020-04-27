@@ -3,6 +3,7 @@
   #include "BaseObject.h"
   #include "Snake.h"
   #include "Food.h"
+  #include <fstream>
   #define TEXT_TITLEGAME "\n\t\t\t  _________              __              ________                       \n\t\t\t /   _____/ ____ _____  |  | __ ____    /  _____/_____    _____   ____  \n\t\t\t \\_____  \\ /    \\\\__  \\ |  |/ // __ \\  /   \\  ___\\__  \\  /     \\_/ __ \\ \n\t\t\t /        \\   |  \\/ __ \\|    <\\  ___/  \\    \\_\\  \\/ __ \\|  Y Y  \\  ___/ \n\t\t\t/_______  /___|  (____  /__|_ \\\\___  >  \\______  (____  /__|_|  /\\___  >\n\t\t\t        \\/     \\/     \\/     \\/    \\/          \\/     \\/      \\/     \\/ "
   #define TITLE "Snake Game"
   #define TEXT_START "Start"
@@ -13,6 +14,7 @@
   #define TEXT_HOWTOGAME "How to game"
   #define TEXT_GAMEOVER "Game Over"
   #define TEXT_EXIT "Exit"
+  #define HIGHTSCORE "Hight Score:"
   #define HOWTOPLAY \
   "Press w, a, s, d to move snake, press space to pause game and esc to back menu"
   #define HEIGHT_BOARD 3
@@ -51,5 +53,7 @@
       void DrawTopBar();
       void Score(Snake);
       void SetTime();
+      void SetInfo(std::fstream &filein, INFOUSER &info);
+      void GetInfo(std::fstream &fileout);
   };
 #endif
