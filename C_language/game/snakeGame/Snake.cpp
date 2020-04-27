@@ -12,7 +12,7 @@ void Snake::Setup() {
     dot_.push_back(GetRect());
   }
   dot_[0].x = CommonFunction::random(WIDTH/2);
-  dot_[0].y = CommonFunction::random(HEIGHT/2, 1);
+  dot_[0].y = CommonFunction::random(HEIGHT, 2);
   for (size_t i = 1; i < len_start_; i++) {
     dot_[i].x = dot_[0].x-1;
     dot_[i].y = dot_[0].y;
@@ -36,7 +36,6 @@ void Snake::Update() {
     DelCase(i);
     dot_[i] = dot_[i-1];
   }
-  HandleInputAction();
     // move
   if (tt_ == UP) {
     dot_[0].y--;
@@ -48,7 +47,7 @@ void Snake::Update() {
     dot_[0].x++;
   }
 }
-void Snake::HandleInputAction() {
+int Snake::HandleInputAction() {
   if (kbhit()) { // Press keyboard
     char key = _getch();
     if ((key=='a'||key=='A'||key==Numpad_4)&&tt_!=RIGHT) {
@@ -59,8 +58,11 @@ void Snake::HandleInputAction() {
       tt_ = UP;
     }else if ((key=='s'||key=='S'||key==Numpad_2)&&tt_!=UP) {
       tt_ = DOWN;
+    }else if (key==Space_Key) {
+      return 1;
     }
   }
+  return 0;
 }
 void Snake::DelCase(int index, int shape) {
   CommonFunction::SetColor(Green);

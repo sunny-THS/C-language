@@ -30,7 +30,10 @@
       time_t rawTime_;
       int score_;
       INFOUSER ifuser;
+      int speed_;
     public:
+      Food food_;
+      Snake *snake_;
       bool is_run_, is_pause_;
       Game();
       void Setup();
@@ -38,12 +41,13 @@
       int SelectMenu();
       void DrawBoard(int, int, int, int);
       void DelBoard(int, int, int, int);
-      void StartGame(Snake, Food, bool mod = false);
+      void StartGame(bool mode = false);
       void HowToGame();
       void GameOver();
+      void MenuGameOver(int a=Yellow, int b=White);
       void PauseGame();
-      void MenuPause(int a = Yellow, int b = White, int c = White);
-      void DrawFramePause();
+      void MenuPause(int a = Red, int b = White, int c = White);
+      void DrawFrame();
       void DrawTopBar();
       void Score(Snake);
       void SetTime();

@@ -9,26 +9,26 @@ int main() {
 
   CommonFunction::SetConsole(WIDTH, HEIGHT, "Snake Game", false, false);
 
-  Snake snake;
-  Food food;
-  Game game;
-  game.Setup();
-  game.MenuGame();
-  while (game.is_run_) {
+  Game *game=new Game();
+  game->Setup();
+  game->MenuGame();
+  while (game->is_run_) {
     CommonFunction::SetColor(Blue);
     CommonFunction::GotoXY(0, 0);
     std::cout << TEXT_TITLEGAME;
-    switch (game.SelectMenu()) {
-      case 1: game.StartGame(snake, food);
+    switch (game->SelectMenu()) {
+      case 1: game->StartGame();
       break;
       case 4: {
-        game.HowToGame();
-        CommonFunction::cls();
+        game->HowToGame();
+        game->Setup();
+        game->MenuGame();
       }break;
-      case 7: game.is_run_ = !game.is_run_;
+      case 7: game->is_run_ = !game->is_run_;
       break;
       default: break;
     }
   }
+  delete game;
   return 0;
 }

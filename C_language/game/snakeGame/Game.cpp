@@ -5,6 +5,8 @@ Game::Game() {
   is_pause_ = !is_run_;
   rect_.x = 0;
   rect_.y = 0;
+  snake_ = new Snake();
+  speed_ = 150;
 }
 void Game::DrawTopBar() {
   for (size_t i = 0; i < WIDTH; i++) {
@@ -100,26 +102,31 @@ void Game::DelBoard(int w, int h, int index, int color) {
     }
   }
 }
-void Game::StartGame(Snake snake, Food food, bool mod) {
+void Game::StartGame(bool mode) {
   CommonFunction::cls();
   DrawTopBar();
-  snake.Setup();
-  food.Setup();
-  food.DrawFood();
-  while (snake.is_move_) {
-    if (kbhit()) {
-      char key = _getch();
-      if (key==Space_Key) {
-        PauseGame();
-      }
+  snake_->Setup();
+  food_.Setup();
+  food_.DrawFood();
+  while (snake_->is_move_) {
+    int tspeed = speed_-snake_->dot_.size();
+    if (tspeed<20) {
+      tspeed = 20;
     }
-    Score(snake);
-    snake.Update();
-    snake.Draw();
-    snake.HandleCollision(food);
-    Sleep(100);
+    Score(*snake_);
+    snake_->Update();
+    snake_->Draw();
+    snake_->HandleCollision(food_);
+    Sleep(tspeed);
+    if (!snake_->is_move_) {
+      GameOver();
+    }
+    if (snake_->HandleInputAction()) {
+      PauseGame();
+    }
   }
-  GameOver();
+  delete snake_;
+  snake_ = new Snake();
 }
 void Game::HowToGame() {
   CommonFunction::cls();
@@ -130,35 +137,128 @@ void Game::HowToGame() {
     if (kbhit()) {
       char key = _getch();
       if (key == Esc_Key) {
+        CommonFunction::cls();
         break;
       }
     }
   }
 }
 void Game::GameOver() {
-  CommonFunction::GotoXY((WIDTH-strlen(TEXT_GAMEOVER))/2, HEIGHT/2);
-  CommonFunction::SetColor(Red);
-  puts(TEXT_GAMEOVER);
-  _getch();
-}
-void Game::PauseGame() {
+  int select = 1;
+  int mnSelect = 1, mxSelect = 2;
+  int y=Yellow, n=White;
   is_pause_ = !is_pause_;
+  // create frame
+  DrawFrame();
+  // create Menu
+  MenuGameOver();
   while (is_pause_) {
-    // create frame
-    DrawFramePause();
-    // create Menu
-    MenuPause();
+    switch (select) {
+      case 1: MenuGameOver(y, n);break;
+      case 2: MenuGameOver(n, y);break;
+    }
     // Handle press keyboard
     if (kbhit()) {
       char key = _getch();
-      if (/* condition */) {
-        /* code */
+      if (key==Up_Arrow) {
+        select--;
+        if (select<mnSelect) {
+          select = mxSelect;
+        }
+      }else if (key==Down_Arrow) {
+        select++;
+        if (select>mxSelect) {
+          select = mnSelect;
+        }
+      }else if (key==Enter_Key) {
+        switch (select) {
+          case 1: {
+            delete snake_;
+            snake_ = new Snake();
+            is_pause_=!is_pause_;
+            CommonFunction::cls();
+            DrawTopBar();
+            snake_->Setup();
+            food_.Setup();
+            food_.DrawFood();
+          }break;
+          case 2: {
+            is_pause_=!is_pause_;
+            CommonFunction::cls();
+          }break;
+        }
       }
-      
     }
   }
 }
-void Game::DrawFramePause() {
+void Game::MenuGameOver(int a, int b) {
+  CommonFunction::GotoXY((WIDTH-strlen(TEXT_GAMEOVER))/2+1, (HEIGHT-4)/2);
+  CommonFunction::SetColor(Red);
+  puts(TEXT_GAMEOVER);
+  CommonFunction::GotoXY((WIDTH-strlen(TEXT_RESTART))/2, (HEIGHT)/2);
+  CommonFunction::SetColor(a);
+  puts(TEXT_RESTART);
+  CommonFunction::GotoXY((WIDTH-strlen(TEXT_EXIT))/2, (HEIGHT+2)/2);
+  CommonFunction::SetColor(b);
+  puts(TEXT_EXIT);
+}
+void Game::PauseGame() {
+  int select = 1;
+  int mnSelect = 1, mxSelect = 3;
+  int y=Red, n=White;
+  is_pause_ = !is_pause_;
+  // create frame
+  DrawFrame();
+  // create Menu
+  MenuPause();
+  while (is_pause_) {
+    switch (select) {
+      case 1: MenuPause(y, n, n);break;
+      case 2: MenuPause(n, y, n);break;
+      case 3: MenuPause(n, n, y);break;
+    }
+    // Handle press keyboard
+    if (kbhit()) {
+      char key = _getch();
+      if (key==Up_Arrow) {
+        select--;
+        if (select<mnSelect) {
+          select = mxSelect;
+        }
+      }else if (key==Down_Arrow) {
+        select++;
+        if (select>mxSelect) {
+          select = mnSelect;
+        }
+      }else if (key==Enter_Key) {
+        switch (select) {
+          case 1: {
+            is_pause_=!is_pause_;
+            CommonFunction::cls();
+            food_.DrawFood();
+            DrawTopBar();
+          }break;
+          case 2: {
+            delete snake_;
+            snake_ = new Snake();
+            is_pause_=!is_pause_;
+            CommonFunction::cls();
+            DrawTopBar();
+            snake_->Setup();
+            food_.Setup();
+            food_.DrawFood();
+          }break;
+          case 3: {
+            is_pause_=!is_pause_;
+            snake_->is_move_ = !snake_->is_move_;
+            CommonFunction::cls();
+          }break;
+        }
+      }
+    }
+  }
+}
+void Game::DrawFrame() {
   CommonFunction::SetColor(190);
   for (size_t i = 0; i < HEIGHT_PAUSE; i++) {
     for (size_t j = 0; j < WIDTH_PAUSE; j++) {
@@ -172,13 +272,16 @@ void Game::DrawFramePause() {
   }
 }
 void Game::MenuPause(int a, int b, int c) {
-  CommonFunction::GotoXY((WIDTH-strlen(TEXT_RESUME))/2, (HEIGHT-3)/2);
+  CommonFunction::GotoXY((WIDTH-strlen(TITLE))/2, (HEIGHT-6)/2);
+  CommonFunction::SetColor(CadetBlue);
+  puts(TITLE);
+  CommonFunction::GotoXY((WIDTH-strlen(TEXT_RESUME))/2, (HEIGHT-2)/2);
   CommonFunction::SetColor(a);
   puts(TEXT_RESUME);
-  CommonFunction::GotoXY((WIDTH-strlen(TEXT_RESTART))/2, (HEIGHT-2)/2);
+  CommonFunction::GotoXY((WIDTH-strlen(TEXT_RESTART))/2, (HEIGHT)/2);
   CommonFunction::SetColor(b);
   puts(TEXT_RESTART);
-  CommonFunction::GotoXY((WIDTH-strlen(TEXT_EXIT))/2, (HEIGHT)/2);
+  CommonFunction::GotoXY((WIDTH-strlen(TEXT_EXIT))/2, (HEIGHT+2)/2);
   CommonFunction::SetColor(c);
   puts(TEXT_EXIT);
 }

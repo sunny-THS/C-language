@@ -11,7 +11,7 @@
       void Draw();
       void Update();
       void DelCase(int, int shape = 32);
-      void HandleInputAction();
+      int HandleInputAction();
       void HandleCollision(Food&);
       std::vector<Rect> dot_;
       int len_start_;

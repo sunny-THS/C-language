@@ -11,7 +11,7 @@
   // define
   #define HEIGHT 30
   #define WIDTH 120
-  #define AMOUNT_FOOD 3 // the amount food in game
+  #define AMOUNT_FOOD 5 // the amount food in game
   //enum
   enum COLOR {
     Blue = 1,
