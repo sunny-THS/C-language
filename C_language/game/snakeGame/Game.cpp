@@ -155,8 +155,8 @@ void Game::GameOver() {
   tmp.open("log.txt", std::ios::in);
   getline(tmp, t);
   if (stricmp(t.c_str(), " ")!=0) {
-    getline(filein, t, ':');
-    filein >> ifuser.score;
+    getline(tmp, t, ':');
+    tmp >> ifuser.score;
     if (score_<ifuser.score) {
       score_ = ifuser.score;
     }
