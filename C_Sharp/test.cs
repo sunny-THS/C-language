@@ -6,11 +6,20 @@ using System.Threading.Tasks;
 
 namespace HelloWorld
 {
+  public class NhanVien
+  {
+    string mnv, hoTen, nvl;
+    double heSoLuong;
+    double luong, luong_CoBan, hspctn;
+    DateTime date;
+    static double mltt;
+
+  }
   class Program
   {
     static void Main(string[] args)
     {
-      
+
       Console.ReadKey();
     }
   }
