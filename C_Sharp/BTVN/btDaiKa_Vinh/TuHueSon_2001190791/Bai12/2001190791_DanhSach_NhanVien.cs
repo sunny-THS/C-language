@@ -6,130 +6,41 @@ using System.Threading.Tasks;
 
 namespace TuHueSon_2001190791
 {
-  public class NhanVien
-  {
-    Double hsl;
-    String mnv;
-    String hoten;
-    int nvl;
-    static double mltt = 2000;
-
-    public String Mnv
-    {
-      get { return mnv; }
-      set { mnv = value; }
-    }
-
-    public String Hoten
-    {
-      get { return hoten; }
-      set { hoten = value; }
-    }
-
-    public double Hsl
-    {
-      get { return hsl; }
-      set { hsl = value; }
-    }
-
-    public int Nvl
-    {
-      get { return nvl; }
-      set { nvl = value; }
-    }
-    public NhanVien()
-    {
-      this.mnv = "001";
-      this.hoten = "le van a";
-      this.hsl = 1;
-      this.nvl = 2000;
-    }
-    public NhanVien(String mnv, String hoten, double hsl, int nvl)
-    {
-      this.mnv = mnv;
-      this.hoten = hoten;
-      this.hsl = hsl;
-      this.nvl = nvl;
-    }
-    public NhanVien(NhanVien nv)
-    {
-      this.mnv = nv.mnv;
-      this.hoten = nv.hoten;
-      this.hsl = nv.hsl;
-      this.nvl = nv.nvl;
-    }
-    public void Nhap_ThongTin_NhanVien()
-    {
-      Console.Write("Nhap ma nhan vien: ");
-      Mnv = Console.ReadLine();
-      Console.Write("Nhap ho ten: ");
-      Hoten = Console.ReadLine();
-      Console.Write("Nhap he so luong: ");
-      Hsl = double.Parse(Console.ReadLine());
-      Console.Write("Nhap nam vao lam: ");
-      Nvl = int.Parse(Console.ReadLine());
-      Console.WriteLine("==================================");
-    }
-    public void Xuat_ThongTin_NhanVien()
-    {
-      Console.WriteLine(" Thong tin nhan Vien:\n Ma nhan vien: {0}\n Ho ten: {1}\n He so luong: {2}\n Nam vao lam: {3}\n Luong: {4}\n", mnv, hoten, hsl, nvl, Tinhluong());
-      Console.WriteLine("==================================");
-    }
-    public double Tinhluongcoban()
-    {
-      return hsl * mltt;
-    }
-    public double Tinhluongphucap()
-    {
-      DateTime Nam_HienTai = DateTime.Today;
-      return mltt * (Nam_HienTai.Year - nvl) / 100;
-    }
-    public double Tinhluong()
-    {
-      return Tinhluongcoban() + Tinhluongphucap();
-    }
-  }
-
   public class DanhSach_NhanVien
   {
     List<NhanVien> List_NhanVien;
     int SiSo;
     public DanhSach_NhanVien()
     {
-        List_NhanVien = new List<NhanVien>(50); // toi thieu 50 nhan vien
+      List_NhanVien = new List<NhanVien>(50); // toi thieu 50 nhan vien
     }
     public void Them_NhanVien(NhanVien nv)
     {
-        List_NhanVien.Add(nv);
+      List_NhanVien.Add(nv);
     }
     public void Nhap_ThongTin_ListNhanVien()
     {
-        Console.Write("nhap so luong nhan vien: ");
-        this.SiSo = int.Parse(Console.ReadLine());
-        for (int i = 0; i < this.SiSo; i++)
-        {
-            NhanVien nv = new NhanVien();
-            nv.Nhap_ThongTin_NhanVien();
-            Them_NhanVien(nv);
-        }
+      NhanVien nv = new NhanVien();
+      Console.Write("nhap so luong nhan vien: ");
+      this.SiSo = int.Parse(Console.ReadLine());
+      for (int i = 0; i < this.SiSo; i++)
+      {
+        nv.Nhap_ThongTin_NhanVien();
+        Them_NhanVien(nv);
+      }
     }
     public void Xuat_ThongTin_ListNhanVien()
     {
-        Console.WriteLine("Danh sach nhan vien");
-        List_NhanVien.ForEach(nv => nv.Xuat_ThongTin_NhanVien());
+      Console.WriteLine("Danh sach nhan vien");
+      List_NhanVien.ForEach(nv => nv.Xuat_ThongTin_NhanVien());
     }
     public double Tinhtongluong()
     {
-        double sum = 0;
-        if(List_NhanVien.Count() == 0)
-          return 0;
-        sum = List_NhanVien.Sum(nv=>nv.Tinhluong());
-        return sum;
+      return List_NhanVien.Sum(nv=>nv.Tinhluong());
     }
     public NhanVien Timluongcao()
     {
-        NhanVien max = List_NhanVien.OrderByDescending(t => t.Tinhluong()).ToList().First();
-        return max;
+      return List_NhanVien.OrderByDescending(t => t.Tinhluong()).ToList().First();
     }
     public void SapXep_NhanVien_TheoNamVaoLam()
     {
