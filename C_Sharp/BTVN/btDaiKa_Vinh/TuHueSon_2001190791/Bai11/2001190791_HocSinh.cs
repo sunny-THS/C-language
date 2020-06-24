@@ -10,25 +10,15 @@ namespace TuHueSon_2001190791
   {
     String Mhs, hT, ngaySinh;
     double dT, dL, dH;
-    public void Nhap_ThongTin_HocSinh()
+    public String MHS
     {
-      Console.Write("Ma so hoc sinh: ");
-      this.Mhs = Console.ReadLine();
-      Console.Write("Ho va ten: ");
-      this.hT = Console.ReadLine();
-      Console.Write("Nhap Ngay Sinh: ");
-      this.ngaySinh = Console.ReadLine();
-      Console.Write("Nhap diem toan: ");
-      DT = double.Parse(Console.ReadLine());
-      Console.Write("Nhap diem ly: ");
-      DL = double.Parse(Console.ReadLine());
-      Console.Write("Nhap diem hoa: ");
-      DH = double.Parse(Console.ReadLine());
+      get { return Mhs;}
+      set { Mhs = value;}
     }
-    public Xuat_ThongTin_HocSinh()
+    public String HT
     {
-      Console.WriteLine("Mshs: {0}\nHo va ten: {1}\nNgay Sinh: {2}\nDiem toan: {3} -- Diem Ly: {4} -- Diem Hoa: {5}", this.Mhs, this.hT, this.ngaySinh, this.dT, this.dL, this.dH);
-      Console.WriteLine("+++++++++++++++++++++++++++++++++++++++++");
+      get { return hT;}
+      set { hT = value;}
     }
     public double DL
     {
@@ -68,7 +58,27 @@ namespace TuHueSon_2001190791
         }
       }
     }
-    public double TingTongDiem3Mon()
+    public void Nhap_ThongTin_HocSinh()
+    {
+      Console.Write("Ma so hoc sinh: ");
+      this.Mhs = Console.ReadLine();
+      Console.Write("Ho va ten: ");
+      this.hT = Console.ReadLine();
+      Console.Write("Nhap Ngay Sinh: ");
+      this.ngaySinh = Console.ReadLine();
+      Console.Write("Nhap diem toan: ");
+      DT = double.Parse(Console.ReadLine());
+      Console.Write("Nhap diem ly: ");
+      DL = double.Parse(Console.ReadLine());
+      Console.Write("Nhap diem hoa: ");
+      DH = double.Parse(Console.ReadLine());
+    }
+    public void Xuat_ThongTin_HocSinh()
+    {
+      Console.WriteLine("Mshs: {0}\nHo va ten: {1}\nNgay Sinh: {2}\nDiem toan: {3} -- Diem Ly: {4} -- Diem Hoa: {5}", this.Mhs, this.hT, this.ngaySinh, this.dT, this.dL, this.dH);
+      Console.WriteLine("+++++++++++++++++++++++++++++++++++++++++");
+    }
+    public double TinhTongDiem3Mon()
     {
       return this.dT + this.dH + this.dL;
     }
