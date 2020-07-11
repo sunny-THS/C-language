@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DHCNTP>
+  <Khoa>Cong Nghe Thong Tin</Khoa>
+  <DiaDiem>B.103</DiaDiem>
+  <DanhSach>
+    <GiaoVien>
+      <HoTen>abc</HoTen>
+      <SoNhom>1</SoNhom>
+    </GiaoVien>
+    <GiaoVien>
+      <HoTen>efg</HoTen>
+      <SoNhom>3</SoNhom>
+    </GiaoVien>
+    <GiaoVien>
+      <HoTen>def</HoTen>
+      <SoNhom>2</SoNhom>
+    </GiaoVien>
+    <GiaoVien>
+      <HoTen>asd</HoTen>
+      <SoNhom>1</SoNhom>
+    </GiaoVien>
+    <GiaoVien>
+      <HoTen>eas</HoTen>
+      <SoNhom>3</SoNhom>
+    </GiaoVien>
+  </DanhSach>
+</DHCNTP>
