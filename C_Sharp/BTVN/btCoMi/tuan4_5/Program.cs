@@ -27,6 +27,8 @@ namespace _48_TuHueSon_Tuan3
       //Console.WriteLine();
       //Console.WriteLine("Danh sach giao vien co so nhom huong dan thuc hanh lon hon 1");
       //ds_gv.Loc_SoNhom_LonHon1().ForEach(gv => gv.Xuat_ThongTin_GiaoVien());
+      Console.Write("Nhap ten: ");
+      ds_gv.Tim(Console.ReadLine()).Xuat_ThongTin_GiaoVien();
       Console.ReadLine();
     }
   }

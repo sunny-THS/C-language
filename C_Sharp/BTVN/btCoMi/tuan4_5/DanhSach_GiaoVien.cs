@@ -54,6 +54,7 @@ namespace _48_TuHueSon_Tuan3
         this.DiaDiem = xml.DocumentElement["DiaDiem"].InnerText;
         foreach (XmlNode node in xml.DocumentElement["DanhSach"])
         {
+            var loai = int.Parse(node.Attributes["Loai"].Value);
             list_GV.Add(new GiaoVien(node["HoTen"].InnerText, int.Parse(node["SoNhom"].InnerText)));
         }
 
@@ -83,6 +84,10 @@ namespace _48_TuHueSon_Tuan3
     public List<GiaoVien> Loc_SoNhom_LonHon1()
     {
       return list_GV.Where(gv => gv.SONHOM > 1).ToList();
+    }
+    public GiaoVien Tim(String x)
+    {
+        return list_GV.Find(ds => ds.HOTEN.Equals(x));
     }
   }
 }
