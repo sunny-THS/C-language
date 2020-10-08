@@ -1,0 +1,12 @@
+11
+sv1 NguyenVanA 12 5 1991 B13/A CNTT 5.6
+sv2 NguyenVanB 17 5 2001 B13/B CNTP 6
+sv3 NguyenVanC 1 6 2001 B12/6 CNTT 5.6
+sv4 NguyenVanD 2 3 2001 B16/A CNTP 6
+sv5 NguyenVanG 10 2 2001 B1a/A CNTT 8.5
+sv6 NguyenVanF 3 2 2001 B1s/A CNTP 7
+sv7 NguyenVanW 5 5 2001 Bh3/A CNTP 7.5
+sv8 NguyenVanQ 6 3 2001 Bq3/A CNTT 4.4
+sv9 NguyenVanT 13 4 2001 Br3/A CNTP 5
+sv10 NguyenVanK 17 12 2001 Be3/A CNTP 7.6
+sv11 NguyenVanM 4 8 2001 Bw/A CNTP 5.6
