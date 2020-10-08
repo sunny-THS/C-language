@@ -32,7 +32,9 @@ SinhVien TimSV_DTBMAX(SinhVien * sv, int n);
 void Swap(SinhVien &a, SinhVien &b);
 void sortDescending(SinhVien *sv, int n);
 void DSSinhVienQueTPHCM(SinhVien *sv, int n);
-SinhVien * ThongKeSinhVienGioi(SinhVien * sv, int n, char * khoa);
+void ThongKeSinhVienGioi(SinhVien * sv, int n, char * khoa);
+int Tim_MSSV(SinhVien *sv, int n, char * khoa, char *mssv);
+int demSoNganhHoc(SinhVien *sv, int n);
 
 int main()
 {
@@ -45,11 +47,17 @@ int main()
 	DSSinhVienQueTPHCM(sv, n);
 	printf("\nSinh vien co diem tb cao nhat\n");
 	xuatThongTin(TimSV_DTBMAX(sv, n));
-	printf("Thong sinh vien gioi\n");
-	// SinhVien * tmp = ThongKeSinhVienGioi(sv, n, "CNTT");
+	printf("\nThong sinh vien gioi\n");
 	printf("\tKhoa CNTT:\n");
-	// xuatDSThongTin(ThongKeSinhVienGioi(sv, n, "CNTT"), 1);
-	printf("%s\n", ThongKeSinhVienGioi(sv, n, "CNTT")[0].mssv);
+	ThongKeSinhVienGioi(sv, n, "cntt");
+	printf("\tKhoa CNTP:\n");
+	ThongKeSinhVienGioi(sv, n, "cntp");
+	printf("\nTim mssv(012015)\n");
+	int t = Tim_MSSV(sv, n, "cntt", "012015");
+	if (t!=-1)
+	{
+		xuatThongTin(sv[t]);
+	}else printf("Khong tim thay\n", );
 	getch();
 	return 1;
 }
@@ -81,7 +89,7 @@ void docFile(SinhVien * sv, int &n)
 }
 void xuatThongTin(SinhVien sv)
 {
-	printf("%s\t-- %s\t-- %d/%d/%d\t-- %s\t-- %s\t-- %.2f\t-- ", sv.mssv, sv.hoten, sv.ngaySinh.ngay, sv.ngaySinh.thang, sv.ngaySinh.nam, sv.diaChi, sv.nganhHoc, sv.dtb);
+	printf("%s\t-- %s\t-- %d/%d/%d\t-- %s\t-- %s\t-- %.1f\t-- ", sv.mssv, sv.hoten, sv.ngaySinh.ngay, sv.ngaySinh.thang, sv.ngaySinh.nam, sv.diaChi, sv.nganhHoc, sv.dtb);
 	printf("%s\t-- ", TinhDiemChu(sv));
 	printf("%s\n", XepLoai(sv));
 }
@@ -140,7 +148,7 @@ int demSoSVTren22(SinhVien * sv, int n)
 // btvn
 void DSSinhVienQueTPHCM(SinhVien *sv, int n)
 {
-	printf("\nDs sinh vien que TPHCM\n");
+	printf("\n\nDs sinh vien que TPHCM\n");
 	for (size_t i = 0; i < n; i++)
 	{
 		if (strstr(sv[i].diaChi, "TPHCM")!=NULL) xuatThongTin(sv[i]);
@@ -170,15 +178,37 @@ void Swap(SinhVien &a, SinhVien &b)
 	a = b;
 	b = t;
 }
-SinhVien *ThongKeSinhVienGioi(SinhVien * sv, int n, char * khoa)
+void ThongKeSinhVienGioi(SinhVien * sv, int n, char * khoa)
 {
-	SinhVien sv_[MAX];
+	bool isempty = true;
 	for (size_t i = 0; i < n; i++)
 	{
 		if (strcmpi(XepLoai(sv[i]), "Gioi") == 0 && strcmpi(sv[i].nganhHoc, khoa) == 0)
 		{
-			sv_[i] = sv[i];
+			xuatThongTin(sv[i]);
+			isempty = false;
 		}
 	}
-	return sv_;
+	if (isempty)
+	{
+		printf("Khong co sinh vien nao\n");
+	}
+}
+int Tim_MSSV(SinhVien *sv, int n, char * khoa, char *mssv)
+{
+	for (size_t i = 0; i < n; i++) {
+		if (strcmpi(sv[i].nganhHoc, khoa) == 0 && strcmpi(mssv, sv[i].mssv) == 0) {
+			return i;
+		}
+	}
+	return -1;
+}
+int demSoNganhHoc(SinhVien *sv, int n)
+{
+	int d = 0;
+	int
+	for (size_t i = 0; i < n; i++) {
+
+	}
+	return d;
 }
