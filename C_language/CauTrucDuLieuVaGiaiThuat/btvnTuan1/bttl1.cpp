@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <string.h>
 #define YEARNOW 2019
+#define MAX 20
+#define length(x) *(&x+1)-x
 struct Date
 {
 	int ngay;
@@ -26,24 +28,36 @@ char * XepLoai(SinhVien sv);
 bool XuatSVCNTT(SinhVien sv);
 void XuatDSSVCNTT(SinhVien * sv, int n);
 int demSoSVTren22(SinhVien * sv, int n);
-SinhVien TimSVDTBMAX(SinhVien * sv, int n);
+SinhVien TimSV_DTBMAX(SinhVien * sv, int n);
 void Swap(SinhVien &a, SinhVien &b);
-void sapXep(SinhVien *sv, int n);
+void sortDescending(SinhVien *sv, int n);
+void DSSinhVienQueTPHCM(SinhVien *sv, int n);
+SinhVien * ThongKeSinhVienGioi(SinhVien * sv, int n, char * khoa);
 
-void main()
+int main()
 {
-	SinhVien sv[20];
+	SinhVien sv[MAX];
 	int n;
 	docFile(sv, n);
 	xuatDSThongTin(sv, n);
 	XuatDSSVCNTT(sv, n);
 	printf("\nDs sinh vien tren 22: %d", demSoSVTren22(sv, n));
+	DSSinhVienQueTPHCM(sv, n);
+	printf("\nSinh vien co diem tb cao nhat\n");
+	xuatThongTin(TimSV_DTBMAX(sv, n));
+	printf("Thong sinh vien gioi\n");
+	// SinhVien * tmp = ThongKeSinhVienGioi(sv, n, "CNTT");
+	printf("\tKhoa CNTT:\n");
+	// xuatDSThongTin(ThongKeSinhVienGioi(sv, n, "CNTT"), 1);
+	printf("%s\n", ThongKeSinhVienGioi(sv, n, "CNTT")[0].mssv);
 	getch();
+	return 1;
 }
 void docFile(SinhVien * sv, int &n)
 {
 	FILE *f;
 	char date[40];
+	char tmp[2];
 	if ((f = fopen("input.txt", "r")) == NULL)
 	{
 		printf("ERROR");
@@ -55,7 +69,9 @@ void docFile(SinhVien * sv, int &n)
 		fscanf(f, "%s", &sv[i].mssv);
 		fscanf(f, "%s", &sv[i].hoten);
 		fscanf(f, "%d", &sv[i].ngaySinh.ngay);
+		fscanf(f, "%c", &tmp);
 		fscanf(f, "%d", &sv[i].ngaySinh.thang);
+		fscanf(f, "%c", &tmp);
 		fscanf(f, "%d", &sv[i].ngaySinh.nam);
 		fscanf(f, "%s", &sv[i].diaChi);
 		fscanf(f, "%s", &sv[i].nganhHoc);
@@ -65,8 +81,8 @@ void docFile(SinhVien * sv, int &n)
 }
 void xuatThongTin(SinhVien sv)
 {
-	printf("%s\t--\t%s\t--\t%d/%d/%d\t--\t%s\t-- %s\t-- %.2f -- ", sv.mssv, sv.hoten, sv.ngaySinh.ngay, sv.ngaySinh.thang, sv.ngaySinh.nam, sv.diaChi, sv.nganhHoc, sv.dtb);
-	printf("%s\t", TinhDiemChu(sv));
+	printf("%s\t-- %s\t-- %d/%d/%d\t-- %s\t-- %s\t-- %.2f\t-- ", sv.mssv, sv.hoten, sv.ngaySinh.ngay, sv.ngaySinh.thang, sv.ngaySinh.nam, sv.diaChi, sv.nganhHoc, sv.dtb);
+	printf("%s\t-- ", TinhDiemChu(sv));
 	printf("%s\n", XepLoai(sv));
 }
 void xuatDSThongTin(SinhVien * sv, int n)
@@ -106,10 +122,7 @@ void XuatDSSVCNTT(SinhVien * sv, int n)
 	printf("\nDs sinh vien cntt\n");
 	for (size_t i = 0; i < n; i++)
 	{
-		if (XuatSVCNTT(sv[i]))
-		{
-			xuatThongTin(sv[i]);
-		}
+		if (XuatSVCNTT(sv[i])) xuatThongTin(sv[i]);
 	}
 }
 int demSoSVTren22(SinhVien * sv, int n)
@@ -125,26 +138,47 @@ int demSoSVTren22(SinhVien * sv, int n)
 	return dem;
 }
 // btvn
-//SinhVien TimSVDTBMAX(SinhVien * sv, int n)
-//{
-//	sapXep(sv, )
-//}
-//void sapXep(SinhVien *sv, int n)
-//{
-//	for (size_t i = 0; i < n-1; i++)
-//	{
-//		for (size_t j = i+1; j < n; j++)
-//		{
-//			if (sv[i].dtb>sv[j].dtb)
-//			{
-//				Swap(sv[i], sv[j])
-//			}
-//		}
-//	}
-//}
-//void Swap(SinhVien &a, SinhVien &b)
-//{
-//	SinhVien t = a;
-//	a = b;
-//	b = t;
-//}
+void DSSinhVienQueTPHCM(SinhVien *sv, int n)
+{
+	printf("\nDs sinh vien que TPHCM\n");
+	for (size_t i = 0; i < n; i++)
+	{
+		if (strstr(sv[i].diaChi, "TPHCM")!=NULL) xuatThongTin(sv[i]);
+	}
+}
+SinhVien TimSV_DTBMAX(SinhVien * sv, int n)
+{
+	sortDescending(sv, n);
+	return sv[0];
+}
+void sortDescending(SinhVien *sv, int n)
+{
+	for (size_t i = 0; i < n-1; i++)
+	{
+		for (size_t j = i+1; j < n; j++)
+		{
+			if (sv[i].dtb<sv[j].dtb)
+			{
+				Swap(sv[i], sv[j]);
+			}
+		}
+	}
+}
+void Swap(SinhVien &a, SinhVien &b)
+{
+	SinhVien t = a;
+	a = b;
+	b = t;
+}
+SinhVien *ThongKeSinhVienGioi(SinhVien * sv, int n, char * khoa)
+{
+	SinhVien sv_[MAX];
+	for (size_t i = 0; i < n; i++)
+	{
+		if (strcmpi(XepLoai(sv[i]), "Gioi") == 0 && strcmpi(sv[i].nganhHoc, khoa) == 0)
+		{
+			sv_[i] = sv[i];
+		}
+	}
+	return sv_;
+}
