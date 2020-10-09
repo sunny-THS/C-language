@@ -1,0 +1,7 @@
+So mat hang: 1
+45  -- 45
+	Gia: 45.00
+	NSX: 12/1/2001
+	HSD: 3
+	SL ton kho: 45
+

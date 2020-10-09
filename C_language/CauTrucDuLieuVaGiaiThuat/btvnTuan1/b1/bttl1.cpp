@@ -4,7 +4,7 @@
 #include <string.h>
 #define YEARNOW 2019
 #define MAX 20
-#define length(x) *(&x+1)-x
+
 struct Date
 {
 	int ngay;
@@ -13,11 +13,11 @@ struct Date
 };
 struct SinhVien
 {
-	char mssv[50];
-	char hoten[50];
-	char diaChi[50];
+	char mssv[7];
+	char hoten[15];
+	char diaChi[15];
 	Date ngaySinh;
-	char nganhHoc[50];
+	char nganhHoc[10];
 	float dtb;
 };
 void docFile(SinhVien * sv, int &n);
@@ -29,13 +29,15 @@ bool XuatSVCNTT(SinhVien sv);
 void XuatDSSVCNTT(SinhVien * sv, int n);
 int demSoSVTren22(SinhVien * sv, int n);
 SinhVien TimSV_DTBMAX(SinhVien * sv, int n);
-void Swap(SinhVien &a, SinhVien &b);
-void sortDescending(SinhVien *sv, int n);
+template <typename ItemType>
+void Swap(ItemType &a, ItemType &b);
+void sortDescending_WithDTB(SinhVien *sv, int n);
+void sortDescending_WithKhoa(SinhVien *sv, int n);
 void DSSinhVienQueTPHCM(SinhVien *sv, int n);
 void ThongKeSinhVienGioi(SinhVien * sv, int n, char * khoa);
+void ThongKeSinhVienTheoXL(SinhVien * sv, int n, char * xl);
 int Tim_MSSV(SinhVien *sv, int n, char * khoa, char *mssv);
 int demSoNganhHoc(SinhVien *sv, int n);
-
 int main()
 {
 	SinhVien sv[MAX];
@@ -57,7 +59,24 @@ int main()
 	if (t!=-1)
 	{
 		xuatThongTin(sv[t]);
-	}else printf("Khong tim thay\n", );
+	}else printf("Khong tim thay\n");
+	printf("\nDem so nganh hoc cua sinh vien\n");
+	t = demSoNganhHoc(sv, n);
+	if (t!=-1)
+	{
+		printf("%d nganh hoc\n", t);
+	}else printf("Khong tim thay\n");
+	printf("\nThong sinh vien theo tung nhom xep loai\n");
+	printf("\tGioi:\n");
+	ThongKeSinhVienTheoXL(sv, n, "Gioi");
+	printf("\tKha:\n");
+	ThongKeSinhVienTheoXL(sv, n, "Kha");
+	printf("\tTrung binh:\n");
+	ThongKeSinhVienTheoXL(sv, n, "Trung binh");
+	printf("\tTrung binh yeu:\n");
+	ThongKeSinhVienTheoXL(sv, n, "Trung binh yeu");
+	printf("\tKem:\n");
+	ThongKeSinhVienTheoXL(sv, n, "Kem");
 	getch();
 	return 1;
 }
@@ -156,10 +175,10 @@ void DSSinhVienQueTPHCM(SinhVien *sv, int n)
 }
 SinhVien TimSV_DTBMAX(SinhVien * sv, int n)
 {
-	sortDescending(sv, n);
+	sortDescending_WithDTB(sv, n);
 	return sv[0];
 }
-void sortDescending(SinhVien *sv, int n)
+void sortDescending_WithDTB(SinhVien *sv, int n)
 {
 	for (size_t i = 0; i < n-1; i++)
 	{
@@ -172,9 +191,23 @@ void sortDescending(SinhVien *sv, int n)
 		}
 	}
 }
-void Swap(SinhVien &a, SinhVien &b)
+void sortDescending_WithKhoa(SinhVien *sv, int n)
 {
-	SinhVien t = a;
+	for (size_t i = 0; i < n-1; i++)
+	{
+		for (size_t j = i+1; j < n; j++)
+		{
+			if (strcmpi(sv[i].nganhHoc, sv[j].nganhHoc)==1)
+			{
+				Swap(sv[i], sv[j]);
+			}
+		}
+	}
+}
+template <typename ItemType>
+void Swap(ItemType &a, ItemType &b)
+{
+	ItemType t = a;
 	a = b;
 	b = t;
 }
@@ -205,10 +238,30 @@ int Tim_MSSV(SinhVien *sv, int n, char * khoa, char *mssv)
 }
 int demSoNganhHoc(SinhVien *sv, int n)
 {
-	int d = 0;
-	int
-	for (size_t i = 0; i < n; i++) {
+	if(n<1) return -1;
+	sortDescending_WithKhoa(sv, n);
 
+	int d = 1;
+	for (size_t i = 0; i < n-1; i++) {
+		if (strcmpi(sv[i].nganhHoc, sv[i+1].nganhHoc)!=0) {
+			d++;
+		}
 	}
 	return d;
+}
+void ThongKeSinhVienTheoXL(SinhVien * sv, int n, char * xl)
+{
+	bool isempty = true;
+	for (size_t i = 0; i < n; i++)
+	{
+		if (strcmpi(XepLoai(sv[i]), xl) == 0)
+		{
+			xuatThongTin(sv[i]);
+			isempty = false;
+		}
+	}
+	if (isempty)
+	{
+		printf("Khong co sinh vien nao\n");
+	}
 }
