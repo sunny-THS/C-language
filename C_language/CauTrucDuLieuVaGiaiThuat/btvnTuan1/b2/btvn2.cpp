@@ -28,8 +28,10 @@ int main()
 {
   HangHoa hh[MAX];
   int n;
-  // DocFile(hh, n);
-  NhapDSThongTin(hh, n);
+  printf("doc file hoac nhap tu ban phim (1/2): ");
+  scanf("%d", &n);
+  if(n==1) DocFile(hh, n);
+  else NhapDSThongTin(hh, n);
   xuatDSThongTin(hh, n);
   GhiFile(hh, n);
   getch();
@@ -87,17 +89,16 @@ void NhapThongTin(HangHoa &hh)
 void NhapDSThongTin(HangHoa *hh, int &n)
 {
   do {
-    /* code */
-  } while(n<1&&n>MAX);
-  printf("Nhap so luong mat hang: ");
-  scanf("%d", &n);
+    printf("Nhap so luong mat hang: ");
+    scanf("%d", &n);
+  } while(n<1||n>MAX);
   for (size_t i = 0; i < n; i++) {
     NhapThongTin(hh[i]);
   }
 }
 void xuatThongTin(HangHoa hh)
 {
-  printf("%s\t-- %s\t-- %.0f000vnd\t-- %d/%d/%d(NSX)\t-- %d thang(HSD)\t-- sl ton kho:%3d\n", hh.ma, hh.ten, hh.gia, hh.nsx.ngay, hh.nsx.thang, hh.nsx.nam, hh.hsd, hh.slTonKho);
+  printf("%s\t-- %s\t-- %.0f,000vnd\t-- %d/%d/%d(NSX)\t-- %d thang(HSD)\t-- sl ton kho:%3d\n", hh.ma, hh.ten, hh.gia, hh.nsx.ngay, hh.nsx.thang, hh.nsx.nam, hh.hsd, hh.slTonKho);
 }
 void inThongTin(FILE *f, HangHoa hh)
 {
@@ -119,11 +120,11 @@ void GhiFile(HangHoa *hh, int n)
   }
   fclose(f);
 }
-HangHoa HangHoaHetHan(HangHoa hh)
-{
-  char *token = strtok(tmp, separator);
-  int thang = atoi(token);
-  token = strtok(NULL, separator);
-  int nam = atoi(token);
-  if(hh.nsx.thang-thang==0)
-}
+// HangHoa HangHoaHetHan(HangHoa hh)
+// {
+//   char *token = strtok(tmp, separator);
+//   int thang = atoi(token);
+//   token = strtok(NULL, separator);
+//   int nam = atoi(token);
+//   if(hh.nsx.thang-thang==0)
+// }
