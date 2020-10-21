@@ -1,0 +1,17 @@
+MSSV        Ho Ten      Ngay Sinh            Dia Chi       Nganh Hoc   Dtb   Diem Chu   Xep Loai
+----------------------------------------------------------------------------------------------------
+ 001   Nguyen Van A   12/ 5/2001        Binh Tan, TPHCM     CNTT      7.8       B       Kha
+ 002   Nguyen Van B    2/10/2001      Binh Chanh, TPHCM     CNTT      6.0       C       Trung Binh
+ 003   Nguyen Van C   10/ 1/2001         Tan Phu, TPHCM     CNTP      7.0       B       Kha
+ 004   Nguyen Thi E    3/ 5/2001  Tan Ki Tan Quy, TPHCM     CNTT      8.0      B+       Kha
+ 005   Nguyen Van D   20/ 2/2001        Binh Tan, TPHCM     CNTP      9.0       A       Gioi
+ 006     Tran Van A   12/ 3/2001      Binh Chanh, TPHCM     CNTT      8.0      B+       Kha
+ 007     Tran Thi Q   12/ 7/2000        Binh Tan, TPHCM     CNTT      9.0       A       Gioi
+ 008     Doan Thi H   22/ 4/1999        Binh Tan, TPHCM     QTKD      7.8       B       Kha
+ 009     Tran Thi H   17/ 5/2001      Binh Chanh, TPHCM     QTKD      9.0       A       Gioi
+ 010     Tran Van T    7/12/2001      Binh Chanh, TPHCM     CNTT     10.0       A       Gioi
+ 011       Do Thi P   17/11/2001      Binh Chanh, TPHCM     QTKD      5.0      D+       Trung Binh Yeu
+ 012      Phan Ai L   20/ 2/2002          Quan 1, TPHCM     CNTT      9.0       A       Gioi
+ 013   Nguyen Van L   17/ 9/2001      Binh Chanh, TPHCM     QTKD      9.0       A       Gioi
+ 014     Tran Van R    1/ 1/2001          Quan 1, TPHCM     QTKD      9.0       A       Gioi
+ 015      Lai Gia L   26/ 2/2001      Binh Chanh, TPHCM     CNTP      9.0       A       Gioi

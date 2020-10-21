@@ -1,0 +1,73 @@
+So mat hang: 12
+001  -- BanhDanisa-454g
+	Gia: 139.00
+	NSX: 20/1/2019
+	HSD: 6 thang
+	SL ton kho: 150
+
+002  -- Banhkokola-400g
+	Gia: 40.00
+	NSX: 15/10/2018
+	HSD: 1 thang
+	SL ton kho: 4
+
+003  -- BanhDanisa-908g
+	Gia: 229.00
+	NSX: 17/1/2019
+	HSD: 6 thang
+	SL ton kho: 200
+
+004  -- BanhKoala-19.5g
+	Gia: 12.00
+	NSX: 1/2/2019
+	HSD: 1 thang
+	SL ton kho: 250
+
+005  -- BanhDanisa-200g
+	Gia: 56.00
+	NSX: 16/1/2019
+	HSD: 6 thang
+	SL ton kho: 200
+
+006  -- BanhDanisa-681g
+	Gia: 190.00
+	NSX: 18/1/2019
+	HSD: 6 thang
+	SL ton kho: 150
+
+007  -- BanhCookie-400g
+	Gia: 75.00
+	NSX: 25/2/2019
+	HSD: 1 thang
+	SL ton kho: 160
+
+008  -- Kinokonoyama-74g
+	Gia: 116.00
+	NSX: 17/12/2018
+	HSD: 2 thang
+	SL ton kho: 10
+
+009  -- PuccaChocolate-43g
+	Gia: 67.00
+	NSX: 17/11/2018
+	HSD: 2 thang
+	SL ton kho: 3
+
+010  -- BanhTrungThu-1
+	Gia: 40.00
+	NSX: 17/9/2019
+	HSD: 2 thang
+	SL ton kho: 300
+
+011  -- NuocTuong-700ml
+	Gia: 40.00
+	NSX: 15/2/2019
+	HSD: 36 thang
+	SL ton kho: 400
+
+012  -- DuaMuoi-1
+	Gia: 40.00
+	NSX: 14/2/2019
+	HSD: 25 thang
+	SL ton kho: 200
+

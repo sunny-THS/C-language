@@ -48,7 +48,6 @@ bool HetHSD(HangHoa hh);
 void them1HangHoa(HangHoa *hh, int &n);
 HangHoa soLuongTonKho_Max(HangHoa *hh, int n);
 HangHoa soLuongTonKho_no2(HangHoa *hh, int n);
-
 template <typename T>
 void swap(T &a, T &b);
 
@@ -128,7 +127,6 @@ void DocFile(HangHoa *hh, int &n)
 void NhapThongTin(HangHoa &hh)
 {
   char tmp[15];
-  char *separator = "/";
   printf("ma hang hoa: ");
   scanf("%s", &hh.ma);
   printf("ten hang hoa: ");
@@ -141,8 +139,20 @@ void NhapThongTin(HangHoa &hh)
     char *token = strtok(tmp, separator);
     hh.nsx.ngay = atoi(token);
     token = strtok(NULL, separator);
+    if(token==NULL)
+    {
+      hh.nsx.thang = 0;
+      hh.nsx.nam = 2000;
+	  continue;
+    }
     hh.nsx.thang = atoi(token);
     token = strtok(NULL, separator);
+    if(token==NULL)
+    {
+      hh.nsx.thang = 0;
+      hh.nsx.nam = 2000;
+	  continue;
+    }
     hh.nsx.nam = atoi(token);
   } while(!testDate(hh.nsx.ngay, hh.nsx.thang, hh.nsx.nam));
   printf("HSD: ");
@@ -177,7 +187,7 @@ void xuatDSThongTin(HangHoa *hh, int n)
 }
 void GhiFile(HangHoa *hh, int n)
 {
-  FILE *f = fopen("output.txt", "w");
+  FILE *f = fopen("output2.txt", "w");
   fprintf(f, "So mat hang: %d\n", n);
   for (size_t i = 0; i < n; i++) {
     inThongTin(f, hh[i]);
@@ -218,6 +228,7 @@ int xacDinhThang(int m)
     case 1: case 3: case 5: case 7: case 8: case 10: case 12: return 1;
     case 4: case 6: case 9: case 11: return 0;
     case 2: return 2;
+	default: return -1;
   }
 }
 bool KiemTraNamNhuan(int y)
@@ -406,10 +417,20 @@ void them1HangHoa(HangHoa *hh, int &n)
 HangHoa soLuongTonKho_Max(HangHoa *hh, int n)
 {
   sapXepTonKho(hh, n);
-  return hh[n-1];
+  size_t i = n-2;
+  for (; i > 0; i--) {
+    if(hh[i].slTonKho != hh[i+1].slTonKho)
+      break;
+  }
+  return hh[i+1];
 }
 HangHoa soLuongTonKho_no2(HangHoa *hh, int n)
 {
   sapXepTonKho(hh, n);
-  return hh[n-2];
+  size_t i = n-2;
+  for (; i > 0; i--) {
+    if(hh[i].slTonKho != hh[i+1].slTonKho)
+      break;
+  }
+  return hh[i];
 }
