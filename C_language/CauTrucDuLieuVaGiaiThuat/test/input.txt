@@ -1,0 +1,91 @@
+15
+001
+12/5/2001
+Aguyen Van A
+Binh Tan, TPHCM
+CNTT
+7.8
+002
+2/10/2001
+Nguyen Van B
+Binh Chanh, TPHCM
+CNTT
+6
+003
+10/1/2001
+Nguyen Van C
+Tan Phu, TPHCM
+CNTP
+7
+004
+3/5/2001
+Nguyen Thi E
+Tan Ki Tan Quy, TPHCM
+CNTT
+8
+005
+20/2/2001
+Nguyen Van D
+Binh Tan, TPHCM
+CNTP
+9
+006
+12/3/2001
+Tran Van A
+Binh Chanh, TPHCM
+CNTT
+8
+007
+12/7/2000
+Tran Thi Q
+Binh Tan, TPHCM
+CNTT
+9
+008
+22/4/1999
+Doan Thi H
+Binh Tan, TPHCM
+QTKD
+7.8
+009
+17/5/2001
+Tran Thi H
+Binh Chanh, TPHCM
+QTKD
+9
+010
+7/12/2001
+Tran Van T
+Binh Chanh, TPHCM
+CNTT
+10
+011
+17/11/2001
+Do Thi P
+Binh Chanh, TPHCM
+QTKD
+5
+012
+20/2/2002
+Phan Ai L
+Quan 1, TPHCM
+CNTT
+9
+013
+17/9/2001
+Zguyen Van L
+Binh Chanh, TPHCM
+QTKD
+9
+014
+1/1/2001
+Tran Van R
+Quan 1, TPHCM
+QTKD
+9
+015
+26/2/2001
+Lai Gia L
+Binh Chanh, TPHCM
+CNTP
+9
