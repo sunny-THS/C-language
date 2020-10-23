@@ -22,6 +22,8 @@ void xuatThongTin(SinhVien sv);
 void xuat(SinhVien *sv, int n);
 void QuickSort(SinhVien *sv, int l, int r, bool(* compare)(const void *, const void *));
 bool compare_HoTen_asc(const void *, const void *);
+void ghiFile(SinhVien *sv, int n);
+void inThongTin(FILE *f, SinhVien sv);
 template <typename T>
 void swap(T &a, T &b)
 {
@@ -37,6 +39,23 @@ int main()
   menu(sv, n);
   getch();
   return 0;
+}
+void inThongTin(FILE *f, SinhVien sv)
+{
+  fprintf(f, "%4s %10d/%2d/%d %15s %s %30s %10s %8.1f\n", \
+  sv.mssv, sv.ngaySinh.d, sv.ngaySinh.m, sv.ngaySinh.y, sv.ho, sv.ten, sv.diadiem, sv.khoa, sv.dtb);
+}
+void ghiFile(SinhVien *sv, int n)
+{
+  FILE *f = fopen("output.txt", "w");
+  fprintf(f, "%s", "Thong tin sinh vien\n");
+  fprintf(f, "%2s %15s %15s %30s %15s %8s\n", \
+        "mssv", "ngaysinh", "hoten", "diachi", "khoa", "dtb"
+  );
+  for (size_t i = 0; i < n; i++) {
+    inThongTin(f, sv[i]);
+  }
+  fclose(f);
 }
 bool compare_HoTen_asc(const void *a, const void *b)
 {
@@ -64,6 +83,7 @@ void menu(SinhVien *sv, int &n){
       case 1:
       {
         DocFile(sv, n);
+        ghiFile(sv, n);
         xuat(sv, n);
       } break;
       case 2:
@@ -128,6 +148,7 @@ void DocFile(SinhVien *sv, int &n)
     sv[i].khoa[strlen(sv[i].khoa)-1] = '\0';
     fscanf(f, "%f", &sv[i].dtb);
   }
+  fclose(f);
 }
 void QuickSort(SinhVien *sv, int l, int r, bool(* compare)(const void *, const void *))
 {
