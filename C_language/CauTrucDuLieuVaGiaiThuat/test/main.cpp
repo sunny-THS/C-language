@@ -61,13 +61,10 @@ bool compare_HoTen_asc(const void *a, const void *b)
 {
   const SinhVien *sv1 = (SinhVien*)a;
   const SinhVien *sv2 = (SinhVien*)b;
+  int tenSV = strcmpi(sv1->ten, sv2->ten);
+  int hoSV = strcmpi(sv1->ho, sv2->ho);
 
-  if(strcmpi(sv1->ten, sv2->ten)>0) return true;
-  else if(strcmpi(sv1->ten, sv2->ten)==0)
-  {
-    if(strcmpi(sv1->ho, sv2->ho)>0) return true;
-  }
-  return false;
+  return tenSV>0?true:(tenSV==0&&hoSV>0)?true:false;
 }
 
 void menu(SinhVien *sv, int &n){
