@@ -206,19 +206,12 @@ void sortAscending_NSX(HangHoa *hh, int n)
   for (size_t i = 0; i < n-1; i++) {
     bool swapped = false;
     for (size_t j = i+1; j < n; j++) {
-      if (hh[i].nsx.nam>hh[j].nsx.nam) {
+      if (hh[i].nsx.nam>hh[j].nsx.nam ||\
+         (hh[i].nsx.nam==hh[j].nsx.nam && hh[i].nsx.thang>hh[j].nsx.thang) ||\
+         (hh[i].nsx.thang==hh[j].nsx.thang && hh[i].nsx.ngay>hh[j].nsx.ngay)\
+       ) {
         swap(hh[i], hh[j]);
         swapped = true;
-      }else if (hh[i].nsx.nam==hh[j].nsx.nam) {
-        if (hh[i].nsx.thang>hh[j].nsx.thang) {
-          swap(hh[i], hh[j]);
-          swapped = true;
-        }else if (hh[i].nsx.thang==hh[j].nsx.thang) {
-          if (hh[i].nsx.ngay>hh[j].nsx.ngay) {
-            swap(hh[i], hh[j]);
-            swapped = true;
-          }
-        }
       }
     }
     if (!swapped) return;

@@ -37,7 +37,7 @@ So mat hang: 12
 
 007  -- BanhCookie-400g
 	Gia: 75.00
-	NSX: 25/2/2019
+	NSX: 1/2/2019
 	HSD: 1 thang
 	SL ton kho: 160
 
@@ -61,13 +61,13 @@ So mat hang: 12
 
 011  -- NuocTuong-700ml
 	Gia: 40.00
-	NSX: 15/2/2019
+	NSX: 1/2/2019
 	HSD: 36 thang
 	SL ton kho: 400
 
 012  -- DuaMuoi-1
 	Gia: 40.00
-	NSX: 14/2/2019
+	NSX: 1/2/2019
 	HSD: 25 thang
 	SL ton kho: 200
 
