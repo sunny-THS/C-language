@@ -11,7 +11,7 @@ struct SList {
   SNode *head;
   SNode *tail;
 };
-void initSlist(SList &sl) // intitialization a singly linked list
+void initSlist(SList &sl) // initialization a singly linked list
 {
   sl.head = sl.tail = NULL;
 }
@@ -38,9 +38,10 @@ bool addTail(SList &sl, SNode *pSNode)
   {
     sl.head = pSNode;
     sl.tail = pSNode;
+  }else {
+    sl.tail->pNext = pSNode;
+    sl.tail = pSNode;
   }
-  sl.tail->pNext = pSNode;
-  sl.tail = pSNode;
   return true;
 }
 bool addBefore(SList &sl, ItemType x, ItemType y)
@@ -249,50 +250,73 @@ SNode *FindVal_(SList sl, bool isMax = true) //default find max
     }
     return tmp;
 }
+void filter_even_odd(SList sl, SList &sl_even, SList &sl_odd)
+{
+  // initialization 2 singly linked list
+  initSlist(sl_even);
+  initSlist(sl_odd);
+  SNode *pSNode = sl.head;
+  if (isEmpty(sl))
+  {
+    printf("Danh sach rong\n");
+    return;
+  }
+  while (pSNode)
+  {
+    if(pSNode->info % 2 == 0) addTail(sl_even, CreateSNode(pSNode->info));
+    else addTail(sl_odd, CreateSNode(pSNode->info));
+    pSNode = pSNode->pNext;
+  }
+}
 int main()
 {
   SList sl;
   CreateSList(sl);
   ShowSList(sl);
-  // printf("\nThem gia tri\n");
-  // int x;
-  // printf("Nhap gia tri: ");
-  // scanf("%d", &x);
-  // addTail(sl, CreateSNode(x));
-  // ShowSList(sl);
-  // printf("\nThem gia tri vao truoc gia tri y\n");
-  // int y;
-  // printf("Nhap gia tri x: ");
-  // scanf("%d", &x);
-  // printf("Nhap gia tri y: ");
-  // scanf("%d", &y);
-  // addBefore(sl, x, y);
-  // ShowSList(sl);
-  // printf("\nXoa phan tu lon hon x\n");
-  // printf("Nhap x: ");
-  // scanf("%d", &x);
-  // DelVal_greaterThanX(sl, x);
-  // ShowSList(sl);
-  // printf("\nXoa phan tu co gia tri chan\n");
-  // DelVal_even(sl);
-  // ShowSList(sl);
-  // printf("\nSap xep tang dan gia tri\n");
-  // SelectionSort(sl, compare_asc);
-  // ShowSList(sl);
-  // printf("\nSap xep giam dan gia tri\n");
-  // SelectionSort(sl, compare_desc);
-  // ShowSList(sl);
-  // printf("\nso luong so nguyen to: %d\n", countVal_isPrimeNumber(sl));
-  // printf("\ntong ca so chinh phuong: %d\n", sumVal_isSquareNumber(sl));
-  // SNode *tmp = FindVal_(sl);
-  // printf("\nGia tri lon nhat trong danh sach: ");
-  // if (tmp) ShowNode(tmp);
-  // else printf("\nKhong Tim thay\n");
-  // printf("\nGia tri nho nhat trong danh sach: ");
-  // tmp = FindVal_(sl, false);
-  // if (tmp) ShowNode(tmp);
-  // else printf("\nKhong Tim thay\n");
-
+  printf("\nThem gia tri vao cuoi ds\n");
+  int x;
+  printf("Nhap gia tri: ");
+  scanf("%d", &x);
+  addTail(sl, CreateSNode(x));
+  ShowSList(sl);
+  printf("\nThem gia tri vao truoc gia tri y\n");
+  int y;
+  printf("Nhap gia tri x: ");
+  scanf("%d", &x);
+  printf("Nhap gia tri y: ");
+  scanf("%d", &y);
+  addBefore(sl, x, y);
+  ShowSList(sl);
+  printf("\nSap xep tang dan gia tri\n");
+  SelectionSort(sl, compare_asc);
+  ShowSList(sl);
+  printf("\nSap xep giam dan gia tri\n");
+  SelectionSort(sl, compare_desc);
+  ShowSList(sl);
+  printf("\nso luong so nguyen to: %d\n", countVal_isPrimeNumber(sl));
+  printf("\ntong ca so chinh phuong: %d\n", sumVal_isSquareNumber(sl));
+  SNode *tmp = FindVal_(sl);
+  printf("\nGia tri lon nhat trong danh sach: ");
+  if (tmp) ShowNode(tmp);
+  else printf("\nKhong Tim thay\n");
+  printf("\nGia tri nho nhat trong danh sach: ");
+  tmp = FindVal_(sl, false);
+  if (tmp) ShowNode(tmp);
+  else printf("\nKhong Tim thay\n");
+  SList sl_even, sl_odd;
+  filter_even_odd(sl, sl_even, sl_odd);
+  printf("\nDanh sach chan\n");
+  ShowSList(sl_even);
+  printf("\nDanh sach le\n");
+  ShowSList(sl_odd);
+  printf("\nXoa phan tu lon hon x\n");
+  printf("Nhap x: ");
+  scanf("%d", &x);
+  DelVal_greaterThanX(sl, x);
+  ShowSList(sl);
+  printf("\nXoa phan tu co gia tri chan\n");
+  DelVal_even(sl);
+  ShowSList(sl);
   getch();
   return 0;
 }
