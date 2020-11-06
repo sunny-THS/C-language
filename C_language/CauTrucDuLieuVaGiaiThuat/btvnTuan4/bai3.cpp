@@ -141,15 +141,15 @@ int main()
   Slist sl;
   createSlist(sl, "input3.txt");
   display(sl);
-  printf("\nchen phan tu x vao ds nhung van giu nguyen thu tu\n");
+  printf("\n\nchen phan tu x vao ds nhung van giu nguyen thu tu\n");
   int x;
   printf("Nhap x: ");
   scanf("%d", &x);
   insert_X(sl, x);
   display(sl);
-  printf("\nin danh sach theo thu tu giam dan\n");
+  printf("\n\nin danh sach theo thu tu giam dan\n");
   display(SlistRev(sl));
-  printf("\nNoi danh sach sl2 vao sao ptu co gia tri x\n");
+  printf("\n\nNoi danh sach sl2 vao sao ptu co gia tri x\n");
   Slist sl2;
   printf("khoi tao sl2\n");
   createSlist(sl2, "input3_slist2.txt");
