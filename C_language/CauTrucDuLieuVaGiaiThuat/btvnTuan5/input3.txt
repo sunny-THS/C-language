@@ -1,0 +1,251 @@
+10
+001
+Nguyen Van
+Hung
+2001
+4
+0101001
+Nhap Mon Lap Trinh
+3
+9
+9
+0101002
+Lap Trinh Huong Doi Tuong
+3
+7
+8
+0101003
+Ky Thuat Lap Trinh
+2
+8
+6
+0101004
+Co So Du Lieu
+3
+8
+9
+002
+Tran Van
+Tung
+2001
+4
+0101001
+Nhap Mon Lap Trinh
+3
+6
+7
+0101002
+Lap Trinh Huong Doi Tuong
+3
+6
+7
+0101003
+Ky Thuat Lap Trinh
+2
+9
+8
+0101004
+Co So Du Lieu
+3
+7
+7
+003
+Do Huyen
+Tran
+2001
+4
+0101001
+Nhap Mon Lap Trinh
+3
+9
+9
+0101002
+Lap Trinh Huong Doi Tuong
+3
+7
+9
+0101003
+Ky Thuat Lap Trinh
+2
+8
+8
+0101004
+Co So Du Lieu
+3
+10
+9
+004
+Phan Ai
+Linh
+2001
+4
+0101001
+Nhap Mon Lap Trinh
+3
+9
+8
+0101002
+Lap Trinh Huong Doi Tuong
+3
+8
+10
+0101003
+Ky Thuat Lap Trinh
+2
+8
+9
+0101004
+Co So Du Lieu
+3
+5
+7
+005
+Nguyen Van
+Tai
+2001
+4
+0101001
+Nhap Mon Lap Trinh
+3
+10
+9
+0101002
+Lap Trinh Huong Doi Tuong
+3
+8
+10
+0101003
+Ky Thuat Lap Trinh
+2
+8
+7
+0101004
+Co So Du Lieu
+3
+7
+7
+006
+Tran Van
+Tung
+2001
+4
+0101001
+Nhap Mon Lap Trinh
+3
+10
+9
+0101002
+Lap Trinh Huong Doi Tuong
+3
+10
+8
+0101003
+Ky Thuat Lap Trinh
+2
+8
+7
+0101004
+Co So Du Lieu
+3
+8
+9
+007
+Dang Gia
+Linh
+2001
+4
+0101001
+Nhap Mon Lap Trinh
+3
+7
+7
+0101002
+Lap Trinh Huong Doi Tuong
+3
+7
+6
+0101003
+Ky Thuat Lap Trinh
+2
+7
+7
+0101004
+Co So Du Lieu
+3
+6
+6
+008
+Tran Gia
+Bao
+2001
+4
+0101001
+Nhap Mon Lap Trinh
+3
+7
+9
+0101002
+Lap Trinh Huong Doi Tuong
+3
+7
+10
+0101003
+Ky Thuat Lap Trinh
+2
+7
+7.5
+0101004
+Co So Du Lieu
+3
+6.5
+6
+009
+Trinh Thanh
+Truc
+2001
+4
+0101001
+Nhap Mon Lap Trinh
+3
+10
+10
+0101002
+Lap Trinh Huong Doi Tuong
+3
+9
+9.5
+0101003
+Ky Thuat Lap Trinh
+2
+8
+8
+0101004
+Co So Du Lieu
+3
+8.5
+9
+010
+Truong My
+Yen
+2001
+4
+0101001
+Nhap Mon Lap Trinh
+3
+5
+7
+0101002
+Lap Trinh Huong Doi Tuong
+3
+7
+7.5
+0101003
+Ky Thuat Lap Trinh
+2
+8
+7.5
+0101004
+Co So Du Lieu
+3
+8
+8.5
