@@ -1,4 +1,4 @@
-10
+12
 001
 Nguyen Van
 Hung
@@ -149,31 +149,6 @@ Co So Du Lieu
 3
 8
 9
-007
-Dang Gia
-Linh
-2001
-4
-0101001
-Nhap Mon Lap Trinh
-3
-7
-7
-0101002
-Lap Trinh Huong Doi Tuong
-3
-7
-6
-0101003
-Ky Thuat Lap Trinh
-2
-7
-7
-0101004
-Co So Du Lieu
-3
-6
-6
 008
 Tran Gia
 Bao
@@ -249,3 +224,78 @@ Co So Du Lieu
 3
 8
 8.5
+011
+Dang Gia
+Linh
+2001
+4
+0101001
+Nhap Mon Lap Trinh
+3
+7
+7
+0101002
+Lap Trinh Huong Doi Tuong
+3
+7
+6
+0101003
+Ky Thuat Lap Trinh
+2
+7
+7
+0101004
+Co So Du Lieu
+3
+6
+6
+012
+Dang Van
+Rot
+2001
+4
+0101001
+Nhap Mon Lap Trinh
+3
+9
+8
+0101002
+Lap Trinh Huong Doi Tuong
+3
+9
+8
+0101003
+Ky Thuat Lap Trinh
+2
+8
+9
+0101004
+Co So Du Lieu
+3
+9
+10
+013
+Lai Gia
+Linh
+2001
+4
+0101001
+Nhap Mon Lap Trinh
+3
+10
+10
+0101002
+Lap Trinh Huong Doi Tuong
+3
+10
+10
+0101003
+Ky Thuat Lap Trinh
+2
+10
+9.5
+0101004
+Co So Du Lieu
+3
+9.5
+9
