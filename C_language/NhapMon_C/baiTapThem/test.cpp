@@ -2,23 +2,20 @@
 
 int main()
 {
-  int a, b, c, d, e, f;
-  int sum;
-  // tinh tong 6 so nguyen nhap tu ban phim
-  //nhap gia tri
-  printf("a: ");
-  scanf("%d", &a);
-  printf("b: ");
-  scanf("%d", &b);
-  printf("c: ");
-  scanf("%d", &c);
-  printf("d: ");
-  scanf("%d", &d);
-  printf("e: ");
-  scanf("%d", &e);
-  printf("f: ");
-  scanf("%d", &f);
-  sum = a+b+c+d+e+f;
+  int n;
+  int sum=0;
+  printf("Nhap n: ");
+  scanf("%d", &n);
+  sum += n%10;
+  n/=10;
+  sum += n%10;
+  n/=10;
+  sum += n%10;
+  n/=10;
+  sum += n%10;
+  n/=10;
+  sum += n%10;
+  n/=10;
   printf("Tong: %d\n", sum);
   return 0;
 }
