@@ -7,7 +7,7 @@
   {
     private:
       Stack<char> root_;
-      Stack<int> evaluatePostfix_;
+      Stack<float> evaluatePostfix_;
       char Infix_[SIZE];
       char Postfix_[SIZE];
     public:
@@ -97,7 +97,7 @@
       {
         printf("Postfix: %s\n", Postfix_);
       }
-      int evaluatePostfix()
+      float evaluatePostfix()
       {
         if (!is_characters(Postfix_[0])) return -1;
         size_t i = 0;
@@ -112,9 +112,9 @@
             i--;
             evaluatePostfix_.push(a);
           }else if (is_operator(Postfix_[i])) {
-            int val1 = evaluatePostfix_.pop();
-            int val2 = evaluatePostfix_.pop();
-            int tmp;
+            float val1 = evaluatePostfix_.pop();
+            float val2 = evaluatePostfix_.pop();
+            float tmp;
             switch (Postfix_[i]) {
               case '+': tmp = val2 + val1; break;
               case '-': tmp = val2 - val1; break;
@@ -128,7 +128,7 @@
       }
       void resultOfPostfix()
       {
-        printf("Result: %d\n", evaluatePostfix());
+        printf("Result: %.2f\n", evaluatePostfix());
       }
   };
 #endif //INFIXTOPOSTFIX_H_
