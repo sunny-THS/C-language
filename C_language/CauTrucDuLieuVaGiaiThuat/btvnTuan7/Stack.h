@@ -5,6 +5,7 @@
   #include <conio.h>
   #include <cstdlib>
   using namespace std;
+
   template <class ItemType>
   class Stack {
     struct StackNode {
