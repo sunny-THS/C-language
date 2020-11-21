@@ -2,6 +2,7 @@
   #define INFIXTOPOSTFIX_H_
   #include "Stack.h"
   #include <string.h>
+  #include <cmath>
   #define SIZE 50
   class InfixToPostfix
   {
@@ -59,7 +60,8 @@
           }else if (is_characters(item)) {
             Postfix_[i_Postfix++] = item;
           }else if (is_operator(item)) {
-			Postfix_[i_Postfix++] = ' '; // dinh dang cho dep
+            if (Infix_[i_Infix+2] == '\0') break;
+            Postfix_[i_Postfix++] = ' '; // dinh dang cho dep
             x = root_.pop();
             while (is_operator(x) && precedence(x) >= precedence(item)) {
               Postfix_[i_Postfix++] = x;
@@ -67,24 +69,24 @@
             }
             root_.push(x);
             root_.push(item);
-			Postfix_[i_Postfix++] = ' ';// tach so hang khi gap toan tu
+            Postfix_[i_Postfix++] = ' ';// tach so hang khi gap toan tu
           }else if (item == ')') {
             x = root_.pop();
             while (x != '(') {
-			  Postfix_[i_Postfix++] = ' ';// dinh dang cho dep
+              Postfix_[i_Postfix++] = ' ';// dinh dang cho dep
               Postfix_[i_Postfix++] = x;
               x = root_.pop();
             }
           }else {
             cout << "\nInvalid infix Expression.\n";
-            getchar();
+            getch();
             exit(1);
           }
           item = Infix_[++i_Infix];
         } // end while loop
         if (!root_.is_Empty()) {
           cout << "\nInvalid infix Expression.\n";
-          getchar();
+          getch();
           exit(1);
         }
         Postfix_[i_Postfix] = '\0';
@@ -99,7 +101,7 @@
       }
       float evaluatePostfix()
       {
-        if (!is_characters(Postfix_[0])) return -1;
+        if (!is_characters(Postfix_[0])) throw "Fail!";
         size_t i = 0;
         for (; Postfix_[i]; i++) {
           if (Postfix_[i] == 32) continue;
@@ -120,15 +122,23 @@
               case '-': tmp = val2 - val1; break;
               case '*': tmp = val2 * val1; break;
               case '/': tmp = val2 / val1; break;
+              case '^': tmp = pow(val2, val1);
             }
             evaluatePostfix_.push(tmp);
-          }else return -1;
+          }else throw "Fail! Press any key to continue . . .";
         }// end for loop
         return evaluatePostfix_.pop();
       }
       void resultOfPostfix()
       {
-        printf("Result: %.2f\n", evaluatePostfix());
+        try
+        {
+          printf("Result: %.2f\n", evaluatePostfix());
+        }
+        catch(const char *msg)
+        {
+          printf("Result: %s\n", msg);
+        }
       }
   };
 #endif //INFIXTOPOSTFIX_H_
