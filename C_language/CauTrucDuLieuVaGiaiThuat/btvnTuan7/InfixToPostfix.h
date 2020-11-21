@@ -59,6 +59,7 @@
           }else if (is_characters(item)) {
             Postfix_[i_Postfix++] = item;
           }else if (is_operator(item)) {
+			Postfix_[i_Postfix++] = ' '; // dinh dang cho dep
             x = root_.pop();
             while (is_operator(x) && precedence(x) >= precedence(item)) {
               Postfix_[i_Postfix++] = x;
@@ -66,9 +67,11 @@
             }
             root_.push(x);
             root_.push(item);
+			Postfix_[i_Postfix++] = ' ';// tach so hang khi gap toan tu
           }else if (item == ')') {
             x = root_.pop();
             while (x != '(') {
+			  Postfix_[i_Postfix++] = ' ';// dinh dang cho dep
               Postfix_[i_Postfix++] = x;
               x = root_.pop();
             }
@@ -77,7 +80,6 @@
             getchar();
             exit(1);
           }
-          Postfix_[i_Postfix++] = ' ';
           item = Infix_[++i_Infix];
         } // end while loop
         if (!root_.is_Empty()) {
@@ -93,7 +95,7 @@
       }
       void showPostfix()
       {
-        printf("%s\n", Postfix_);
+        printf("Postfix: %s\n", Postfix_);
       }
       int evaluatePostfix()
       {
