@@ -375,37 +375,37 @@ int main()
   char ten[8], ma[10];
   taoSlist_SV(sl);
   XuatDsSv(sl);
-  // printf("\nTim thong tin sinh vien x\n");
-  // printf("Nhap ten: ");
-  // scanf("%[^\n]%*c", ten);
-  // XuatDsSv(TimSv(sl, ten));
-  // // sap xep tang dan theo mssv
-  // printf("\nsap xep ds sv theo chieu tang dan theo MSSV\n");
-  // SelectionSort(sl, compare_mssv_asc);
-  // XuatDsSv(sl);
-  // // sap xep ds sv theo chieu tang dan theo ten sinh vien
-  // printf("\nsap xep ds sv theo chieu tang dan theo ten sinh vien\n");
-  // SelectionSort(sl, compare_TenSV_asc);
-  // XuatDsSv(sl);
-  // // them sinh vien moi
-  // SelectionSort(sl, compare_mssv_asc);
-  // while (!ThemSV(sl))
-  // {
-  //   printf("\nXin moi nhap lai\n");
-  // }
-  // XuatDsSv(sl);
-  // //  xoa sinh vien co MSSV
-  // printf("\nXoa sinh vien co mssv la x\n");
-  // printf("Nhap x: ");
-  // scanf("%[^\n]%*c", ma);
-  // Xoa_SV(sl, ma, IsEqual_mssv);
-  // XuatDsSv(sl);
-  // // xoa sv co ten x
-  // printf("\nXoa sinh vien co ten la x\n");
-  // printf("Nhap x: ");
-  // scanf("%[^\n]%*c", ten);
-  // Xoa_SV(sl, ten, IsEqual_ten);
-  // XuatDsSv(sl);
+  printf("\nTim thong tin sinh vien x\n");
+  printf("Nhap ten: ");
+  scanf("%[^\n]%*c", ten);
+  XuatDsSv(TimSv(sl, ten));
+  // sap xep tang dan theo mssv
+  printf("\nsap xep ds sv theo chieu tang dan theo MSSV\n");
+  SelectionSort(sl, compare_mssv_asc);
+  XuatDsSv(sl);
+  // sap xep ds sv theo chieu tang dan theo ten sinh vien
+  printf("\nsap xep ds sv theo chieu tang dan theo ten sinh vien\n");
+  SelectionSort(sl, compare_TenSV_asc);
+  XuatDsSv(sl);
+  // them sinh vien moi
+  SelectionSort(sl, compare_mssv_asc);
+  while (!ThemSV(sl))
+  {
+    printf("\nXin moi nhap lai\n");
+  }
+  XuatDsSv(sl);
+  //  xoa sinh vien co MSSV
+  printf("\nXoa sinh vien co mssv la x\n");
+  printf("Nhap x: ");
+  scanf("%[^\n]%*c", ma);
+  Xoa_SV(sl, ma, IsEqual_mssv);
+  XuatDsSv(sl);
+  // xoa sv co ten x
+  printf("\nXoa sinh vien co ten la x\n");
+  printf("Nhap x: ");
+  scanf("%[^\n]%*c", ten);
+  Xoa_SV(sl, ten, IsEqual_ten);
+  XuatDsSv(sl);
   printf("\nTao ds moi sao cho ds moi giam dan theo diem ket qua\n");
   Slist_SinhVien sl_new_kqht_desc = TaoDsSV_new_kqht_desc(sl);
   printf("\nDanh sach moi\n");

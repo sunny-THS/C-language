@@ -185,7 +185,7 @@ SNode_BaiHat *TimBaiHat(Slist_BaiHat sl, char *tenBaiHat)
   return NULL;
 }
 template <typename T>
-swap(T &a, T &b)
+void swap(T &a, T &b)
 {
   T t = a;
   a = b;
