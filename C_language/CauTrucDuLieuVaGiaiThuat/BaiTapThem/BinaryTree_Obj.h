@@ -22,19 +22,14 @@
         {
           printf("Khong du bo nho\n");
         }
-        root->info = x;
-        root->l = root->r = NULL;
+        p->info = x;
+        p->l = p->r = NULL;
         return p;
       }
 
-      void insert(ItemType x)
+      int insert(ItemType x)
       {
-        try
-        {
-          insert(root, CreateTNode(x));
-        }catch (const char *msg){
-          printf("Error\n");
-        }
+        return insert(root, CreateTNode(x));
       }
       TNode *FindNode_X(ItemType x)
       {
@@ -66,7 +61,6 @@
         if (!node) return 0; // insert fail
         if (!p)
         {
-          printf("a\n");
           p = node;
           return 1; // inserted
         }
@@ -84,7 +78,8 @@
       }
       void Show(TNode *p)
       {
-        printf("%4d\n", p->info);
+        if (!p) return;
+        printf("%4d", p->info);
         Show(p->l);
         Show(p->r);
       }
