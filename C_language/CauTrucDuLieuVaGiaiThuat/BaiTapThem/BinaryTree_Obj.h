@@ -3,14 +3,15 @@
   #include <stdio.h>
   #include <conio.h> // getch()
   #include <cstdlib> // exit()
-  typedef int ItemType;
-  struct TNode {
-    ItemType info;
-    TNode *l;
-    TNode *r;
-  };
+
+  template <class ItemType>
   class BTree {
     public:
+      struct TNode {
+        ItemType info;
+        TNode *l;
+        TNode *r;
+      };
       BTree() { root = NULL; } // init
 
       ~BTree() { }
@@ -35,22 +36,7 @@
       {
         return FindNode_X(x, root);
       }
-      void createBTree(char *FileName)
-      {
-        FILE *f;
-        ItemType x;
-        if (!(f=fopen(FileName, "r")))
-        {
-          printf("File khong ton tai\n");
-          getch();
-          exit(1);
-        }
-        while (!feof(f))
-        {
-          fscanf(f, "%d", &x);
-          insert(x);
-        }
-      }
+      friend void createBTree(BTree<ItemType>&, char *FileName);
       void Show()
       {
         return Show(root);
