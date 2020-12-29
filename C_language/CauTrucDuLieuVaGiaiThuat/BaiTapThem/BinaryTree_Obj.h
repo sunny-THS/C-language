@@ -1,74 +1,64 @@
 #ifndef BTREE_H_
   #define BTREE_H_
   #include <stdio.h>
-  #include <conio.h> // getch()
-  #include <cstdlib> // exit()
-
+  #include <conio.h>
+  #include <stdlib.h>
   template <class ItemType>
-  class BTree {
+  struct TNode
+  {
+    ItemType info;
+    TNode *left;
+    TNode *right;
+  };
+  template <class ItemType>
+  class BTree
+  {
     public:
-      struct TNode {
-        ItemType info;
-        TNode *l;
-        TNode *r;
-      };
-      BTree() { root = NULL; } // init
-
-      ~BTree() { }
-
-      TNode *CreateTNode(ItemType x)
+      BTree() { root = NULL; }
+      TNode<ItemType> *GetTNode() { return root; }
+      TNode<ItemType> *CreateTNode(ItemType x)
       {
-        TNode *p = new TNode;
+        TNode<ItemType> *p = new TNode<ItemType>;
         if (!p)
         {
           printf("Khong du bo nho\n");
+          getch();
+          exit(1);
         }
         p->info = x;
-        p->l = p->r = NULL;
+        p->left = NULL;
+        p->right = NULL;
         return p;
       }
-
-      int insert(ItemType x)
+      int insert(ItemType x, int(*check)(const void*, const void*))
       {
-        return insert(root, CreateTNode(x));
+         return insert(root, CreateTNode(x), check);
       }
-      TNode *FindNode_X(ItemType x)
+      void show(void(*showNode)(const void*))
       {
-        return FindNode_X(x, root);
-      }
-      friend void createBTree(BTree<ItemType>&, char *FileName);
-      void Show()
-      {
-        return Show(root);
+        return show(root, showNode);
       }
     private:
-      int insert(TNode * &p, TNode *node)
+      void show(TNode<ItemType> *root, void(*showNode)(const void*))
       {
-        if (!node) return 0; // insert fail
-        if (!p)
+        if (!root) return;
+        showNode(root);
+        show(root->left, showNode);
+        show(root->right, showNode);
+      }
+      int insert(TNode<ItemType> *&root, TNode<ItemType> *x, int(*check)(const void*, const void*))
+      {
+        if (!x) return 0;
+        if (!root)
         {
-          p = node;
-          return 1; // inserted
+          root = x;
+          return 1;
         }
-        if (p->info == node->info) return 0;
-        if (p->info > node->info) insert(p->l, node);
-        else insert(p->r, node);
-        return 1;
+        int c = check(root, x);
+        if (c == 0) return 0;
+        return c > 0 ? insert(root->right, x, check) : \
+                       insert(root->left, x, check);
       }
-      TNode *FindNode_X(ItemType x, TNode *root)
-      {
-        if (!root) return NULL;
-        if (root->info == x) return root;
-        if (root->info < x) return FindNode_X(x, root->r);
-        return FindNode_X(x, root->l);
-      }
-      void Show(TNode *p)
-      {
-        if (!p) return;
-        printf("%4d", p->info);
-        Show(p->l);
-        Show(p->r);
-      }
-      TNode *root;
+      TNode<ItemType> *root;
   };
 #endif // BTREE_H_
