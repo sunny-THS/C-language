@@ -23,7 +23,7 @@
         {
           printf("Khong du bo nho\n");
           getch();
-          exit(1);
+          return NULL;
         }
         p->info = x;
         p->left = NULL;
@@ -34,11 +34,20 @@
       {
          return insert(root, CreateTNode(x), check);
       }
+      int deleted( ,int(*check)(const void*))
+      {
+        return deleted(root, check);
+      }
       void show(void(*showNode)(const void*))
       {
         return show(root, showNode);
       }
     private:
+      int deleted(TNode *&root, int(*check)(const void*, const void*))
+      {
+        if (!root) return 0;
+        int c = check(root-, )
+      }
       void show(TNode<ItemType> *root, void(*showNode)(const void*))
       {
         if (!root) return;
