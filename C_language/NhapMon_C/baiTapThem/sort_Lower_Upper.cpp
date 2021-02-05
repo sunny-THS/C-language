@@ -66,7 +66,7 @@ string Solve(string s, int n)
     0,
   ];
   */
-  // kí tự dc sắp xếp khi thêm vào lower hay upper 
+  // kí tự dc sắp xếp khi thêm vào lower hay upper
   for (int i=0; i<n; i++)
   {
     if (islower(s[i]))
@@ -100,7 +100,7 @@ string Solve(string s, int n)
       s[k] = (char)(j+'A');
       upper[j]--;
     }
-    // (char)(i+'a') chuyển số nguyên hay kí tự
+    // (char)(i+'a') chuyển số nguyên sang kí tự
   }
   return s;
 }
