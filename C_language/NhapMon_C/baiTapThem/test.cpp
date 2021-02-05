@@ -1,21 +1,21 @@
-#include <stdio.h>
+#include <iostream>
+#include <string>
+using namespace std;
 
 int main()
 {
-  int n;
-  int sum=0;
-  printf("Nhap n: ");
-  scanf("%d", &n);
-  sum += n%10;
-  n/=10;
-  sum += n%10;
-  n/=10;
-  sum += n%10;
-  n/=10;
-  sum += n%10;
-  n/=10;
-  sum += n%10;
-  n/=10;
-  printf("Tong: %d\n", sum);
-  return 0;
+  string str1, str2;
+  getline(cin, str1);
+  getline(cin, str2);
+  for (size_t i = 0; i < str1.length(); i++) {
+    for (size_t j = 0; j < str2.length(); j++) {
+      if (str1[i] == str2[j])
+      {
+        str1[i] = '*';
+        break;
+      }
+    }
+  }
+  cout << str1;
+  return 1;
 }
