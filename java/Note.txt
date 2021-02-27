@@ -1,0 +1,6 @@
+.LOG
+11:15 PM 24/2/2021
+
+Tính Random trong java
+	Math.random() * (max - min + 1) + min
+
