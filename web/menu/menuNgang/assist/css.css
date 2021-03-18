@@ -1,0 +1,43 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.menu {
+  width: 860px;
+  margin: 0 auto;
+}
+.menu ul {
+  list-style: none;
+  margin-top: 0.5%;
+}
+.menu ul li {
+  background: #262626;
+  width: 170px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  float: left;
+  font-size: 14px;
+  position: relative;
+  border: 1px solid #fff;
+  cursor: pointer;
+}
+.menu ul li a {
+  color: #fff;
+  text-decoration:  none;
+}
+.menu ul li:hover {
+  background: crimson;
+}
+.menu ul ul {
+  display: none;
+}
+.menu ul li:hover > ul {
+  display: block;
+}
+.menu ul ul ul {
+  margin-left: 170px;
+  top: -3.5px;
+  position: absolute;
+}
