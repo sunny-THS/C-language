@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.menu {
+  width: 860px;
+  margin: 0 auto;
+}
+.menu ul {
+  list-style: none;
+  margin-top: 0.5%;
+}
+.menu ul li {
+  background: #262626;
+  width: 170px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 14px;
+  position: relative;
+  border: 1px solid #fff;
+  cursor: pointer;
+}
+.menu ul li a {
+  color: #fff;
+  text-decoration:  none;
+}
+.menu ul li:hover {
+  background: crimson;
+}
+.menu ul ul {
+  position: absolute;
+  left: 171px;
+  top: 0;
+  display: none;
+}
+.menu ul li:hover > ul{
+  display: block;
+}
