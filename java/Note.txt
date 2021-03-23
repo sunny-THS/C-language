@@ -4,3 +4,7 @@
 Tính Random trong java
 	Math.random() * (max - min + 1) + min
 
+
+7:25 PM 23/3/2021
+
+writeobject ghi theo kiểu dữ liệu của giá trị list, string, char, .....
