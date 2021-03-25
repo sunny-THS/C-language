@@ -1,8 +1,11 @@
-package test;
-
-public class Test extends JFrame {
+import java.util.Scanner;
+import java.io.FileInputStream;
+public class Test {
   public static void main(String[] args) {
-      System.out.println("hello world");
-
+    FileInputStream
+    System.out.println("hello world");
+    Scanner in = new Scanner(System.in);
+    int a = in.nextInt();
+    System.out.print(a);
   }
 }
