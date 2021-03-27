@@ -1,0 +1,59 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {
+	font-family: Arial, Tahoma;
+	font-size: 12px;
+}
+#main {
+	width: 1000px;
+	padding: 0;
+	margin: auto;
+}
+#head {
+	height: 100px;
+	background: #f5f5f5;
+	border: 1px solid #cdcdcd;
+	margin-bottom: 5px;
+}
+#head-link {
+	height: 30px;
+	line-height: 30px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border: 1px solid #cdcdcd;
+	background: #f5f5f5;
+	margin-bottom: 5px;
+	clear: both;
+}
+#left {
+	width: 150px;
+	min-height: 400px;
+	border: 1px solid #cdcdcd;
+	float: left;
+	background: #0ff;
+	margin-bottom: 5px;
+}
+#content {
+	width: 600px;
+	min-height: 400px;
+	border: 1px solid #cdcdcd;
+	float: left;
+	margin-left: 5px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+}
+#right {
+	width: 234px;
+	min-height: 400px;
+	border: 1px solid #cdcdcd;
+	float: right;
+	margin-bottom: 5px;
+	background: #b6ff00;
+}
+#footer {
+	height: 50px;
+	clear: both;
+	border: 1px solid #cdcdcd;
+	background: #cdcdcd;
+}
