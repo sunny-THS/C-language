@@ -30,11 +30,11 @@
 .menu ul li:hover {
   background: crimson;
 }
-.menu ul ul {
-  display: none;
-}
 .menu ul li:hover > ul {
   display: block;
+}
+.menu ul ul {
+  display: none;
 }
 .menu ul ul ul {
   margin-left: 170px;
