@@ -1,0 +1,35 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package gui.auth;
+
+import java.math.BigInteger;
+import java.security.MessageDigest;
+
+/**
+ *
+ * @author Admin
+ */
+public class MD5 {
+
+    public static String getMD5(String pwd) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            
+            byte[] msgDigest = md.digest(pwd.getBytes()); // băm chuỗi
+            
+            BigInteger no = new BigInteger(1, msgDigest); // chuyển mảng băm
+            
+            String hashText = no.toString(16);
+            while (hashText.length() < 32) {
+                hashText = '0' + hashText;
+            }
+            return hashText;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+}
