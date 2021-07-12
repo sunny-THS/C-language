@@ -3,40 +3,41 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dataprovider;
+package sqlserverprovider;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.Types;
 
 /**
  *
  * @author Admin
  */
 public class SQLServerProvider {
-
     private Connection conn;
+    private CallableStatement callableStatement;
     private ResultSet resSet;
     private Statement statement;
 
     public void open() {
-        String strServer = "Admin\\SQLEXPRESS";
-        String strDatabase = "QL_NHANVIEN";
+        String strServer = "ADMIN\\SQLEXPRESS";
+        String strDatabase = "QLBLK";
         String uid = "sa";
         String pwd = "sa123";
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            String connectionURL = "jdbc:sqlserver://" + strServer
-                    + ":1433;databaseName=" + strDatabase
-                    + ";user = " + uid
-                    + ";password = " + pwd;
+            String connectionURL = "jdbc:sqlserver://" +  strServer
+                                 + ":1433;databaseName="+ strDatabase
+                                 + ";user = "           + uid
+                                 + ";password = "       + pwd;
             conn = DriverManager.getConnection(connectionURL);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
     public void close() {
         try {
             this.conn.close();
@@ -44,7 +45,6 @@ public class SQLServerProvider {
             e.printStackTrace();
         }
     }
-
     public ResultSet executeQuery(String sql) {
         resSet = null;
         try {
@@ -55,9 +55,8 @@ public class SQLServerProvider {
         }
         return resSet;
     }
-
     public int executeUpdate(String sql) {
-        int n = -1;
+        int n=-1;
         try {
             statement = conn.createStatement();
             n = statement.executeUpdate(sql);
