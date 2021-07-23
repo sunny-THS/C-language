@@ -24,7 +24,7 @@ public class SQLServerProvider {
     private Statement statement;
 
     public void open() {
-        String strServer = "MSI-PC";
+        String strServer = "Admin\\SQLEXPRESS";
         String strDatabase = "QLDB";
         String uid = "sa";
         String pwd = "sa123";
