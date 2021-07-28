@@ -5,21 +5,25 @@
  */
 package gui;
 
+import dao.LoaiSachDAO;
 import dataprovider.SQLServerProvider;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.Vector;
+import pojo.LoaiSach;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Admin
  */
-public class LoaiSach extends javax.swing.JInternalFrame {
+public class LoaiSachFrame extends javax.swing.JInternalFrame {
     DefaultTableModel dtm;
     /**
      * Creates new form LoaiSach
      */
-    public LoaiSach() {
+    public LoaiSachFrame() {
         initComponents();
         dtm = (DefaultTableModel) tbTT.getModel();
         loadData();
@@ -103,10 +107,25 @@ public class LoaiSach extends javax.swing.JInternalFrame {
         );
 
         jButton1.setText("Thêm");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Sửa");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Xóa");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Đóng");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -167,6 +186,63 @@ public class LoaiSach extends javax.swing.JInternalFrame {
         tfMoTa.setText((String) dtm.getValueAt(sl, 2));
     }//GEN-LAST:event_tbTTMouseClicked
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        tfMoTa.setText("");
+        tfTenSach.setText("");
+        tfTenSach.requestFocus(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try {
+            int count = LoaiSachDAO.countLoaiSach();
+            int n = 0;
+            LoaiSach ls = new LoaiSach();
+            if (LoaiSachDAO.bCheckTen(tfTenSach.getText())) {
+                int ck = JOptionPane.showConfirmDialog(tbTT, "Tên sách đã tồn tại bạn có muốn cập nhật hay không?", "Thông báo", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                if (ck == JOptionPane.YES_OPTION) {
+                    ls.setStrTen(tfTenSach.getText());
+                    ls.setStrMoTa(tfMoTa.getText());
+                    int row = tbTT.getSelectedRow();
+                    ls.setiMa((int) dtm.getValueAt(row, 0));
+                    
+                    n = LoaiSachDAO.udLoaiSach(ls)?1:0;
+                }
+            }else {
+                ls.setStrTen(tfTenSach.getText());
+                ls.setStrMoTa(tfMoTa.getText());
+                ls.setiMa(count);
+                n = LoaiSachDAO.insertLoaiSach(ls)?1:0;
+            }
+            if (n>0) {
+                loadData();
+                JOptionPane.showMessageDialog(tbTT, "Cập nhật thông tin sách thành công", "thông báo", JOptionPane.INFORMATION_MESSAGE);
+            }
+            else JOptionPane.showMessageDialog(tbTT, "Cập nhật thông tin sách Thất bại vui lòng thử lại", "thông báo", JOptionPane.WARNING_MESSAGE);
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(tbTT, "Đã xảy ra lỗi. Vui lòng thử lại\n"+e.getMessage(), "thông báo", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        int n = JOptionPane.showConfirmDialog(tbTT, "Bạn có muốn xóa không?", "Thông báo", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+        try {
+            if (n== JOptionPane.YES_OPTION) {
+                LoaiSach ls = new LoaiSach();
+                ls.setStrTen(tfTenSach.getText());
+                ls.setStrMoTa(tfMoTa.getText());
+                int row = tbTT.getSelectedRow();
+                ls.setiMa((int) dtm.getValueAt(row, 0));
+                if (LoaiSachDAO.delLoaiSach(ls)) {
+                    JOptionPane.showMessageDialog(tbTT, "Xóa thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                    loadData();
+                }else JOptionPane.showMessageDialog(tbTT, "Xảy ra lỗi\n", "Thông báo", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(tbTT, "Xảy ra lỗi\n"+ e.getMessage(), "Thông báo", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -183,21 +259,14 @@ public class LoaiSach extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     private void loadData() {
-        SQLServerProvider provider = new SQLServerProvider();
-        try {
-            provider.open();
-            String sql = "Select * from LoaiSach";
-            ResultSet rs = provider.executeQuery(sql);
-            dtm.setRowCount(0);
-            while(rs.next()) {
-                Vector v = new Vector();
-                v.add(rs.getString("LS_ID"));
-                v.add(rs.getString("Ten"));
-                v.add(rs.getString("MoTa"));
-                dtm.addRow(v);
-            }
-            provider.close();
-        } catch (Exception e) {
-        }
+        ArrayList<LoaiSach> alst = LoaiSachDAO.showData();
+        dtm.setRowCount(0);
+        alst.forEach(loaiSach ->{
+            Vector<Object> v = new Vector<Object>();
+            v.add(loaiSach.getiMa());
+            v.add(loaiSach.getStrTen());
+            v.add(loaiSach.getStrMoTa());
+            dtm.addRow(v);
+        });
     }
 }

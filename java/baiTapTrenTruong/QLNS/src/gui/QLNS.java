@@ -18,13 +18,13 @@ public class QLNS extends javax.swing.JFrame {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
         
-        this.mnuDX.enable(false);
-        this.mnuDN.enable(true);
-        this.mnuHoaDon.enable(false);
-        this.mnuLoaiSach.enable(false);
-        this.mnuPN.enable(false);
-        this.mnuSach.enable(false);
-        this.mnuDX.enable(false);
+        this.mnuDX.setEnabled(false);
+        this.mnuDN.setEnabled(true);
+        this.mnuHoaDon.setEnabled(false);
+        this.mnuLoaiSach.setEnabled(false);
+        this.mnuPN.setEnabled(false);
+        this.mnuSach.setEnabled(false);
+        this.mnuDX.setEnabled(false);
     }
 
     /**
@@ -136,7 +136,9 @@ public class QLNS extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mnuSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuSachActionPerformed
-        // TODO add your handling code here:
+        SachFrame s = new SachFrame();
+        s.setVisible(true);
+        this.desktopPane.add(s);
     }//GEN-LAST:event_mnuSachActionPerformed
 
     private void mnuDNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuDNActionPerformed
@@ -155,7 +157,7 @@ public class QLNS extends javax.swing.JFrame {
     }//GEN-LAST:event_mnuDNActionPerformed
 
     private void mnuLoaiSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuLoaiSachActionPerformed
-        LoaiSach ls = new LoaiSach();
+        LoaiSachFrame ls = new LoaiSachFrame();
         ls.setVisible(true);
         this.desktopPane.add(ls);
     }//GEN-LAST:event_mnuLoaiSachActionPerformed
