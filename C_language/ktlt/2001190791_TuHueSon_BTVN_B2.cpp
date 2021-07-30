@@ -60,7 +60,7 @@ int main() {
     printf("\n==============================================================\n");
     printf("\n\n");
     getch();
-	fflush(stdin);
+    fflush(stdin);
   }
   return 1;
 }
@@ -136,7 +136,7 @@ void chucNang(int iSelect) {
       else printf("\nKhong tim thay so duong");
     } break;
     case 15: {
-	  nhapMang1Chieu_iRandom(iArr, n);
+      nhapMang1Chieu_iRandom(iArr, n);
       iXuatMang(iArr, n);
       int kq = timGiaTri_chanLast(iArr, n);
       if (kq!=-1)
@@ -144,106 +144,106 @@ void chucNang(int iSelect) {
       else printf("\nKhong tim thay so chan");
     } break;
     case 16: {
-		nhapMang1Chieu_iRandom(iArr, n);
-		iXuatMang(iArr, n);
-		int kq = timVtri_SHT_min(iArr, n);
-		if (kq!=-1)
-			printf("\nKQ: %d", kq);
-		else printf("\nKhong tim thay so hoan thien");
+  		nhapMang1Chieu_iRandom(iArr, n);
+  		iXuatMang(iArr, n);
+  		int kq = timVtri_SHT_min(iArr, n);
+  		if (kq!=-1)
+  			printf("\nKQ: %d", kq);
+  		else printf("\nKhong tim thay so hoan thien");
     } break;
     case 17: {
-		nhapMang1Chieu_iRandom(iArr, n);
-		iXuatMang(iArr, n);
-		int kq = timVtri_chanFirst(iArr, n);
-		if (kq!=-1)
-		printf("\nKQ: %d", kq);
-		else printf("\nKhong tim thay so chan");
+  		nhapMang1Chieu_iRandom(iArr, n);
+  		iXuatMang(iArr, n);
+  		int kq = timVtri_chanFirst(iArr, n);
+  		if (kq!=-1)
+  		  printf("\nKQ: %d", kq);
+  		else printf("\nKhong tim thay so chan");
     } break;
     case 18: {
-		nhapMang1Chieu_iRandom(iArr, n);
-		iXuatMang(iArr, n);
-		int kq = timVtri_SHT_last(iArr, n);
-		if (kq!=-1)
-			printf("\nKQ: %d", kq);
-		else printf("\nKhong tim thay so hoan thien");
+  		nhapMang1Chieu_iRandom(iArr, n);
+  		iXuatMang(iArr, n);
+  		int kq = timVtri_SHT_last(iArr, n);
+  		if (kq!=-1)
+  			printf("\nKQ: %d", kq);
+  		else printf("\nKhong tim thay so hoan thien");
     } break;
     case 19: {
-		nhapMang1Chieu_fRandom(fArr, n);
-		fXuatMang(fArr, n);
-		float kq = timGiatri_duongMin(fArr, n);
-		if (kq!=-1)
-		printf("\nKQ: %.2f", kq);
-		else printf("\nKhong tim thay so duong");
+  		nhapMang1Chieu_fRandom(fArr, n);
+  		fXuatMang(fArr, n);
+  		float kq = timGiatri_duongMin(fArr, n);
+  		if (kq!=-1)
+  		  printf("\nKQ: %.2f", kq);
+  		else printf("\nKhong tim thay so duong");
     } break;
     case 110: {
-		nhapMang1Chieu_iRandom(iArr, n);
-		iXuatMang(iArr, n);
-		int kq = timGiaTri_SNTFirst(iArr, n);
-		if (kq!=-1)
-		printf("\nKQ: %d", kq);
-		else printf("\nKhong tim thay so nguyen to");
+  		nhapMang1Chieu_iRandom(iArr, n);
+  		iXuatMang(iArr, n);
+  		int kq = timGiaTri_SNTFirst(iArr, n);
+  		if (kq!=-1)
+  		  printf("\nKQ: %d", kq);
+  		else printf("\nKhong tim thay so nguyen to");
     } break;
     case 21: {
-		nhapMang2Chieu_iRandom(iArr_2c, rows, cols);
-		iXuatMang_2c(iArr_2c, rows, cols);
-		printf("\nTong cac so co chu so dau la le: %d", sum_ptu_soDau_le(iArr_2c, rows, cols));
+  		nhapMang2Chieu_iRandom(iArr_2c, rows, cols);
+  		iXuatMang_2c(iArr_2c, rows, cols);
+  		printf("\nTong cac so co chu so dau la le: %d", sum_ptu_soDau_le(iArr_2c, rows, cols));
     } break;
     case 22: {
-		nhapMang2Chieu_iRandom(iArr_2c, rows, cols);
-		iXuatMang_2c(iArr_2c, rows, cols);
-		printf("\nSo luong cac so co chu so hang chuc la 5: %d", count_ptu_soHangChuc_5(iArr_2c, rows, cols));
+  		nhapMang2Chieu_iRandom(iArr_2c, rows, cols);
+  		iXuatMang_2c(iArr_2c, rows, cols);
+  		printf("\nSo luong cac so co chu so hang chuc la 5: %d", count_ptu_soHangChuc_5(iArr_2c, rows, cols));
     } break;
     case 23: {
-		nhapMang2Chieu_iRandom(iArr_2c, rows, cols);
-		iXuatMang_2c(iArr_2c, rows, cols);
-		printf("\nKQ: ");
-		lietKeGtri_SHT(iArr_2c, rows, cols);
+  		nhapMang2Chieu_iRandom(iArr_2c, rows, cols);
+  		iXuatMang_2c(iArr_2c, rows, cols);
+  		printf("\nKQ: ");
+  		lietKeGtri_SHT(iArr_2c, rows, cols);
     } break;
     case 24: {
-		nhapMang2Chieu_iRandom(iArr_2c, rows, cols);
-		iXuatMang_2c(iArr_2c, rows, cols);
-		printf("\nTong cac ptu lon hon TTD cua so sau no: %d", sum_ptu_lonHon_TTD_soSau(iArr_2c, rows, cols));
+  		nhapMang2Chieu_iRandom(iArr_2c, rows, cols);
+  		iXuatMang_2c(iArr_2c, rows, cols);
+  		printf("\nTong cac ptu lon hon TTD cua so sau no: %d", sum_ptu_lonHon_TTD_soSau(iArr_2c, rows, cols));
     } break;
     case 25: {
-		nhapMang2Chieu_iRandom(iArr_2c, rows, cols);
-		iXuatMang_2c(iArr_2c, rows, cols);
-		size_t row;
-		printf("\nNhap hang can tinh: ");
-		scanf("%d", &row);
-		printf("\nTong cac ptu tren hang %d: %d", row, sum_ptu_row(iArr_2c, rows, cols, row-1));
+  		nhapMang2Chieu_iRandom(iArr_2c, rows, cols);
+  		iXuatMang_2c(iArr_2c, rows, cols);
+  		size_t row;
+  		printf("\nNhap hang can tinh: ");
+  		scanf("%d", &row);
+  		printf("\nTong cac ptu tren hang %d: %d", row, sum_ptu_row(iArr_2c, rows, cols, row-1));
     } break;
     case 26: {
-		nhapMang2Chieu_iRandom(iArr_2c, rows, cols);
-		iXuatMang_2c(iArr_2c, rows, cols);
-		if (is_maTran_toanDuong(iArr_2c, rows, cols))
-			printf("\nMa tran toan duong");
-		else printf("\nMa tran co so am");
+  		nhapMang2Chieu_iRandom(iArr_2c, rows, cols);
+  		iXuatMang_2c(iArr_2c, rows, cols);
+  		if (is_maTran_toanDuong(iArr_2c, rows, cols))
+  			printf("\nMa tran toan duong");
+  		else printf("\nMa tran co so am");
     } break;
     case 27: {
-		nhapMang2Chieu_iRandom(iArr_2c, rows, cols);
-		iXuatMang_2c(iArr_2c, rows, cols);
-		printf("Tong cac gia tri tren bien cua ma tran: %d", sum_ptu_cacBien(iArr_2c, rows));
+  		nhapMang2Chieu_iRandom(iArr_2c, rows, cols);
+  		iXuatMang_2c(iArr_2c, rows, cols);
+  		printf("Tong cac gia tri tren bien cua ma tran: %d", sum_ptu_cacBien(iArr_2c, rows));
     } break;
     case 28: {
-		nhapMang2Chieu_iRandom(iArr_2c, rows, cols);
-		iXuatMang_2c(iArr_2c, rows, cols);
-		int x;
-		printf("\nNhap x: ");
-		scanf("%d", &x);
-		printf("So lan xuat hien cua ptu x: %d lan", count_xuatHien_x(iArr_2c, rows, x));
+  		nhapMang2Chieu_iRandom(iArr_2c, rows, cols);
+  		iXuatMang_2c(iArr_2c, rows, cols);
+  		int x;
+  		printf("\nNhap x: ");
+  		scanf("%d", &x);
+  		printf("So lan xuat hien cua ptu x: %d lan", count_xuatHien_x(iArr_2c, rows, x));
     } break;
     case 29: {
-		nhapMang2Chieu_iRandom(iArr_2c, rows, cols);
-		iXuatMang_2c(iArr_2c, rows, cols);
-		size_t row;
-		printf("\nNhap hang can tinh: ");
-		scanf("%d", &row);
-		printf("Tong cac gia tri duong tren hang %d: %d", row, sum_ptu_duong_row(iArr_2c, rows, row-1));
+  		nhapMang2Chieu_iRandom(iArr_2c, rows, cols);
+  		iXuatMang_2c(iArr_2c, rows, cols);
+  		size_t row;
+  		printf("\nNhap hang can tinh: ");
+  		scanf("%d", &row);
+  		printf("Tong cac gia tri duong tren hang %d: %d", row, sum_ptu_duong_row(iArr_2c, rows, row-1));
     } break;
     case 210: {
-		nhapMang2Chieu_iRandom(iArr_2c, rows, cols);
-		iXuatMang_2c(iArr_2c, rows, cols);
-		printf("Tong so \"yen ngua\" cua ma tran: %d", count_yenNgua(iArr_2c, rows));
+  		nhapMang2Chieu_iRandom(iArr_2c, rows, cols);
+  		iXuatMang_2c(iArr_2c, rows, cols);
+  		printf("Tong so \"yen ngua\" cua ma tran: %d", count_yenNgua(iArr_2c, rows));
     } break;
     default: printf("Khong co bai nay vui long nhap lai\n");
     break;
@@ -276,15 +276,15 @@ void nhapMang1Chieu_fRandom(float * arr, int &n) {
   }
 }
 void nhapMang2Chieu_iRandom(int arr[MAXSIZE][MAXSIZE], int &rows, int &cols) {
-	do {
-		printf("Nhap so dong: ");
-		scanf("%d", &rows);
-		printf("Nhap so cot: ");
-		scanf("%d", &cols);
-	} while(rows<=0 || cols<=0);
-	for (int i = 0; i < rows; i++)
-		for (int j = 0; j < cols; j++)
-			arr[i][j] = iRandom(-100, 100);
+  do {
+    printf("Nhap so dong: ");
+  	scanf("%d", &rows);
+  	printf("Nhap so cot: ");
+  	scanf("%d", &cols);
+  } while(rows<=0 || cols<=0);
+  for (int i = 0; i < rows; i++)
+  	for (int j = 0; j < cols; j++)
+  		arr[i][j] = iRandom(-100, 100);
 }
 void nhapMang2Chieu_fRandom(float arr[MAXSIZE][MAXSIZE], int &rows, int &cols) {
 	do {
@@ -315,7 +315,7 @@ void iXuatMang_2c(int arr[MAXSIZE][MAXSIZE], int rows, int cols) {
 			printf("%5d ", arr[i][j]);
 		}
 		printf("\n");
-	}	
+	}
 }
 void fXuatMang_2c(float arr[MAXSIZE][MAXSIZE], int rows, int cols) {
 	for (int i = 0; i < rows; i++)
@@ -325,7 +325,7 @@ void fXuatMang_2c(float arr[MAXSIZE][MAXSIZE], int rows, int cols) {
 			printf("%5.2f  ", arr[i][j]);
 		}
 		printf("\n");
-	}	
+	}
 }
 bool isSHT(int num) {
 	if (num<=0) return false;
@@ -391,7 +391,7 @@ int timGiaTri_chanLast(int * arr, int n) {
 	}
 	return -1;
 }
-// bai 1.6: tim vi tri so hoan thien nho nhat 
+// bai 1.6: tim vi tri so hoan thien nho nhat
 int timVtri_SHT_min(int * arr, int n) {
 	int i, index = -1;
 	int flg_SHT_min;
@@ -464,7 +464,7 @@ int sum_ptu_soDau_le(int arr[MAXSIZE][MAXSIZE], int rows, int cols) {
 				sum += arr[i][j];
 				//printf("%d ", arr[i][j]);
 			}
-				
+
 		}
 	}
 	return sum;
@@ -480,7 +480,7 @@ int count_ptu_soHangChuc_5(int arr[MAXSIZE][MAXSIZE], int rows, int cols) {
 				count++;
 				//printf("%d ", arr[i][j]);
 			}
-				
+
 		}
 	}
 	return count;
@@ -503,7 +503,7 @@ int sum_ptu_lonHon_TTD_soSau(int arr[MAXSIZE][MAXSIZE], int rows, int cols) {
 				sum += arr[i][j];
 				printf("%d ", arr[i][j]);
 			}
-				
+
 		}
 	}
 	return sum;
@@ -524,7 +524,7 @@ bool is_maTran_toanDuong(int arr[MAXSIZE][MAXSIZE], int rows, int cols) {
 		for(int j = 0; j < cols; j++)
 			if(arr[i][j]<0)
 				return false;
-	return true;	
+	return true;
 }
 // bai 2.7: tinh tong cac gia tri tren bien cua ma tran
 int sum_ptu_cacBien(int arr[MAXSIZE][MAXSIZE], int n) {
@@ -552,7 +552,7 @@ int count_xuatHien_x(int arr[MAXSIZE][MAXSIZE], int n, int x) {
 				count++;
 				//printf("%d ", arr[i][j]);
 			}
-				
+
 		}
 	}
 	return count;
@@ -568,9 +568,9 @@ int sum_ptu_duong_row(int arr[MAXSIZE][MAXSIZE], int n, int row) {
 	return sum;
 }
 // bai 2.10: dem so luong "yen ngua"
-// 0 0 0 0 
-// 0 0 0 0 
-// 0 0 0 0 
+// 0 0 0 0
+// 0 0 0 0
+// 0 0 0 0
 // 0 0 0 0
 int count_yenNgua(int arr[MAXSIZE][MAXSIZE], int n) {
 	int flg_max_row, flg_min_col;
