@@ -11,7 +11,6 @@
 #include <time.h>
 
 //khai bao hang so
-#define MAXSIZE 100
 
 //khai bao prototype
 int menu();
