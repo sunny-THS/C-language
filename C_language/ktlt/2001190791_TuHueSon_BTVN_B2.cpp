@@ -335,23 +335,23 @@ void fXuatMang_2c(float arr[MAXSIZE][MAXSIZE], int rows, int cols) {
   }
 }
 bool isSHT(int num) {
-  if (num <= 0)                          // 1
-    return false;                        // 2
-  int sum = 0;                           // 3
-  for (int i = 1; i <= num / 2; i++) {   // 4
-    if (num % i == 0) {                  // 5
-      sum += i;                          // 6
+  if (num <= 0)                        
+    return false;                      
+  int sum = 0;                         
+  for (int i = 1; i <= num / 2; i++) { 
+    if (num % i == 0) {                
+      sum += i;                        
     }
   }
-  return sum == num ? true : false;      // 7
+  return sum == num ? true : false;    
 }
 bool isSNT(int num) {
-  if (num < 2)                            // 1
-    return false;                         // 2
-  for (int i = 2; i <= sqrt(num); i++)    // 3
-    if (num % i == 0)                     // 4
-      return false;                       // 5
-  return true;                            // 6
+  if (num < 2)                          
+    return false;                       
+  for (int i = 2; i <= sqrt(num); i++)  
+    if (num % i == 0)                   
+      return false;                     
+  return true;                          
 }
 bool is_soDau_le(int num) {
   while (num >= 10)
@@ -365,97 +365,97 @@ bool is_soHangChu_5(int num) {
 }
 // bai 1.1: liet ke cac gia tri chan
 void lietKeGtriChan(int *arr, int n) {
-  for (size_t i = 0; i < n; i++) {  // 1
-    if (arr[i] % 2 == 0)            // 2
-      printf("%d ", arr[i]);        // 3
+  for (size_t i = 0; i < n; i++) {
+    if (arr[i] % 2 == 0)
+      printf("%d ", arr[i]);
   }
 }
 // bai 1.2: liet ke vi tri co gia tri am
 void lietKeVtri_gtriAm(int *arr, int n) {
-  for (size_t i = 0; i < n; i++) {  // 1
-    if (arr[i] < 0)                 // 2
-      printf("%d ", i);             // 3
+  for (size_t i = 0; i < n; i++) {
+    if (arr[i] < 0)
+      printf("%d ", i);
   }
 }
 // bai 1.3: tim gia tri lon nhat
 int timGiaTri_max(int *arr, int n) {
-  int flgMax = arr[0];            // 1
-  for (size_t i = 1; i < n; i++)  // 2
-    if (flgMax < arr[i])          // 3
-      flgMax = arr[i];            // 4
-  return flgMax;                  // 5
+  int flgMax = arr[0];
+  for (size_t i = 1; i < n; i++)
+    if (flgMax < arr[i])
+      flgMax = arr[i];
+  return flgMax;
 }
 // bai 1.4: tim gia tri duong dau tien (so thuc)
 float timGiaTri_duongFirst(float *arr, int n) {
-  for (size_t i = 0; i < n; i++)  // 1
-    if (arr[i] > 0)               // 2
-      return arr[i];              // 3
-  return -1;                      // 4
+  for (size_t i = 0; i < n; i++)
+    if (arr[i] > 0)
+      return arr[i];
+  return -1;
 }
 // bai 1.5: tim so chan cuoi cung
 int timGiaTri_chanLast(int *arr, int n) {
-  for (int i = n - 1; i >= 0; i--) {  // 1
-    if (arr[i] % 2 == 0)              // 2
-      return arr[i];                  // 3
+  for (int i = n - 1; i >= 0; i--) {
+    if (arr[i] % 2 == 0)
+      return arr[i];
   }
-  return -1;                          // 4
+  return -1;
 }
 // bai 1.6: tim vi tri so hoan thien nho nhat
 int timVtri_SHT_min(int *arr, int n) {
-  int i, index = -1;                               // 1
-  int flg_SHT_min;                                 // 2
-  for (i = 0; i < n; i++) {                        // 3
-    if (isSHT(arr[i])) {                           // 4
-      index = i;                                   // 5
-      flg_SHT_min = arr[i];                        // 6
-      break;                                       // 7
+  int i, index = -1;
+  int flg_SHT_min;
+  for (i = 0; i < n; i++) {
+    if (isSHT(arr[i])) {
+      index = i;
+      flg_SHT_min = arr[i];
+      break;
     }
   }
 
-  for (; i < n; i++) {                            // 8
-    if (isSHT(arr[i]) && flg_SHT_min > arr[i]) {  // 9
-      flg_SHT_min = arr[i];                       // 10
-      index = i;                                  // 11
+  for (; i < n; i++) {
+    if (isSHT(arr[i]) && flg_SHT_min > arr[i]) {
+      flg_SHT_min = arr[i];
+      index = i;
     }
   }
-  return index;                                   // 12
+  return index;
 }
 // bai 1.7: tim vi tri cua gia tri chan dau tien
 int timVtri_chanFirst(int *arr, int n) {
-  for (int i = 0; i < n; i++) { // 1
-    if (arr[i] % 2 == 0)        // 2
-      return i;                 // 3
+  for (int i = 0; i < n; i++) {
+    if (arr[i] % 2 == 0)
+      return i;
   }
-  return -1;                    // 4
+  return -1;
 }
 // bai 1.8: tim vi tri so hoan thien cuoi cung
 int timVtri_SHT_last(int *arr, int n) {
-  for (int i = n - 1; i >= 0; i--) { // 1
-    if (isSHT(arr[i]))               // 2
-      return i;                      // 3
+  for (int i = n - 1; i >= 0; i--) {
+    if (isSHT(arr[i]))
+      return i;
   }
-  return -1;                         // 4
+  return -1;
 }
 // bai 1.9: tim gia tri duong nho nhat
 float timGiatri_duongMin(float *arr, int n) {
-  float flg_num_duong_min = -1;                       // 1
-  int i;                                              // 2
-  for (i = 0; i < n; i++)                             // 3
-    if (arr[i] > 0) {                                 // 4
-      flg_num_duong_min = arr[i];                     // 5
-      break;                                          // 6
+  float flg_num_duong_min = -1;
+  int i;
+  for (i = 0; i < n; i++)
+    if (arr[i] > 0) {
+      flg_num_duong_min = arr[i];
+      break;
     }
-  for (; i < n; i++)                                  // 7
-    if (flg_num_duong_min > arr[i] && arr[i] > 0)     // 8
-      flg_num_duong_min = arr[i];                     // 9
-  return flg_num_duong_min;                           // 10
+  for (; i < n; i++)
+    if (flg_num_duong_min > arr[i] && arr[i] > 0)
+      flg_num_duong_min = arr[i];
+  return flg_num_duong_min;
 }
 // bai 1.10: tim SNT dau tien
 int timGiaTri_SNTFirst(int *arr, int n) {
-  for (int i = 0; i < n; i++)      // 1
-    if (isSNT(arr[i]))             // 2
-      return arr[i];               // 3
-  return -1;                       // 4
+  for (int i = 0; i < n; i++)
+    if (isSNT(arr[i]))
+      return arr[i];
+  return -1;
 }
 // bai 2.1: tinh tong cac ptu chu so dau la so le
 int sum_ptu_soDau_le(int arr[MAXSIZE][MAXSIZE], int rows, int cols) {
