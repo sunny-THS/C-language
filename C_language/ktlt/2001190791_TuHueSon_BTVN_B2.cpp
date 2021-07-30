@@ -528,8 +528,8 @@ int sum_ptu_cacBien(int arr[MAXSIZE][MAXSIZE], int n) {
     sum += arr[n - 1][i]; // bien duoi
   }
   for (int i = 1; i < n - 1; i++) {
-    sum += arr[i][0];     // bien tren
-    sum += arr[i][n - 1]; // bien duoi
+    sum += arr[i][0];     // bien trai
+    sum += arr[i][n - 1]; // bien phai
   }
   return sum;
 }
@@ -566,7 +566,8 @@ int count_yenNgua(int arr[MAXSIZE][MAXSIZE], int n) {
   int indexi, indexj;
   for (int i = 0; i < n; i++) {
     indexi = i;
-    flg_max_row = arr[indexi][0];
+	indexj = 0;
+    flg_max_row = arr[indexi][indexj];
     for (int j = 1; j < n; j++) {
       if (flg_max_row < arr[i][j]) {
         flg_max_row = arr[i][j];
