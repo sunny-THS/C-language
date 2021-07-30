@@ -98,8 +98,8 @@ int menu() {
   return iChonCau;
 }
 void chucNang(int iSelect) {
-  int *iArr = new int;
-  float *fArr = new float;
+  int iArr[MAXSIZE];
+  float fArr[MAXSIZE];
 
   int iArr_2c[MAXSIZE][MAXSIZE];
   float fArr_2c[MAXSIZE][MAXSIZE];
@@ -195,14 +195,12 @@ void chucNang(int iSelect) {
   case 21: {
     nhapMang2Chieu_iRandom(iArr_2c, rows, cols);
     iXuatMang_2c(iArr_2c, rows, cols);
-    printf("\nTong cac so co chu so dau la le: %d",
-           sum_ptu_soDau_le(iArr_2c, rows, cols));
+    printf("\nTong cac so co chu so dau la le: %d", sum_ptu_soDau_le(iArr_2c, rows, cols));
   } break;
   case 22: {
     nhapMang2Chieu_iRandom(iArr_2c, rows, cols);
     iXuatMang_2c(iArr_2c, rows, cols);
-    printf("\nSo luong cac so co chu so hang chuc la 5: %d",
-           count_ptu_soHangChuc_5(iArr_2c, rows, cols));
+    printf("\nSo luong cac so co chu so hang chuc la 5: %d", count_ptu_soHangChuc_5(iArr_2c, rows, cols));
   } break;
   case 23: {
     nhapMang2Chieu_iRandom(iArr_2c, rows, cols);
@@ -213,8 +211,7 @@ void chucNang(int iSelect) {
   case 24: {
     nhapMang2Chieu_iRandom(iArr_2c, rows, cols);
     iXuatMang_2c(iArr_2c, rows, cols);
-    printf("\nTong cac ptu lon hon TTD cua so sau no: %d",
-           sum_ptu_lonHon_TTD_soSau(iArr_2c, rows, cols));
+    printf("\nTong cac ptu lon hon TTD cua so sau no: %d", sum_ptu_lonHon_TTD_soSau(iArr_2c, rows, cols));
   } break;
   case 25: {
     nhapMang2Chieu_iRandom(iArr_2c, rows, cols);
@@ -222,8 +219,7 @@ void chucNang(int iSelect) {
     size_t row;
     printf("\nNhap hang can tinh: ");
     scanf("%d", &row);
-    printf("\nTong cac ptu tren hang %d: %d", row,
-           sum_ptu_row(iArr_2c, rows, cols, row - 1));
+    printf("\nTong cac ptu tren hang %d: %d", row, sum_ptu_row(iArr_2c, rows, cols, row - 1));
   } break;
   case 26: {
     nhapMang2Chieu_iRandom(iArr_2c, rows, cols);
@@ -236,8 +232,7 @@ void chucNang(int iSelect) {
   case 27: {
     nhapMang2Chieu_iRandom(iArr_2c, rows, cols);
     iXuatMang_2c(iArr_2c, rows, cols);
-    printf("Tong cac gia tri tren bien cua ma tran: %d",
-           sum_ptu_cacBien(iArr_2c, rows));
+    printf("Tong cac gia tri tren bien cua ma tran: %d", sum_ptu_cacBien(iArr_2c, rows));
   } break;
   case 28: {
     nhapMang2Chieu_iRandom(iArr_2c, rows, cols);
@@ -245,8 +240,7 @@ void chucNang(int iSelect) {
     int x;
     printf("\nNhap x: ");
     scanf("%d", &x);
-    printf("So lan xuat hien cua ptu x: %d lan",
-           count_xuatHien_x(iArr_2c, rows, x));
+    printf("So lan xuat hien cua ptu x: %d lan", count_xuatHien_x(iArr_2c, rows, x));
   } break;
   case 29: {
     nhapMang2Chieu_iRandom(iArr_2c, rows, cols);
@@ -254,14 +248,12 @@ void chucNang(int iSelect) {
     size_t row;
     printf("\nNhap hang can tinh: ");
     scanf("%d", &row);
-    printf("Tong cac gia tri duong tren hang %d: %d", row,
-           sum_ptu_duong_row(iArr_2c, rows, row - 1));
+    printf("Tong cac gia tri duong tren hang %d: %d", row, sum_ptu_duong_row(iArr_2c, rows, row - 1));
   } break;
   case 210: {
     nhapMang2Chieu_iRandom(iArr_2c, rows, cols);
     iXuatMang_2c(iArr_2c, rows, cols);
-    printf("Tong so \"yen ngua\" cua ma tran: %d",
-           count_yenNgua(iArr_2c, rows));
+    printf("Tong so \"yen ngua\" cua ma tran: %d", count_yenNgua(iArr_2c, rows));
   } break;
   default:
     printf("Khong co bai nay vui long nhap lai\n");
