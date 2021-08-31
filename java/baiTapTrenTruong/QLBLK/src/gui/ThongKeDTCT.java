@@ -6,15 +6,10 @@
 package gui;
 
 import dataprovider.SQLServerProvider;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.design.JasperDesign;
-import net.sf.jasperreports.engine.xml.JRXmlLoader;
-import net.sf.jasperreports.view.JasperViewer;
 import pojo.JasperConnect;
 
 /**
@@ -99,10 +94,14 @@ public class ThongKeDTCT extends javax.swing.JInternalFrame {
     private void btnXDTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXDTActionPerformed
         try {
             Map<String, Object> map = new HashMap<String, Object>();
-            map.put("year", Integer.parseInt(txtN.getText()));
+            map.put("year", Integer.parseInt(txtN.getText())); // truyền giá trị nhập        
+            map.put("SUBREPORT_DIR", JasperConnect.getPathRootToReport());// lấy đường dẫn file subreport
+            
             JasperConnect jc = new JasperConnect();
             String reportFile = "ThongKeDoanhThu.jrxml";
+            
             SQLServerProvider provider = new SQLServerProvider();
+            
             provider.open();
             jc.genarateReport(reportFile, map, provider.getConn());
             provider.close();

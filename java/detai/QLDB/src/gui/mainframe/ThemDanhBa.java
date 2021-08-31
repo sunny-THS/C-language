@@ -80,7 +80,7 @@ public class ThemDanhBa extends JDialog {
         tfNhomLh.setPreferredSize(sizeBoxInput);
 
         this.setSize(450, 360);
-        this.setTitle("Đăng Ký");
+        this.setTitle("Thêm Liên Hệ");
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setLocationRelativeTo(this);
 
@@ -89,7 +89,7 @@ public class ThemDanhBa extends JDialog {
 
         JPanel pnTitle = new JPanel(new FlowLayout(FlowLayout.CENTER));
         pnTitle.setPreferredSize(new Dimension(0, 50));
-        JLabel lbTitle = new JLabel("Đăng ký thông tin");
+        JLabel lbTitle = new JLabel("Ghi thông tin liên hệ");
         lbTitle.setFont(new Font("Arial", Font.BOLD, 22));
         pnTitle.add(lbTitle);
 

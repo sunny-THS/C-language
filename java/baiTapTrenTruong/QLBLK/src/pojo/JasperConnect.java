@@ -5,7 +5,8 @@
  */
 package pojo;
 
-import dataprovider.SQLServerProvider;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.util.Map;
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -24,6 +25,11 @@ public class JasperConnect {
     public JasperConnect() {}
 
     private String report = "src\\report\\";
+    
+    public static String getPathRootToReport() {
+        Path path = Paths.get("", new String[0]);
+        return path.toAbsolutePath().toString()+"\\src\\report\\";
+    }
 
     public void genarateReport(String file, Map<String, Object> map, Connection con) {
         try {

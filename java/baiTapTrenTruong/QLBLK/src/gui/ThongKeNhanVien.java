@@ -102,10 +102,14 @@ public class ThongKeNhanVien extends javax.swing.JInternalFrame {
     private void btnXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXActionPerformed
         try {
             Map<String, Object> map = new HashMap<String, Object>();
-            map.put("year", Integer.parseInt(txtN.getText()));
+            map.put("year", Integer.parseInt(txtN.getText())); // truyền giá trị nhập
+            map.put("SUBREPORT_DIR", JasperConnect.getPathRootToReport());// lấy đường dẫn file subreport
+            
             JasperConnect jc = new JasperConnect();
             String reportFile = "ThongKeNhanVien.jrxml";
+            
             SQLServerProvider provider = new SQLServerProvider();
+            
             provider.open();
             jc.genarateReport(reportFile, map, provider.getConn());
             provider.close();
