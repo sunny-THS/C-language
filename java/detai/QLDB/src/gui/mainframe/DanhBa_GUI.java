@@ -127,8 +127,8 @@ public class DanhBa_GUI extends JFrame {
         JPanel pnContent = new JPanel();
         pnContent.setBackground(Color.WHITE);
         lstDanhBa = new JList<>();
-        getLstDanhBa().setCellRenderer(new PhoneBookListRenderer());
-        JScrollPane scrollLstDanhBa = new JScrollPane(getLstDanhBa(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        getLstDanhBa().setCellRenderer(new PhoneBookListRenderer()); // thiết kê cho các phần tử trong jlist
+        JScrollPane scrollLstDanhBa = new JScrollPane(getLstDanhBa(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED); // scroll bar
         scrollLstDanhBa.setPreferredSize(new Dimension(392, 270));
         scrollLstDanhBa.setBorder(new EmptyBorder(0, 5, 0, 5));
         pnContent.add(scrollLstDanhBa);
@@ -191,15 +191,15 @@ public class DanhBa_GUI extends JFrame {
         });
 
         getCboNhomLH().addActionListener(ae -> {
-            showDanhBa();
+            showDanhBa(); // show thông tin của từng danh bạ
         });
 
         getLstDanhBa().addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
-                if (evt.getClickCount() == 2) {
+                if (evt.getClickCount() == 2) { // khi click double vào 1 liên hệ nào đó
                     selectedDB = getLstDanhBa().getSelectedValue();
                     ThongTinDanhBa ttdb = new ThongTinDanhBa(thisFrame, true, selectedDB);
-                    ttdb.setVisible(true);
+                    ttdb.setVisible(true); // hiễn thị thông tin của liên hệ
                     if (ttdb.isCkUpdate()) {
                         getCboNhomLH().removeAllItems();
                         loadData();
@@ -208,13 +208,13 @@ public class DanhBa_GUI extends JFrame {
 
             }
         });
-
+        // ở footer chứa username của người dùng
         lbFooter.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
-                new ThongTinCaNhan(thisFrame, true).setVisible(true);
+                new ThongTinCaNhan(thisFrame, true).setVisible(true); // hiển thị thông tin của người dùng
             }
         });
-        mnuISaoLuu.addActionListener(ae -> {
+        mnuISaoLuu.addActionListener(ae -> { // tính năng sao lưu danh bạ
             if (DanhBaDAO.saoLuu()) {
                 mnuIKhoiPhuc.setEnabled(true);
                 JOptionPane.showMessageDialog(this, "Sao lưu thành công");
@@ -223,7 +223,7 @@ public class DanhBa_GUI extends JFrame {
                 JOptionPane.showMessageDialog(this, "Sao lưu thất bại");
             
         });
-        mnuIKhoiPhuc.addActionListener(ae -> {
+        mnuIKhoiPhuc.addActionListener(ae -> { // tính năng khôi phục của danh bạ
             if (DanhBaDAO.khoiPhuc()) {
                 getCboNhomLH().removeAllItems();
                 loadData();
@@ -234,13 +234,15 @@ public class DanhBa_GUI extends JFrame {
            
         });
     }
-
+    // hiển thị các liên hệ
     private void showDanhBa() {
+        Vector<DanhBa> v = new Vector<DanhBa>();
         if (getCboNhomLH().getModel().getSize() < 1) {
+            getLstDanhBa().setListData(v);
             return;
         }
         selectedNLH = (NhomLienHe) getCboNhomLH().getSelectedItem();
-        Vector<DanhBa> v = selectedNLH.getLstDanhBa();
+        v = selectedNLH.getLstDanhBa();
         getLstDanhBa().setListData(v);
         getLstDanhBa().setSelectedIndex(0);
     }

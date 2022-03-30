@@ -16,9 +16,9 @@ import javax.swing.border.EmptyBorder;
 
 class PhoneBookListRenderer extends DefaultListCellRenderer {
 
-    Font font = new Font("Arial", Font.BOLD, 20);
+    Font font = new Font("Arial", Font.BOLD, 20); // setup font
 
-    // format for jlist
+    // định dạng cho jlist
     @Override
     public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
         JLabel label = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
@@ -26,9 +26,9 @@ class PhoneBookListRenderer extends DefaultListCellRenderer {
         label.setHorizontalTextPosition(JLabel.RIGHT);
         label.setFont(font);
         label.setBorder(new EmptyBorder(5, 5, 0, 5));
-
+        // Thêm ảnh cho label hiễn thị trên jlist
         Image imageIcon = new ImageIcon(gui.Main.personImage).getImage();
-        Image icon = imageIcon.getScaledInstance(35, 35, Image.SCALE_SMOOTH);
+        Image icon = imageIcon.getScaledInstance(35, 35, Image.SCALE_SMOOTH); // setup size for image
         label.setIcon(new ImageIcon(icon));
 
         return label;

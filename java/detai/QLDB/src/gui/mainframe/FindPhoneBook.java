@@ -33,6 +33,7 @@ import pojo.DanhBa;
 /**
  *
  * @author Admin
+ * Tìm kiếm 1 liên hệ nào đó theo tên
  */
 public class FindPhoneBook extends JDialog {
 
@@ -72,8 +73,8 @@ public class FindPhoneBook extends JDialog {
         JPanel pnContent = new JPanel();
         pnContent.setBackground(Color.WHITE);
         lstDanhBa = new JList<>();
-        lstDanhBa.setCellRenderer(new PhoneBookListRenderer());
-        JScrollPane scrollLstDanhBa = new JScrollPane(lstDanhBa, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        lstDanhBa.setCellRenderer(new PhoneBookListRenderer()); // thiết kế các phần tử trong jlist
+        JScrollPane scrollLstDanhBa = new JScrollPane(lstDanhBa, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED); // scroll bar
         scrollLstDanhBa.setPreferredSize(new Dimension(392, 270));
         scrollLstDanhBa.setBorder(new EmptyBorder(0, 5, 0, 5));
         pnContent.add(scrollLstDanhBa);

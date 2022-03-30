@@ -24,11 +24,12 @@ public class SQLServerProvider {
     private Statement statement;
 
     public void open() {
-        String strServer = "MSI-PC";
-        String strDatabase = "QLDB";
-        String uid = "sa";
-        String pwd = "sa123";
+        String strServer = "MSI-PC"; // tên của server
+        String strDatabase = "QLDB"; // tên database
+        String uid = "sa"; // tài khoản
+        String pwd = "sa123"; // mật khẩu
         try {
+            // tạo kết nối
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             String connectionURL = "jdbc:sqlserver://" + strServer
                     + ":1433;databaseName=" + strDatabase
@@ -39,7 +40,7 @@ public class SQLServerProvider {
             e.printStackTrace();
         }
     }
-
+    // kiểm tra thông tin đăng nhật
     public boolean isDangNhap(String uid, String pwd) {
         int a = 1;
         String procCkDN = "{? = call CKDANGNHAP(?, ?)}";
@@ -48,11 +49,11 @@ public class SQLServerProvider {
             callableStatement = conn.prepareCall(procCkDN);
             callableStatement.registerOutParameter(1, Types.INTEGER);
             callableStatement.setString(2, uid);
-            callableStatement.setString(3, gui.auth.MD5.getMD5(pwd));
+            callableStatement.setString(3, gui.auth.MD5.getMD5(pwd)); // chuyển mật khẩu thành MD5
             callableStatement.execute();
             a = callableStatement.getInt(1);
             if (a == 1) {
-                executeUpdate(updateTT);
+                executeUpdate(updateTT); // cập nhật trạng thái tài khoản
             }
         } catch (Exception e) {
             e.printStackTrace();

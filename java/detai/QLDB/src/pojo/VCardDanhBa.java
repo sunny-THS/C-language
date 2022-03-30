@@ -14,15 +14,16 @@ import net.glxn.qrgen.javase.QRCode;
 /**
  *
  * @author Admin
+ * Tạo mã qr cho mỗi danh bạ
  */
 public class VCardDanhBa {
 
     private String tenND, email, sdt;
 
-    public VCardDanhBa(String tenND, String email, String sdt) {
-        this.tenND = tenND;
-        this.email = email;
-        this.sdt = sdt;
+    public VCardDanhBa(DanhBa db) {
+        this.tenND = db.getTenLH();
+        this.email = db.getEmail();
+        this.sdt = db.getSdt();
     }
 
     public VCardDanhBa() {
@@ -36,7 +37,7 @@ public class VCardDanhBa {
     }
 
     public void createVCart() {
-        String[] splitName = this.tenND.split(" ");
+        String[] splitName = this.tenND.split(" "); // tách tên liên hệ
         String ten = "", dem = "", ho = "";
 
         int len = splitName.length;
@@ -45,11 +46,19 @@ public class VCardDanhBa {
             dem = splitName[len - 2].trim();
             ho = this.tenND.split(dem)[0].trim();
         }
-
+        /*
+            BEGIN:VCARD
+            VERSION:3.0
+            FN:{full name}
+            N:{tên};{họ đệm};{họ};;
+            TEL;TYPE=CELL:{số điện thoại}
+            EMAIL: {địa chỉ email}
+            END:VCARD
+        */
         String vCard = "BEGIN:VCARD\n"
                 + "VERSION:3.0\n"
                 + "FN:" + this.tenND + "\n"
-                + "N:" + ten + ";" + dem + ";" + ho + ";;\n"
+                + "N:" + ho + ";" + ten + ";" + dem + ";;\n"
                 + "TEL;TYPE=CELL:" + this.sdt + "\n"
                 + "EMAIL:" + this.email + "\n"
                 + "END:VCARD";

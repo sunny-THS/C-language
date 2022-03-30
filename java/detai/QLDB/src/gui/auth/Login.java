@@ -138,7 +138,7 @@ public class Login extends JFrame {
             FileOutputStream fos = new FileOutputStream(gui.Main.saoLuuDangNhap);
             OutputStreamWriter osw = new OutputStreamWriter(fos, "UTF-8");
             BufferedWriter bw = new BufferedWriter(osw);
-            bw.write(username + "-" + pwd);
+            bw.write(username + "-" + pwd); // lưu phiên hoạt động
             bw.close();
             osw.close();
             fos.close();

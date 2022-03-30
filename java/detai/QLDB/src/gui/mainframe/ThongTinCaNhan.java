@@ -40,6 +40,7 @@ import static gui.util.Utils.*;
 /**
  *
  * @author pc
+ * hiển thị thông tin người dùng
  */
 public class ThongTinCaNhan extends JDialog {
 
@@ -200,7 +201,7 @@ public class ThongTinCaNhan extends JDialog {
             }
         });
 
-        mniCS.addActionListener(new ActionListener() {
+        mniCS.addActionListener(new ActionListener() { // chỉnh sửa thông tin người dùng
             @Override
             public void actionPerformed(ActionEvent ae) {
                 tfEmail.setEditable(true);
@@ -213,7 +214,7 @@ public class ThongTinCaNhan extends JDialog {
             }
         });
 
-        mniDX.addActionListener(new ActionListener() {
+        mniDX.addActionListener(new ActionListener() { // đăng xuất
             @Override
             public void actionPerformed(ActionEvent ae) {
                 try {
@@ -227,7 +228,7 @@ public class ThongTinCaNhan extends JDialog {
                         FileOutputStream fos = new FileOutputStream(gui.Main.saoLuuDangNhap);
                         OutputStreamWriter osw = new OutputStreamWriter(fos, "UTF-8");
                         BufferedWriter bw = new BufferedWriter(osw);
-                        bw.write("");
+                        bw.write(""); // kết thúc phiên làm việc khi đăng xuất
                         bw.close();
                         osw.close();
                         fos.close();
@@ -246,7 +247,7 @@ public class ThongTinCaNhan extends JDialog {
         });
     }
 
-    private void loadData() {
+    private void loadData() { // hiển thị thông tin người dùng từ db
         try {
             String kieuDinhDang = "dd/MM/yyyy";
             SimpleDateFormat df = new SimpleDateFormat(kieuDinhDang);

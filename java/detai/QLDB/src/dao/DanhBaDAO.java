@@ -58,8 +58,8 @@ public class DanhBaDAO {
 
             String updateDanhBaWhenNhomIsNull = "UPDATE DANHBA SET MANHOMLH=(SELECT TOP(1) MANHOM FROM NHOMLIENHE ORDER BY MANHOM DESC) WHERE MADB=(SELECT TOP(1)MADB FROM DANHBA ORDER BY MADB DESC)";
 
-            provider.executeUpdate(insertDanhBa);
-            provider.executeUpdate(insertThongTinDanhBa);
+            provider.executeUpdate(insertDanhBa); // thêm một liên hệ mới
+            provider.executeUpdate(insertThongTinDanhBa); // cập nhật thông tin của liên hệ đó
 
             // check xem đã có nhóm liên hệ đó chưa
             if (!provider.isNhomLienHe(provider.getMaNDN(DangNhapDAO.getInfoUser().getTenDN()), nhomLH.trim())) { // chưa nhóm lh này
@@ -77,7 +77,7 @@ public class DanhBaDAO {
             return false;
         }
     }
-    
+    // tìm thông tin danh bạ
     public static Vector<DanhBa> timDanhBa(String tenDB) {
         Vector<DanhBa> nhomDB = new Vector<DanhBa>();
         SQLServerProvider provider = new SQLServerProvider();
@@ -95,7 +95,7 @@ public class DanhBaDAO {
             return null;
         }
     }
-    
+    // khôi phục danh bạ được xóa sau khi sao lưu
     public static boolean khoiPhuc() {
         SQLServerProvider provider = new SQLServerProvider();
         provider.open();
@@ -117,7 +117,7 @@ public class DanhBaDAO {
             return false;
         }
     }
-    
+    // sao lưu danh bạ
     public static boolean saoLuu() {
         SQLServerProvider provider = new SQLServerProvider();
         provider.open();
@@ -138,7 +138,7 @@ public class DanhBaDAO {
             return false;
         }
     }
-    
+    // lấy thông tin của danh bạ
     public static Vector<DanhBa> getDanhBa() {
         Vector<DanhBa> nhomDB = new Vector<DanhBa>();
         
@@ -158,7 +158,7 @@ public class DanhBaDAO {
         provider.close();
         return nhomDB;
     }
-    
+    // lấy thông tin của các nhóm liên hệ
     public static ArrayList<NhomLienHe> getNhomLh () {
         ArrayList<NhomLienHe> nhomLH = new ArrayList<NhomLienHe>();
         

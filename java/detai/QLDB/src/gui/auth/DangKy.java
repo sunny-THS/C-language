@@ -390,6 +390,7 @@ public class DangKy extends JDialog {
             }
 
             if (kt == true) {
+                // cập nhật thông tin đăng nhập
                 if (DangKyDAO.capNhatThongTin(tfHoTen.getText(), tfEmail.getText(), tfNgaySinh.getText(), tfUserName.getText(), pwfPw.getText())) {
                     JOptionPane.showMessageDialog(this, "Đăng ký thành công");
                     this.dispose();

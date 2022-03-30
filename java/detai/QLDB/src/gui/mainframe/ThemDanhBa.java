@@ -36,6 +36,7 @@ import pojo.NhomLienHe;
 /**
  *
  * @author pc
+ * Thêm một danh bạ
  */
 public class ThemDanhBa extends JDialog {
 
@@ -353,7 +354,7 @@ public class ThemDanhBa extends JDialog {
                 lbErrHoten.setText(" ");
             }
 
-            if (kt == true) {
+            if (kt == true) { // thêm danh bạ vào db
                 if (DanhBaDAO.add(tfSDT.getText(), tfHoTen.getText(), tfEmail.getText(), tfGhiChu.getText(), tfNhomLh.getText())) {
                     JOptionPane.showMessageDialog(null, "Thêm danh bạ thành công");
                     ckAdd = true;

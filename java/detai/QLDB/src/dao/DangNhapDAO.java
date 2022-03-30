@@ -18,12 +18,13 @@ import pojo.ThongTinNguoiDung;
 public class DangNhapDAO {
     private static ThongTinNguoiDung infoUser = new ThongTinNguoiDung();
     
+    // cập nhật trạng thái hoạt động của người dùng
     public static boolean dangXuat() {
         String updateTT = "UPDATE DANGNHAP SET TRANGTHAI='DISCONNECT' WHERE TENDANGNHAP='" + infoUser.getTenDN() + "'";
         SQLServerProvider provider = new SQLServerProvider();
         try {
             provider.open();
-            provider.executeUpdate(updateTT);
+            provider.executeUpdate(updateTT); // cập nhật trạng thái
             provider.close();
         } catch (Exception e) {
             return false;
@@ -32,6 +33,7 @@ public class DangNhapDAO {
         return true;
     }
     
+    // kiểm tra thông tin đăng nhập có chính xác không
     public static boolean isDangNhap(String uid, String pwd) {
         SQLServerProvider provider = new SQLServerProvider();
         provider.open();
@@ -74,6 +76,7 @@ public class DangNhapDAO {
         provider.close();
         infoUser = aInfoUser;
     }
+    // cập nhật thông tin của người dùng
     public static void setInfoUser(ThongTinNguoiDung ttnd) {
         String kieuDinhDang = "dd/MM/yyyy";
         SimpleDateFormat df = new SimpleDateFormat(kieuDinhDang);

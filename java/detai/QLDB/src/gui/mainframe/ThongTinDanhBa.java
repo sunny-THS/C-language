@@ -37,6 +37,7 @@ import static gui.util.Utils.*;
 /**
  *
  * @author pc
+ * hiển thị thông tin của liên hệ
  */
 public class ThongTinDanhBa extends JDialog {
 
@@ -287,9 +288,9 @@ public class ThongTinDanhBa extends JDialog {
     }
 
     private void loadData() {
-        VCardDanhBa vcard = new VCardDanhBa(danhBa.getTenLH(), danhBa.getEmail(), danhBa.getSdt()); // tạo mã QR
-        vcard.createVCart();
-        lbImageVcard.setIcon(new ImageIcon(vcard.getImageVCard()));
+        VCardDanhBa vcard = new VCardDanhBa(danhBa); // tạo mã QR dựa trên thông tin của liên hệ
+        vcard.createVCart();// tạo mã
+        lbImageVcard.setIcon(new ImageIcon(vcard.getImageVCard())); // hiển thị mã qr
 
         df.setLenient(false); // set false để kiểm tra tính hợp lệ của date. VD: tháng 2 phải có 28-29 ngày, năm có 12 tháng,....
 

@@ -11,6 +11,8 @@ import java.security.MessageDigest;
 /**
  *
  * @author Admin
+ * Dùng MD5 để mã hóa mật khẩu của người dùng
+ * Để tăng tinh bảo mật cho tài khoản
  */
 public class MD5 {
 
@@ -22,7 +24,7 @@ public class MD5 {
             
             BigInteger no = new BigInteger(1, msgDigest); // chuyển mảng băm
             
-            String hashText = no.toString(16);
+            String hashText = no.toString(16); // chuyển thành chuỗi hex
             while (hashText.length() < 32) {
                 hashText = '0' + hashText;
             }

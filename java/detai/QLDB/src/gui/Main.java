@@ -13,26 +13,26 @@ import dao.DangNhapDAO;
  */
 public class Main {
 
-    public static String iconImage = "image/icon.png";
-    public static String personImage = "image/person.png";
-    public static String saoLuuDangNhap = "saoLuuDangNhap.txt";
-    public static String imageVCard = "image/vcard.png";
+    public static String iconImage = "image/icon.png"; // icon của ứng dụng
+    public static String personImage = "image/person.png"; // hình nền của danh bạ
+    public static String saoLuuDangNhap = "saoLuuDangNhap.txt"; // lưu thông tin đăng nhập của phiên làm việc tiếp theo
+    public static String imageVCard = "image/vcard.png"; // mã qr cho từng liên hệ
 
     public static void main(String[] args) {
         try {
             java.io.FileInputStream fis = new java.io.FileInputStream(Main.saoLuuDangNhap);
             java.io.InputStreamReader isr = new java.io.InputStreamReader(fis, "UTF-8");
             java.io.BufferedReader br = new java.io.BufferedReader(isr);
-            String thongTinDangNhap = br.readLine();
+            String thongTinDangNhap = br.readLine(); // kiểm tra phiên hoạt động trc đó
             br.close();
             isr.close();
             fis.close();
-            if (thongTinDangNhap == "") {
+            if (thongTinDangNhap.equals("")) { // nếu không có thì đăng nhập
                 new gui.auth.Login().setVisible(true);
             } 
             else {
-                String[] splitThongTin = thongTinDangNhap.split("-");
-                DangNhapDAO.setInfoUser(splitThongTin[0]);
+                String[] splitThongTin = thongTinDangNhap.split("-"); // tách thông tin đăng nhập
+                DangNhapDAO.setInfoUser(splitThongTin[0]); // setup người dùng
                 new gui.mainframe.DanhBa_GUI().setVisible(true);
             }
 
@@ -42,7 +42,7 @@ public class Main {
         }
     }
 
-    // debug sql
+    // debug
 //    public static void main(String[] args) {
 //        VCard vCard = new VCard();
 //        vCard.setName("Believe in the eternal");
