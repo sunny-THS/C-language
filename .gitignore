@@ -19,4 +19,24 @@
 /java/detai/QLDB/nbproject/private/
 /java/detai/QLDB/build/
 /java/detai/QLDB/dist/
+<<<<<<< HEAD
 /java/detai/QLBLK/nbproject/private/
+=======
+/java/baiTapTrenTruong/QLNV/build/
+/java/baiTapTrenTruong/QLNS/nbproject/private/
+/java/baiTapTrenTruong/QLNS/build/
+/java/baiTapTrenTruong/Thread/nbproject/private/
+/java/baiTapTrenTruong/Thread/build/
+/java/baiTapTrenTruong/QLBLK/nbproject/private/
+/java/baiTapTrenTruong/QLBLK/build/
+/java/baiTapTrenTruong/NonRace/nbproject/private/
+/java/baiTapTrenTruong/NonRace/build/
+/java/baiTapTrenTruong/ProducerConsumerProblem/nbproject/private/
+/java/baiTapTrenTruong/ProducerConsumerProblem/build/
+/java/baiTapTrenTruong/BaiTapThread/nbproject/private/
+/java/baiTapTrenTruong/BaiTapThread/build/
+/java/baiTapTrenTruong/Lt_Network/nbproject/private/
+/java/baiTapTrenTruong/Lt_Network/build/
+/java/baiTapTrenTruong/staffAndManager/nbproject/private/
+/java/baiTapTrenTruong/staffAndManager/build/
+>>>>>>> c12fa7c703543d8089352ee16d0de950ad68151e
